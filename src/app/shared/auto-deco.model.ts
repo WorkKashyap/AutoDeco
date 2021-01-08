@@ -1,7 +1,4 @@
-export class PaymentDetail {
-  Pmid: number;
-  CardOwner: string;
-  CardNumber: string;
-  ExpDate: string;
-  CVV: string;
+export class LoginResultModel {
+  username: string;
+  password: string;
 }
