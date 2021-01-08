@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AutoDecoService } from 'src/app/shared/auto-deco.service';
+import { Router } from '@angular/router';
+import { JobworkmaterialService } from 'src/app/shared/jobworkmaterial/jobworkmaterial.service';
 
 
 @Component({
@@ -10,10 +11,11 @@ import { AutoDecoService } from 'src/app/shared/auto-deco.service';
 })
 export class AddjobworkComponent implements OnInit {
 
-  constructor(private service:AutoDecoService) { }
+  constructor(private service:JobworkmaterialService, private router:Router) { }
 
   ngOnInit() {
     this.resetForm();
+    //console.log(this.service.jid);
   }
 
   cancelRecord()
@@ -36,16 +38,18 @@ export class AddjobworkComponent implements OnInit {
     if(this.service.jobworkData.id == 0)
       this.insertRecord(form);
     else
-      this.updateRecord(form);
+     // this.updateRecord(form);
+     this.service.getJobworkmaterialDetailbyID(this.service.jid);
   }
 
   insertRecord(form:NgForm){
     this.service.postjobworkmaterial().subscribe(
       res => {
         //console.log(this.service.jobworkData);
-        this.resetForm(form);
+       /* this.resetForm(form);
         //this.toastr.success('Submitted Successfully','Payment Detail register');
-        this.service.refresList();
+        this.service.refresList();*/
+        this.router.navigate(['/view-jobwork']);
       },
       err => {
         console.log(err)

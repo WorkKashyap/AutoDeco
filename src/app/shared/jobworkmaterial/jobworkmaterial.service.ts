@@ -1,28 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { jobworkmaterial } from './auto-deco.model';
-import { LoginComponent } from '../login/login.component';
-import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
-import { LoginResultModel } from './auto-deco.model';
-const TOKEN = 'TOKEN';
+import { environment } from 'src/environments/environment';
+import { jobworkmaterial } from './jobworkmaterial.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AutoDecoService {
-  //readonly rootURL =  'http://192.168.0.104:1111/api';
-  // readonly rootURL =  'http://localhost:1122/api';
+export class JobworkmaterialService {
+  readonly rootURL =  environment.apiUrl;
   
   jobworkData: jobworkmaterial;
   list : jobworkmaterial[];
   public jid:number;
-  // formData:PaymentDetail;
-  readonly rootURL =  'http://192.168.0.102:1111/api';
-  
-  // list : PaymentDetail[];
-  // public paymentdetail:PaymentDetail;
-  public pid:number;
-
 
   constructor(private http:HttpClient,private router:Router) { }
 
@@ -42,13 +32,21 @@ export class AutoDecoService {
     return this.http.delete(this.rootURL+'/jobworkmaterials/'+ id);
   }
 
+  public getJobworkmaterialDetailbyID(id): any {
+    return this.http
+      .get(this.rootURL + "/jobworkmaterials/" + id)
+      .toPromise()
+      .then(res => {
+        this.jobworkData = res as jobworkmaterial;
+      });
+  }
+
   refresList(){
     this.http.get(this.rootURL+'/jobworkmaterials')
     .toPromise()
-    .then(res => this.list = res as jobworkmaterial[]);
+    .then(res => 
+      this.list = res as jobworkmaterial[]
+      //console.log(res)
+      );
   }
-
 }
-
-
-

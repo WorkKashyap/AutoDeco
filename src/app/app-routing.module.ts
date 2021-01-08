@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { HomeComponent } from './home/home.component';
 import { AddjobworkComponent } from './home/addjobwork/addjobwork.component';
+import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
 
 const routes: Routes = [
   // { path: '', component: HomeComponent},
@@ -17,8 +18,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent,canActivate: [AuthGuard]  },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard]  },
-  { path: 'jobworkmaterial', component: AddjobworkComponent,canActivate: [AuthGuard]  },
-
+  { path: 'view-jobwork', component: ViewJobworkComponent,canActivate: [AuthGuard]  },
+  { path: 'addjobwork', component: AddjobworkComponent,canActivate: [AuthGuard]  },
   { path: "**", redirectTo: "" }
 ];
 

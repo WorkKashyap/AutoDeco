@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AutoDecoService } from 'src/app/shared/auto-deco.service';
+import { JobworkmaterialService } from 'src/app/shared/jobworkmaterial/jobworkmaterial.service';
 
 @Component({
   selector: 'app-view-jobwork',
@@ -10,23 +10,27 @@ import { AutoDecoService } from 'src/app/shared/auto-deco.service';
 export class ViewJobworkComponent implements OnInit {
   cols: any;
 
-  constructor(private service:AutoDecoService, private router:Router) { }
+  constructor(private service:JobworkmaterialService, private router:Router) { }
 
   ngOnInit() {
     this.service.refresList();
     this.cols = [
     { field: "view", header: "Action" },
-    { field: "MaterialNumber", header: "number" },
-    { field: "MaterialDesc", header: "Desc" },
-    { field: "RateINR", header: "rate" },
+    { field: "materialNumber", header: "number" },
+    { field: "materialDesc", header: "Desc" },
+    { field: "rateINR", header: "rate" },
   ];
 }
+
+  displayJobworkdata()
+  {
+    this.router.navigate(['/addjobwork']);
+  }
 
   ViewDetail(id)
     {
     this.service.jid=id;
-    this.router.navigate(['home/addjobwork']);
-    //console.log(id);
+    this.router.navigate(['/addjobwork']);
     }
 
   onDelete(id){

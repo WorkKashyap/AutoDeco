@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AutoDecoService } from './shared/auto-deco.service';
+import { JobworkmaterialService } from './shared/jobworkmaterial/jobworkmaterial.service';
 
 
 import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
@@ -62,7 +62,7 @@ import { HomeComponent } from './home/home.component';
       
     // ])
     ],
-  providers: [AutoDecoService],
+  providers: [JobworkmaterialService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
