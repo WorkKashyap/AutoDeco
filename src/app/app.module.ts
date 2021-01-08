@@ -20,6 +20,8 @@ import { Injectable } from '@angular/core';
 import {ButtonModule} from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
 import {TabViewModule} from 'primeng/tabview';
+import { AddjobworkComponent } from './home/addjobwork/addjobwork.component';
+import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import {TabViewModule} from 'primeng/tabview';
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    BodyComponent
+    BodyComponent,
+    AddjobworkComponent,
+    ViewJobworkComponent
   ],
   imports: [
     ButtonModule,
@@ -36,7 +40,8 @@ import {TabViewModule} from 'primeng/tabview';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    TabViewModule
+    TabViewModule,
+    TableModule,
     ],
   providers: [AutoDecoService],
   bootstrap: [AppComponent]

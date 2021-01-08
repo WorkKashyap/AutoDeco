@@ -1,7 +1,6 @@
-export class PaymentDetail {
-  Pmid: number;
-  CardOwner: string;
-  CardNumber: string;
-  ExpDate: string;
-  CVV: string;
+export class jobworkmaterial{
+  id: number;
+  MaterialNumber: number;
+  MaterialDesc: string;
+  RateINR: number; 
 }
