@@ -4,3 +4,7 @@ export class jobworkmaterial{
   MaterialDesc: string;
   RateINR: number; 
 }
+export class LoginResultModel {
+  username: string;
+  password: string;
+}

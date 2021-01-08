@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { jobworkmaterial } from './auto-deco.model';
+import { LoginComponent } from '../login/login.component';
 import { HttpClient} from '@angular/common/http';
+import { Router } from '@angular/router';
+import { LoginResultModel } from './auto-deco.model';
+const TOKEN = 'TOKEN';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +16,15 @@ export class AutoDecoService {
   jobworkData: jobworkmaterial;
   list : jobworkmaterial[];
   public jid:number;
+  // formData:PaymentDetail;
+  readonly rootURL =  'http://192.168.0.102:1111/api';
+  
+  // list : PaymentDetail[];
+  // public paymentdetail:PaymentDetail;
+  public pid:number;
 
-  constructor(private http:HttpClient) { }
+
+  constructor(private http:HttpClient,private router:Router) { }
 
   postjobworkmaterial()
   {

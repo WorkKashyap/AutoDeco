@@ -1,0 +1,21 @@
+<div class="container-fluid fill">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+				<form #form='ngForm' autocomplete="off" (submit)="OnSubmit(form)" class="box">                    <h1>Login</h1>
+					<p class="text-muted"> Please enter your login and password!</p> 
+					<input type="text" name="username" #username="ngModel" [(ngModel)]="service.userData.username"  class="form-control" placeholder="username">		
+					<input type="password" name="password" #password="ngModel" [(ngModel)]="service.userData.password" class="form-control" placeholder="password">
+					 <!-- <a class="forgot text-muted" href="#">Forgot password?</a>  -->
+					 <input type="submit" value="Login"  class="btn float-right login_btn">                    <div class="col-md-12">
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
