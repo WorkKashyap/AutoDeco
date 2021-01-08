@@ -18,6 +18,8 @@ import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
 import {TabViewModule} from 'primeng/tabview';
+import { AddjobworkComponent } from './home/addjobwork/addjobwork.component';
+import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -30,6 +32,8 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     NavbarComponent,
+    AddjobworkComponent,
+    ViewJobworkComponent,
     LoginComponent,
     MainComponent,
     DashboardComponent,
@@ -43,6 +47,7 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     BrowserAnimationsModule,
     TabViewModule,
+    TableModule,
     ToastrModule.forRoot(),
     NgxLoadingModule.forRoot({})
     // RouterModule.forRoot([
