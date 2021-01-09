@@ -1,12 +1,13 @@
-<section class="content">
+<section class="content-wrapper px-5 py-2">
     <div class="container-fluid">
       <div class="row">
         <!-- left column -->
         <div class="col-md-6">
           <!-- general form elements -->
           <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex">
               <h3 class="card-title font-weight-bold">Job Work Material Detail</h3>
+              <button class="btn btn-primary ml-auto" (click)="backBtn()"> Back </button>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -15,15 +16,16 @@
                 <input type="hidden" name="id" [value]="service.jobworkData.id">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Material No.:</label>
-                  <input type="text" class="form-control" name="MaterialNumber" #MaterialNumber="ngModel" [(ngModel)]="service.jobworkData.MaterialNumber" placeholder="Enter material no.">
+                  <input type="text" class="form-control" name="MaterialNumber" #MaterialNumber="ngModel" [(ngModel)]="service.jobworkData.materialNumber" placeholder="Enter material no.">
                 </div>
+                <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }"></ngx-loading>             
                 <div class="form-group">
                   <label for="exampleInputPassword1">Description</label>
-                  <input type="text" class="form-control" name="MaterialDesc"  #MaterialDesc="ngModel" [(ngModel)]="service.jobworkData.MaterialDesc" placeholder="Enter description">
+                  <input type="text" class="form-control" name="MaterialDesc"  #MaterialDesc="ngModel" [(ngModel)]="service.jobworkData.materialDesc" placeholder="Enter description">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Rate(INR):</label>
-                    <input type="text" class="form-control" name="RateINR"  #RateINR="ngModel" [(ngModel)]="service.jobworkData.RateINR" placeholder="Enter rate (INR)">
+                    <input type="text" class="form-control" name="RateINR"  #RateINR="ngModel" [(ngModel)]="service.jobworkData.rateINR" placeholder="Enter rate (INR)">
                 </div>
               </div>
               <!-- /.card-body -->

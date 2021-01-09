@@ -1,12 +1,15 @@
-<div class="content-wrapper">
-    <div class="">
-    <button type="" class="btn btn-primary" (click)="displayJobworkdata()">Add New Material</button>
-    </div>
+<div class="content-wrapper px-5">
     <section class="content-header">
     <div class="container-fluid">
-    <div class="row mb-2">
-    <div class="col-sm-11">
-    <h1>My Job Work Material</h1>
+        <div class="py-3">
+            <button type="" class="btn btn-primary" (click)="displayJobworkdata()">Add New Material</button>
+        </div>
+    <div class="row mb-1">
+    <div class="col-sm-10">
+    <div class="d-flex">
+    <b >My Job Work Material</b>
+    <input pInputText class="ml-auto" type="search" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Global Filter"/>
+    </div>
     </div>
     </div>
     </div>
@@ -22,11 +25,6 @@
     <p-table #dt class="table table-hover" [columns]="cols" [value]="service.list" [style]="{'text-align': 'center', 'font-size': '0.7em'}"
     [responsive]="true" selectionMode="single" [(selection)]="selectedItemrej" [paginator]="true" [resizableColumns]="true" [rows]="5" [showCurrentPageReport]="true" totalRecords="totalRecords" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-striped">
     <ng-template pTemplate="caption">
-    <div style="text-align: right">
-    <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
-    <input type="text" class="form-control" pInputText placeholder="Global Filter"
-    (input)="dt.filterGlobal($event.target.value, 'contains')">
-    </div>
     </ng-template>
     <ng-template pTemplate="header" let-columns>
     <tr>
@@ -41,6 +39,7 @@
     </tr>
     </ng-template>
     <ng-template pTemplate="body" let-pd let-columns="columns">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }"></ngx-loading>             
     <tr [pSelectableRow]="pd">
     <td *ngFor="let col of columns" class="ui-resizable-column">
     <span *ngIf="col.field=='view'">

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ViewJobworkComponent } from 'src/app/home/view-jobwork/view-jobwork.component';
 import { environment } from 'src/environments/environment';
 import { jobworkmaterial } from './jobworkmaterial.model';
 
@@ -13,6 +14,9 @@ export class JobworkmaterialService {
   jobworkData: jobworkmaterial;
   list : jobworkmaterial[];
   public jid:number;
+
+  public loading = false;
+
 
   constructor(private http:HttpClient,private router:Router) { }
 
@@ -38,15 +42,17 @@ export class JobworkmaterialService {
       .toPromise()
       .then(res => {
         this.jobworkData = res as jobworkmaterial;
+        //console.log(this.jobworkData);
       });
   }
 
   refresList(){
     this.http.get(this.rootURL+'/jobworkmaterials')
     .toPromise()
-    .then(res => 
+    .then(res =>
       this.list = res as jobworkmaterial[]
       //console.log(res)
       );
+      this.loading = false;
   }
 }
