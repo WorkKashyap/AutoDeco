@@ -52,12 +52,12 @@ export class LoginComponent implements OnInit {
         data => {
           this.loading = false;
           //this.router.navigate([this.returnUrl]);
-
+          
           window.location.href = '/navbar';
         },
         error => {
           this.error = error;
-          this.toastr.error('Invalid User or Password', this.error);
+          this.toastr.error('Invalid User or Password');
           this.loading = false;
         });
   }
