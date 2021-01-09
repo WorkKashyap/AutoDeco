@@ -24,8 +24,14 @@ currentUser: User;
   }
 
   logout() {
-    this.authenticationService.logout();
-    this.route.navigate(["/login"]);
+
+    var logout = confirm("Are you sure to logout?");
+    if(logout)
+    {
+      this.route.navigate(["/login"]);
+      this.authenticationService.logout();
+
+    }
   }
 
 }

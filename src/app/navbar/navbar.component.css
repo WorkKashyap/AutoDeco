@@ -1,0 +1,8 @@
+#sidebar{
+    min-height: 100vh;
+}
+
+#color-change:hover{
+    background-color: #0074d9;
+    color: white;
+ }

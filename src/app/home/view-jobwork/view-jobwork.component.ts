@@ -37,16 +37,13 @@ export class ViewJobworkComponent implements OnInit {
     }
 
   onDelete(id){
-    this.service.loading = true;
       if(confirm('Are you sure?')){
         this.service.deletejobworkmaterial(id).subscribe(
         res => {
-          this.service.loading = false;
         this.service.refresList();
         this.toastr.success('Deleted Successfully','Job work material');
         },
         err => {
-          this.service.loading = false;
           console.log(err)
         }
         )
