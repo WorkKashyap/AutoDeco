@@ -10,6 +10,8 @@ import { MainComponent } from './main/main.component';
 import { HomeComponent } from './home/home.component';
 import { AddjobworkComponent } from './home/addjobwork/addjobwork.component';
 import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
+import { AdditemComponent } from './home/additem/additem.component';
+import { ViewitemComponent } from './home/viewitem/viewitem.component';
 
 const routes: Routes = [
   // { path: '', component: HomeComponent},
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard]  },
   { path: 'view-jobwork', component: ViewJobworkComponent,canActivate: [AuthGuard]  },
   { path: 'addjobwork', component: AddjobworkComponent,canActivate: [AuthGuard]  },
+  { path: 'additem', component: AdditemComponent,canActivate: [AuthGuard]  },
+  { path: 'viewitem', component: ViewitemComponent,canActivate: [AuthGuard]  },
   { path: "**", redirectTo: "" }
 ];
 

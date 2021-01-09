@@ -26,6 +26,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { Toast, ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
+import { AdditemComponent } from './home/additem/additem.component';
+import { ViewitemComponent } from './home/viewitem/viewitem.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     MainComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    AdditemComponent,
+    ViewitemComponent
   ],
   imports: [
     ButtonModule,
