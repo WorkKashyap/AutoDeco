@@ -30,6 +30,7 @@ export class ViewJobworkComponent implements OnInit {
   ViewDetail(id)
     {
     this.service.jid=id;
+    this.service.getJobworkmaterialDetailbyID(this.service.jid);
     this.router.navigate(['/addjobwork']);
     }
 

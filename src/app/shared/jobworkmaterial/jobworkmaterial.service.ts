@@ -38,6 +38,7 @@ export class JobworkmaterialService {
       .toPromise()
       .then(res => {
         this.jobworkData = res as jobworkmaterial;
+        //console.log(this.jobworkData);
       });
   }
 
