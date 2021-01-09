@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { JobworkmaterialService } from 'src/app/shared/jobworkmaterial/jobworkmaterial.service';
 
 @Component({
@@ -10,9 +11,10 @@ import { JobworkmaterialService } from 'src/app/shared/jobworkmaterial/jobworkma
 export class ViewJobworkComponent implements OnInit {
   cols: any;
 
-  constructor(private service:JobworkmaterialService, private router:Router) { }
+  constructor(private service:JobworkmaterialService, private router:Router,  private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.service.loading = true;
     this.service.refresList();
     this.cols = [
     { field: "view", header: "Action" },
@@ -35,14 +37,17 @@ export class ViewJobworkComponent implements OnInit {
     }
 
   onDelete(id){
+    this.service.loading = true;
       if(confirm('Are you sure?')){
         this.service.deletejobworkmaterial(id).subscribe(
         res => {
+          this.service.loading = false;
         this.service.refresList();
-        // add toatr
+        this.toastr.success('Deleted Successfully','Job work material');
         },
         err => {
-        console.log(err)
+          this.service.loading = false;
+          console.log(err)
         }
         )
       }

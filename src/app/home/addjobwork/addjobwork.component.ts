@@ -11,6 +11,7 @@ import { JobworkmaterialService } from 'src/app/shared/jobworkmaterial/jobworkma
   styleUrls: ['./addjobwork.component.css']
 })
 export class AddjobworkComponent implements OnInit {
+  public loading = false;
 
   constructor(private service:JobworkmaterialService, private router:Router, private toastr: ToastrService) { }
 
@@ -23,6 +24,11 @@ export class AddjobworkComponent implements OnInit {
   cancelRecord()
   {
     this.resetForm();
+  }
+
+  backBtn()
+  {
+    this.router.navigate(['/view-jobwork']);
   }
 
   resetForm(form?:NgForm){
@@ -46,30 +52,38 @@ export class AddjobworkComponent implements OnInit {
   }
 
   insertRecord(form:NgForm){
+    this.loading = true;
     this.service.postjobworkmaterial().subscribe(
       res => {
         //console.log(this.service.jobworkData);
-       /* this.resetForm(form);
-        //this.toastr.info('inserted Successfully','Job work material');
-        this.service.refresList();*/
-        this.router.navigate(['/view-jobwork']);
+        this.loading = false;
+        this.resetForm(form);
+        this.toastr.info('Inserted Successfully','Job work material');
+        this.service.refresList();
+        //this.router.navigate(['/view-jobwork']);
       },
       err => {
-        console.log(err)
+        this.loading = false;
+        console.log(err);
+        this.toastr.error('Error while inserting data','Job work material');
       }
     )
   }
 
   updateRecord(form:NgForm){
+    this.loading = true;
     this.service.putjobworkmaterial().subscribe(
       res => {
-        /*this.resetForm(form);
-        this.toastr.info('updated Successfully','Job work material');
-        this.service.refresList();*/
-        this.router.navigate(['/view-jobwork']);
+        this.loading = false;
+        this.resetForm(form);
+        this.toastr.info('Updated Successfully','Job work material');
+        this.service.refresList();
+        //this.router.navigate(['/view-jobwork']);
       },
       err => {
-        console.log(err)
+        this.loading = false;
+        console.log(err);
+        this.toastr.error('Error while updating data','Job work material');
       }
     )
   }
