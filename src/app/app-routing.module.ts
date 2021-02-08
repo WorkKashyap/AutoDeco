@@ -12,6 +12,8 @@ import { AddjobworkComponent } from './home/addjobwork/addjobwork.component';
 import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
 import { AdditemComponent } from './home/additem/additem.component';
 import { ViewitemComponent } from './home/viewitem/viewitem.component';
+import { AddproductionComponent } from './home/addproduction/addproduction.component';
+import { ViewproductionComponent } from './home/viewproduction/viewproduction.component';
 
 const routes: Routes = [
   // { path: '', component: HomeComponent},
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'addjobwork', component: AddjobworkComponent,canActivate: [AuthGuard]  },
   { path: 'additem', component: AdditemComponent,canActivate: [AuthGuard]  },
   { path: 'viewitem', component: ViewitemComponent,canActivate: [AuthGuard]  },
+  { path: 'addproduction', component: AddproductionComponent,canActivate: [AuthGuard]  },
+  { path: 'viewproduction', component: ViewproductionComponent,canActivate: [AuthGuard]  },
   { path: "**", redirectTo: "" }
 ];
 

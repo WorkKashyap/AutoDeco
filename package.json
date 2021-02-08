@@ -27,6 +27,7 @@
     "ngx-loading": "^2.0.1",
     "ngx-toastr": "^10.0.4",
     "overlayscrollbars": "^1.13.1",
+    "popper.js": "^1.16.1",
     "primeicons": "^4.1.0",
     "primeng": "^8.1.1",
     "rxjs": "~6.4.0",

@@ -28,6 +28,8 @@ import { Toast, ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
 import { AdditemComponent } from './home/additem/additem.component';
 import { ViewitemComponent } from './home/viewitem/viewitem.component';
+import { AddproductionComponent } from './home/addproduction/addproduction.component';
+import { ViewproductionComponent } from './home/viewproduction/viewproduction.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { ViewitemComponent } from './home/viewitem/viewitem.component';
     DashboardComponent,
     HomeComponent,
     AdditemComponent,
-    ViewitemComponent
+    ViewitemComponent,
+    AddproductionComponent,
+    ViewproductionComponent
   ],
   imports: [
     ButtonModule,

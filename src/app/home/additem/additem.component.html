@@ -1,58 +1,101 @@
-<div class="content-wrapper px-5 py-2">
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-9">
-          <h1>New item</h1>
-        </div>
-        <div class="col-sm-3 float-xl-right">
-          <button type="" class="btn btn-primary" (click)=back()>View Item Details</button>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-10">
-          <div class="card card-primary">
-            <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-              <div class="card-body">
-                <input type="hidden" name="id" [value]="service.itemData.id">
-                <div class="form-group">
-                  <label>Itemcode</label>
-                  <input type="text" class="form-control" name="itemcode" #itemcode="ngModel" [(ngModel)]="service.itemData.itemcode" required>
-                </div>
-                <div class="form-group">
-                  <label>Plant</label>
-                  <input type="text" class="form-control" name="plant" #plant="ngModel" [(ngModel)]="service.itemData.plant" required>
-                </div>
-                <div class="form-group">
-                  <label>Ctype</label>
-                  <input type="text" class="form-control" name="ctype" #ctype="ngModel" [(ngModel)]="service.itemData.ctype" required>
-                </div>
-                <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }"></ngx-loading>             
-                <div class="form-group">
-                  <label>Itemname</label>
-                  <input type="text" class="form-control" name="itemname" #itemname="ngModel" [(ngModel)]="service.itemData.itemname" required>
-                </div>
-                <div class="form-group">
-                  <label>Itemtype</label>
-                  <input type="text" class="form-control" name="itemtype" #itemtype="ngModel" [(ngModel)]="service.itemData.itemtype" required>
-                </div>
-                <div class="form-group">
-                  <label>Price</label>
-                  <input type="text" class="form-control" name="price" #price="ngModel" [(ngModel)]="service.itemData.price" required>
-                </div>
+<section class="content-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="card col-md-12 card-primary card-outline">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-11">
+                <h3 class="card-title-md">Item Detail</h3>
               </div>
-              <div class="card-footer d-flex justify-content-end">
-                <button type="submit" class="btn btn-danger" [disabled]="form.invalid">Save</button>
-                <button type="button" (click)="cancel()" class="btn btn-success">Cancel</button>
+              <div class="col-md-1">
+                <button class="btn btn-primary ml-auto" (click)="back()"> Back </button>
               </div>
-            </form>
+            </div>
           </div>
+          <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <input type="hidden" name="id" [value]="service.itemData.id">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Itemcode</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="number" class="form-control" name="itemcode" #itemcode="ngModel" [(ngModel)]="service.itemData.itemcode" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Plant:</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="number" class="form-control" name="plant" #plant="ngModel" [(ngModel)]="service.itemData.plant" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Ctype:</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" name="ctype" #ctype="ngModel" [(ngModel)]="service.itemData.ctype" required>
+                      </div>
+                    </div>
+                  </div>
+                  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }"></ngx-loading>             
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Itemname:</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" name="itemname" #itemname="ngModel" [(ngModel)]="service.itemData.itemname" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Itemtype:</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" name="itemtype" #itemtype="ngModel" [(ngModel)]="service.itemData.itemtype" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Price</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="number" class="form-control" name="price" #price="ngModel" [(ngModel)]="service.itemData.price" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                  <button type="submit" class="btn btn-danger float-left px-2" [disabled]="form.invalid">Save</button>
+                  <button type="button" class="btn btn-success float-right" (click)="cancel()">Cancel</button>
+                </div>
+                <div class="col-md-5"></div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</section>

@@ -1,32 +1,35 @@
-<div class="content-wrapper px-5 py-2">
-    <div class="">
-    <button type="" class="btn btn-primary" (click)=additem()>Add New Item</button>
-    </div>
+<div class="content-wrapper px-5 py-2" id="itemDetail">
     <section class="content-header">
-    <div class="container-fluid">
-    <div class="row mb-2">
-    <div class="d-flex col-sm-10">
-    <!-- <b class="display-4">Item Master</b> -->
-    <b>Item Master</b>
-    <!-- </div>
-    <div class="py-4"> -->
-    <input type="search" class="ml-auto" pInputText placeholder="Global Filter"
-    (input)="dt.filterGlobal($event.target.value, 'contains')">
-    </div>
-    </div>
-    </div>
-    </section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <button type="" class="btn btn-primary" (click)="additem()">Add New Item</button>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <div class="d-flex">
+                        <h3>Item Master</h3>
+                        <input pInputText class="ml-auto" type="search" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Global Filter"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
     
     <section class="content">
     <div class="container-fluid">
     <div class="row">
+    <div class="col-md-1"></div>
     <div class="col-md-10">
     <div class="card card-primary">
     <form role="form">
     <div class="card">
     <p-table #dt class="table table-hover" [columns]="cols" [value]="service.itemlist" [style]="{'text-align': 'center', 'font-size': '0.7em'}"
     [responsive]="true" selectionMode="single" [(selection)]="selectedItemrej" [paginator]="true" [resizableColumns]="true" [rows]="5" [showCurrentPageReport]="true" totalRecords="totalRecords" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-striped">
-    <ng-template pTemplate="caption">
+    <!-- <ng-template pTemplate="caption"> -->
     <!-- <div style="text-align: right">
     <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
     <input type="search" class="form-control" pInputText placeholder="Global Filter"
@@ -38,7 +41,7 @@
     aria-label="Search" (input)="dt.filterGlobal($event.target.value, 'contains')">
     </div>
     </form> -->
-    </ng-template>
+    <!-- </ng-template> -->
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }"></ngx-loading>
     <ng-template pTemplate="header" let-columns>
     <tr>
