@@ -28,6 +28,9 @@ import { Toast, ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
 import { AdditemComponent } from './home/additem/additem.component';
 import { ViewitemComponent } from './home/viewitem/viewitem.component';
+import { InspectionDashboardComponent } from './inspection-dashboard/inspection-dashboard.component';
+import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
+
 
 
 @NgModule({
@@ -41,7 +44,9 @@ import { ViewitemComponent } from './home/viewitem/viewitem.component';
     DashboardComponent,
     HomeComponent,
     AdditemComponent,
-    ViewitemComponent
+    ViewitemComponent,
+    CompanyDropdownComponent,
+    InspectionDashboardComponent
   ],
   imports: [
     ButtonModule,

@@ -1,0 +1,7 @@
+  <select class=" custom-select" name="myselect" #mySelect="ngModel" [(ngModel)]= "this.plantservice.plantcode"
+                (change)="onPlantChange($event.target.value)">
+        <option value="0">--Select Plant--</option>
+         <option *ngFor="let pl of plantservice.plantlist" value="{{pl.plantcode}}">
+                  {{ pl.plantshortname }}
+         </option>
+   </select>
