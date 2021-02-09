@@ -28,8 +28,14 @@ import { Toast, ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
 import { AdditemComponent } from './home/additem/additem.component';
 import { ViewitemComponent } from './home/viewitem/viewitem.component';
+<<<<<<< HEAD
 import { AddproductionComponent } from './home/addproduction/addproduction.component';
 import { ViewproductionComponent } from './home/viewproduction/viewproduction.component';
+=======
+import { InspectionDashboardComponent } from './inspection-dashboard/inspection-dashboard.component';
+import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
+
+>>>>>>> 8cd8a123f16be37b3fccd08ab7c9ba95dbc635c6
 
 
 @NgModule({
@@ -44,8 +50,13 @@ import { ViewproductionComponent } from './home/viewproduction/viewproduction.co
     HomeComponent,
     AdditemComponent,
     ViewitemComponent,
+<<<<<<< HEAD
     AddproductionComponent,
     ViewproductionComponent
+=======
+    CompanyDropdownComponent,
+    InspectionDashboardComponent
+>>>>>>> 8cd8a123f16be37b3fccd08ab7c9ba95dbc635c6
   ],
   imports: [
     ButtonModule,

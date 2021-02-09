@@ -12,8 +12,14 @@ import { AddjobworkComponent } from './home/addjobwork/addjobwork.component';
 import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
 import { AdditemComponent } from './home/additem/additem.component';
 import { ViewitemComponent } from './home/viewitem/viewitem.component';
+<<<<<<< HEAD
 import { AddproductionComponent } from './home/addproduction/addproduction.component';
 import { ViewproductionComponent } from './home/viewproduction/viewproduction.component';
+=======
+//import { CompanyDropdownComponent } from './company-dropdown/company-dropdown.component';
+import { InspectionDashboardComponent } from './inspection-dashboard/inspection-dashboard.component';
+import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
+>>>>>>> 8cd8a123f16be37b3fccd08ab7c9ba95dbc635c6
 
 const routes: Routes = [
   // { path: '', component: HomeComponent},
@@ -24,6 +30,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard]  },
   { path: 'view-jobwork', component: ViewJobworkComponent,canActivate: [AuthGuard]  },
   { path: 'addjobwork', component: AddjobworkComponent,canActivate: [AuthGuard]  },
+  { path: 'compdropdown', component: CompanyDropdownComponent,canActivate: [AuthGuard]  },
+  { path: 'inspectiondashboard', component: InspectionDashboardComponent,canActivate: [AuthGuard]  },
   { path: 'additem', component: AdditemComponent,canActivate: [AuthGuard]  },
   { path: 'viewitem', component: ViewitemComponent,canActivate: [AuthGuard]  },
   { path: 'addproduction', component: AddproductionComponent,canActivate: [AuthGuard]  },
