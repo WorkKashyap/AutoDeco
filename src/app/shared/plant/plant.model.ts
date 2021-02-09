@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-export class Plant{
-  id: number;
-  companycode: number;
-  plantcode: string;
-  plantshortname: string;
-  plantname: string;
-  city: string;
-=======
 export class Plant {
   id: number;
   username: string;
@@ -32,5 +23,4 @@ export class Plant {
   salesReturn: number = 0;
   cancelInv: number = 0;
   grossSale: number = 0;
->>>>>>> 8cd8a123f16be37b3fccd08ab7c9ba95dbc635c6
 }

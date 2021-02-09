@@ -73,7 +73,6 @@ export class InspectionDashboardComponent implements OnInit {
       //this.plantservice.plantcode = plantc;
       this.plantcode = plantc;
       this.selectedPlant();
-      this.selectedPlant();
 
       if (this.myChart) this.myChart.destroy();
       this.ctx.clearRect(0 , 0, this.canvas.weight, this.canvas.height);
