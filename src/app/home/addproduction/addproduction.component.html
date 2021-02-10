@@ -9,7 +9,8 @@
                 <h3 class="card-title-md">Add New Production</h3>
               </div>
               <div class="col-md-1">
-                <button type="submit" name="insertBtn" class="btn btn-success ml-auto" [disabled]="form.invalid">Save</button>
+                <button type="submit" name="insertBtn" class="btn btn-success ml-auto" 
+                [disabled]="form.invalid">Save</button>
               </div>
               <div class="col-md-1">
                 <button class="btn btn-primary ml-auto" (click)="backBtn()"> Back </button>
@@ -32,13 +33,15 @@
                               <label>Insplot:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="insplot" #insplot="ngModel" [(ngModel)]="service.productionData.insplot" readonly>
+                              <input type="number" class="form-control" min="0" name="insplot" #insplot="ngModel" 
+                              [(ngModel)]="service.productionData.insplot" readonly>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }"></ngx-loading>             
+                      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius:'3px',primaryColour:'blue' }">                        
+                      </ngx-loading>             
 
                       <!-- orderno -->
                       <div class="col">
@@ -48,7 +51,8 @@
                               <label>Order Number:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="orderno" #orderno="ngModel" [(ngModel)]="service.productionData.orderno" readonly>
+                              <input type="number" class="form-control" min="0" name="orderno" #orderno="ngModel" 
+                              [(ngModel)]="service.productionData.orderno" readonly>
                             </div>
                           </div>
                         </div>
@@ -62,7 +66,8 @@
                               <label>Itemname:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" class="form-control" name="itemname" #itemname="ngModel" [(ngModel)]="service.productionData.itemname" required>
+                              <input type="text" class="form-control" name="itemname" #itemname="ngModel" 
+                              [(ngModel)]="service.productionData.itemname" required>
                             </div>
                           </div>
                         </div>
@@ -76,7 +81,8 @@
                               <label>Itemcode:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" class="form-control" name="itemcode" #itemcode="ngModel" [(ngModel)]="service.productionData.itemcode" readonly>
+                              <input type="text" class="form-control" name="itemcode" #itemcode="ngModel" 
+                              [(ngModel)]="service.productionData.itemcode" readonly>
                             </div>
                           </div>
                         </div>
@@ -90,7 +96,8 @@
                               <label class="group">Quantity:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="qty" #qty="ngModel" [(ngModel)]="service.productionData.qty" readonly>
+                              <input type="number" class="form-control" min="0" name="qty" #qty="ngModel" 
+                              [(ngModel)]="service.productionData.qty" readonly>
                             </div>
                           </div>
                         </div>
@@ -106,24 +113,8 @@
                               <label>Plantcode:</label>
                             </div>
                             <div class="col-md-8">
-                              <!-- <input type="text" class="form-control" name="plantcode" #plantcode="ngModel" [(ngModel)]="service.productionData.plantcode" required> -->
-                              <!-- <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GDPL Chennai</button>
-                                <div class="dropdown-menu">
-                                  <button class="dropdown-item" type="button">GDPL Chennai</button>
-                                  <button class="dropdown-item" type="button">GDPL Annantpur</button>
-                                </div>
-                              </div> -->
-
-                              <select class="form-control" (change)="onPlantcodeChange()" name="plantcode" 
-                              #plantcodename = 'ngModel' [(ngModel)] = 'service.productionData.plantcode'>
-                                <!-- <option value="GDPL Chennai">GDPL Chennai</option>
-                                <option value="GDPL Annantpur">GDPL Annantpur</option> -->
-                                <option *ngFor="let pl of plantservice.splantlist" value="{{pl.plantcode}}">
-                                  {{ pl.plantshortname }}
-                                </option>
-                              </select>
-
+                              <app-company-dropdown [flag]="flag" (plantEvent)="getPlant($event)">
+                              </app-company-dropdown>
                             </div>
                           </div>
                         </div>
@@ -137,7 +128,8 @@
                               <label>Shift:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" class="form-control" name="shift" #shift="ngModel" [(ngModel)]="service.productionData.shift" required>
+                              <input type="text" class="form-control" name="shift" #shift="ngModel" 
+                              [(ngModel)]="service.productionData.shift" required>
                             </div>
                           </div>
                         </div>
@@ -151,7 +143,8 @@
                               <label>Size:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" class="form-control" name="size" #size="ngModel" [(ngModel)]="service.productionData.size" required>
+                              <input type="text" class="form-control" name="size" #size="ngModel" 
+                              [(ngModel)]="service.productionData.size" required>
                             </div>
                           </div>
                         </div>
@@ -165,7 +158,8 @@
                               <label>Type:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" class="form-control" name="type" #type="ngModel" [(ngModel)]="service.productionData.type" required>
+                              <input type="text" class="form-control" name="type" #type="ngModel" 
+                              [(ngModel)]="service.productionData.type" required>
                             </div>
                           </div>
                         </div>
@@ -179,7 +173,8 @@
                               <label class="group1">Ok Quantity:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="okqty" #okqty="ngModel" [(ngModel)]="service.productionData.okqty" required>
+                              <input type="number" class="form-control" min="0" name="okqty" #okqty="ngModel" 
+                              [(ngModel)]="service.productionData.okqty" required>
                             </div>
                           </div>
                         </div>
@@ -195,7 +190,8 @@
                               <label class="group1">Hold Quantity:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="holdqty" #holdqty="ngModel" [(ngModel)]="service.productionData.holdqty" required>
+                              <input type="number" class="form-control" min="0" name="holdqty" #holdqty="ngModel" 
+                              [(ngModel)]="service.productionData.holdqty" required>
                             </div>
                           </div>
                         </div>
@@ -209,7 +205,8 @@
                               <label class="group1">Buffing Quantity:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="buffingqty" #buffingqty="ngModel" [(ngModel)]="service.productionData.buffingqty" required>
+                              <input type="number" class="form-control" min="0" name="buffingqty" 
+                              #buffingqty="ngModel" [(ngModel)]="service.productionData.buffingqty" required>
                             </div>
                           </div>
                         </div>
@@ -223,7 +220,8 @@
                               <label class="group1">Rejetion Quantity:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="rejectionqty" #rejectionqty="ngModel" [(ngModel)]="service.productionData.rejectionqty" readonly>
+                              <input type="number" class="form-control" min="0" name="rejectionqty" 
+                              #rejectionqty="ngModel" [(ngModel)]="service.productionData.rejectionqty" readonly>
                             </div>
                           </div>
                         </div>
@@ -237,7 +235,8 @@
                               <label class="group2">Pitting:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="pitting" #pitting="ngModel" [(ngModel)]="service.productionData.pitting" required>
+                              <input type="number" class="form-control" min="0" name="pitting" #pitting="ngModel" 
+                              [(ngModel)]="service.productionData.pitting" required>
                             </div>
                           </div>
                         </div>
@@ -251,7 +250,8 @@
                               <label class="group2">Pinhole:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="pinhole" #pinhole="ngModel" [(ngModel)]="service.productionData.pinhole" required>
+                              <input type="number" class="form-control" min="0" name="pinhole" #pinhole="ngModel" 
+                              [(ngModel)]="service.productionData.pinhole" required>
                             </div>
                           </div>
                         </div>
@@ -267,7 +267,8 @@
                               <label class="group2">Patchmark:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="patchmark" #patchmark="ngModel" [(ngModel)]="service.productionData.patchmark" required>
+                              <input type="number" class="form-control" min="0" name="patchmark" 
+                              #patchmark="ngModel" [(ngModel)]="service.productionData.patchmark" required>
                             </div>
                           </div>
                         </div>
@@ -281,7 +282,8 @@
                               <label class="group2">Nickle:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="nickle" #nickle="ngModel" [(ngModel)]="service.productionData.nickle" required>
+                              <input type="number" class="form-control" min="0" name="nickle" #nickle="ngModel" 
+                              [(ngModel)]="service.productionData.nickle" required>
                             </div>
                           </div>
                         </div>
@@ -295,7 +297,8 @@
                               <label class="group2">Crburning:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="crburning" #crburning="ngModel" [(ngModel)]="service.productionData.crburning" required>
+                              <input type="number" class="form-control" min="0" name="crburning" 
+                              #crburning="ngModel" [(ngModel)]="service.productionData.crburning" required>
                             </div>
                           </div>
                         </div>
@@ -309,7 +312,8 @@
                               <label class="group2">Skipplating:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="skipplating" #skipplating="ngModel" [(ngModel)]="service.productionData.skipplating" required>
+                              <input type="number" class="form-control" min="0" name="skipplating" 
+                              #skipplating="ngModel" [(ngModel)]="service.productionData.skipplating" required>
                             </div>
                           </div>
                         </div>
@@ -323,7 +327,8 @@
                               <label class="group2">Dent:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="dent" #dent="ngModel" [(ngModel)]="service.productionData.dent" required>
+                              <input type="number" class="form-control" min="0" name="dent" #dent="ngModel" 
+                              [(ngModel)]="service.productionData.dent" required>
                             </div>
                           </div>
                         </div>
@@ -339,7 +344,9 @@
                               <label class="group2">Handmoulding Reg.:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="handmouldingrej" #handmouldingrej="ngModel" [(ngModel)]="service.productionData.handmouldingrej" required>
+                              <input type="number" class="form-control" min="0" name="handmouldingrej" 
+                              #handmouldingrej="ngModel" [(ngModel)]="service.productionData.handmouldingrej" 
+                              required>
                             </div>
                           </div>
                         </div>
@@ -353,7 +360,8 @@
                               <label class="group2">Scratchmark:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="scratchmark" #scratchmark="ngModel" [(ngModel)]="service.productionData.scratchmark" required>
+                              <input type="number" class="form-control" min="0" name="scratchmark" 
+                              #scratchmark="ngModel" [(ngModel)]="service.productionData.scratchmark" required>
                             </div>
                           </div>
                         </div>
@@ -367,7 +375,8 @@
                               <label class="group2">Roughness:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="roughness" #roughness="ngModel" [(ngModel)]="service.productionData.roughness" required>
+                              <input type="number" class="form-control" min="0" name="roughness" 
+                              #roughness="ngModel" [(ngModel)]="service.productionData.roughness" required>
                             </div>
                           </div>
                         </div>
@@ -381,7 +390,8 @@
                               <label class="group2">Silver:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="silver" #silver="ngModel" [(ngModel)]="service.productionData.silver" required>
+                              <input type="number" class="form-control" min="0" name="silver" #silver="ngModel" 
+                              [(ngModel)]="service.productionData.silver" required>
                             </div>
                           </div>
                         </div>
@@ -395,7 +405,8 @@
                               <label class="group2">Mouldingrej:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="mouldingrej" #mouldingrej="ngModel" [(ngModel)]="service.productionData.mouldingrej" required>
+                              <input type="number" class="form-control" min="0" name="mouldingrej" 
+                              #mouldingrej="ngModel" [(ngModel)]="service.productionData.mouldingrej" required>
                             </div>
                           </div>
                         </div>
@@ -411,7 +422,8 @@
                               <label class="group2">Warpage:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="warpage" #warpage="ngModel" [(ngModel)]="service.productionData.warpage" required>
+                              <input type="number" class="form-control" min="0" name="warpage" #warpage="ngModel" 
+                              [(ngModel)]="service.productionData.warpage" required>
                             </div>
                           </div>
                         </div>
@@ -425,7 +437,8 @@
                               <label class="group2">Copper Burning:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="copperburning" #copperburning="ngModel" [(ngModel)]="service.productionData.copperburning" required>
+                              <input type="number" class="form-control" min="0" name="copperburning" 
+                              #copperburning="ngModel" [(ngModel)]="service.productionData.copperburning" required>
                             </div>
                           </div>
                         </div>
@@ -439,7 +452,8 @@
                               <label class="group2">Whitemark:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="whitemark" #whitemark="ngModel" [(ngModel)]="service.productionData.whitemark" required>
+                              <input type="number" class="form-control" min="0" name="whitemark" 
+                              #whitemark="ngModel" [(ngModel)]="service.productionData.whitemark" required>
                             </div>
                           </div>
                         </div>
@@ -453,7 +467,8 @@
                               <label class="group2">Dotplastic:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="dotplastic" #dotplastic="ngModel" [(ngModel)]="service.productionData.dotplastic" required>
+                              <input type="number" class="form-control" min="0" name="dotplastic" 
+                              #dotplastic="ngModel" [(ngModel)]="service.productionData.dotplastic" required>
                             </div>
                           </div>
                         </div>
@@ -467,7 +482,8 @@
                               <label class="group2">Watermark:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="watermark" #watermark="ngModel" [(ngModel)]="service.productionData.watermark" required>
+                              <input type="number" class="form-control" min="0" name="watermark" 
+                              #watermark="ngModel" [(ngModel)]="service.productionData.watermark" required>
                             </div>
                           </div>
                         </div>
@@ -483,7 +499,8 @@
                               <label class="group2">Blister:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="blister" #blister="ngModel" [(ngModel)]="service.productionData.blister" required>
+                              <input type="number" class="form-control" min="0" name="blister" #blister="ngModel" 
+                              [(ngModel)]="service.productionData.blister" required>
                             </div>
                           </div>
                         </div>
@@ -497,7 +514,8 @@
                               <label class="group2">Jig Damage:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="jigdamage" #jigdamage="ngModel" [(ngModel)]="service.productionData.jigdamage" required>
+                              <input type="number" class="form-control" min="0" name="jigdamage" 
+                              #jigdamage="ngModel" [(ngModel)]="service.productionData.jigdamage" required>
                             </div>
                           </div>
                         </div>
@@ -511,7 +529,8 @@
                               <label class="group2">OtheR1:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="otheR1" #otheR1="ngModel" [(ngModel)]="service.productionData.otheR1" required>
+                              <input type="number" class="form-control" min="0" name="otheR1" #otheR1="ngModel" 
+                              [(ngModel)]="service.productionData.otheR1" required>
                             </div>
                           </div>
                         </div>
@@ -525,7 +544,8 @@
                               <label class="group2">OtheR2:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="otheR2" #otheR2="ngModel" [(ngModel)]="service.productionData.otheR2" required>
+                              <input type="number" class="form-control" min="0" name="otheR2" #otheR2="ngModel" 
+                              [(ngModel)]="service.productionData.otheR2" required>
                             </div>
                           </div>
                         </div>
@@ -539,7 +559,8 @@
                               <label class="group2">OtheR3:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="otheR3" #otheR3="ngModel" [(ngModel)]="service.productionData.otheR3" required>
+                              <input type="number" class="form-control" min="0" name="otheR3" #otheR3="ngModel" 
+                              [(ngModel)]="service.productionData.otheR3" required>
                             </div>
                           </div>
                         </div>
@@ -555,7 +576,8 @@
                               <label class="group2">OtheR4:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="otheR4" #otheR4="ngModel" [(ngModel)]="service.productionData.otheR4" required>
+                              <input type="number" class="form-control" min="0" name="otheR4" #otheR4="ngModel" 
+                              [(ngModel)]="service.productionData.otheR4" required>
                             </div>
                           </div>
                         </div>
@@ -569,7 +591,8 @@
                               <label class="group2">Mechfail:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="mechfail" #mechfail="ngModel" [(ngModel)]="service.productionData.mechfail" required>
+                              <input type="number" class="form-control" min="0" name="mechfail" #mechfail="ngModel" 
+                              [(ngModel)]="service.productionData.mechfail" required>
                             </div>
                           </div>
                         </div>
@@ -583,7 +606,8 @@
                               <label class="group2">Tooldef:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="tooldef" #tooldef="ngModel" [(ngModel)]="service.productionData.tooldef" required>
+                              <input type="number" class="form-control" min="0" name="tooldef" #tooldef="ngModel" 
+                              [(ngModel)]="service.productionData.tooldef" required>
                             </div>
                           </div>
                         </div>
@@ -597,7 +621,8 @@
                               <label class="group2">Others:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="others" #others="ngModel" [(ngModel)]="service.productionData.others" required>
+                              <input type="number" class="form-control" min="0" name="others" #others="ngModel" 
+                              [(ngModel)]="service.productionData.others" required>
                             </div>
                           </div>
                         </div>
@@ -611,7 +636,8 @@
                               <label class="group2">Shadevar:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="shadevar" #shadevar="ngModel" [(ngModel)]="service.productionData.shadevar" required>
+                              <input type="number" class="form-control" min="0" name="shadevar" #shadevar="ngModel" 
+                              [(ngModel)]="service.productionData.shadevar" required>
                             </div>
                           </div>
                         </div>
@@ -627,7 +653,8 @@
                               <label class="group2">Plating Peel:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="platingpeel" #platingpeel="ngModel" [(ngModel)]="service.productionData.platingpeel" required>
+                              <input type="number" class="form-control" min="0" name="platingpeel" 
+                              #platingpeel="ngModel" [(ngModel)]="service.productionData.platingpeel" required>
                             </div>
                           </div>
                         </div>
@@ -641,7 +668,8 @@
                               <label class="group2">Flowmark:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="flowmark" #flowmark="ngModel" [(ngModel)]="service.productionData.flowmark" required>
+                              <input type="number" class="form-control" min="0" name="flowmark" #flowmark="ngModel" 
+                              [(ngModel)]="service.productionData.flowmark" required>
                             </div>
                           </div>
                         </div>
@@ -655,7 +683,8 @@
                               <label class="group2">Chemicalmark:</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="number" class="form-control" min="0" name="chemicalmark" #chemicalmark="ngModel" [(ngModel)]="service.productionData.chemicalmark" required>
+                              <input type="number" class="form-control" min="0" name="chemicalmark" 
+                              #chemicalmark="ngModel" [(ngModel)]="service.productionData.chemicalmark" required>
                             </div>
                           </div>
                         </div>

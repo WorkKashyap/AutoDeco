@@ -40,11 +40,11 @@ export class ProductionService {
     //console.log(this.rootURL+'/PaymentDetails');
     return this.http.put(this.rootURL+'/productions/'+ this.productionData.id, this.productionData);
   }
-  deleteproduction(id)
-  {
-    //console.log(this.rootURL+'/PaymentDetails');
-    return this.http.delete(this.rootURL+'/productions/'+ id);
-  }
+  // deleteproduction(id)
+  // {
+  //   //console.log(this.rootURL+'/PaymentDetails');
+  //   return this.http.delete(this.rootURL+'/productions/'+ id);
+  // }
 
   public getProductionDetailbyID(id): any {
     return this.http
@@ -61,7 +61,6 @@ export class ProductionService {
     .toPromise()
     .then(res =>
       this.list = res as production[]
-      // console.log(res)
       );
       this.loading = false;
   }

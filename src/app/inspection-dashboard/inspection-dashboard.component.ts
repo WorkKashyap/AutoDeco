@@ -42,6 +42,8 @@ export class InspectionDashboardComponent implements OnInit {
   public d: any;
   currentUser: User;
 
+  flag: boolean;
+
 
   public plantcode: string;
 
@@ -50,7 +52,7 @@ export class InspectionDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.plantservice.getPlantData(this.currentUser.id);
+    this.flag = false;
     // this.service.plantcode = '1010';
      this.service.plantshortname = 'GDPL Vapi';
     this.plantcode= '1010';
@@ -72,7 +74,6 @@ export class InspectionDashboardComponent implements OnInit {
     {
       //this.plantservice.plantcode = plantc;
       this.plantcode = plantc;
-      this.selectedPlant();
 
       if (this.myChart) this.myChart.destroy();
       this.ctx.clearRect(0 , 0, this.canvas.weight, this.canvas.height);
