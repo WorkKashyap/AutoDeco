@@ -33,8 +33,6 @@ import { ViewproductionComponent } from './home/viewproduction/viewproduction.co
 import { InspectionDashboardComponent } from './inspection-dashboard/inspection-dashboard.component';
 import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
