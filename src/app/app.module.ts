@@ -34,8 +34,6 @@ import { InspectionDashboardComponent } from './inspection-dashboard/inspection-
 import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
 import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
