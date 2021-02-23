@@ -2,6 +2,6 @@
                 (change)="onPlantChange($event.target.value)">
         <option value="0">--Select Plant--</option>
          <option *ngFor="let pl of plantservice.splantlist" value="{{pl.plantcode}}">
-                  {{ pl.plantshortname }}
+                  {{ pl.plantShortName }}
          </option>
    </select>

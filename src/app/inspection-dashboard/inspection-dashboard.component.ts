@@ -86,7 +86,7 @@ export class InspectionDashboardComponent implements OnInit {
     if (this.plantservice && this.plantservice.plantlist && me.plantcode) {
       this.plantservice.plantlist.forEach(function (element, i) {
         if (element.plantcode == me.plantcode) {
-          me.service.plantshortname = element.plantshortname;
+          me.service.plantshortname = element.plantShortName;
         }
       });
     }

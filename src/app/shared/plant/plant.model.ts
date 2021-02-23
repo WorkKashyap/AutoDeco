@@ -2,7 +2,7 @@ export class Plant {
   id: number;
   username: string;
   plantcode: string;
-  plantshortname: string;
+  plantShortName: string;
   totalVal: number = 0;
 
   abs: number = 0;
