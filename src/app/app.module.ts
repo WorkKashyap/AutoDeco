@@ -32,6 +32,7 @@ import { AddproductionComponent } from './home/addproduction/addproduction.compo
 import { ViewproductionComponent } from './home/viewproduction/viewproduction.component';
 import { InspectionDashboardComponent } from './inspection-dashboard/inspection-dashboard.component';
 import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
+import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CompanyDropdownComponent } from './utilities/company-dropdown/company-d
     AddproductionComponent,
     ViewproductionComponent,
     CompanyDropdownComponent,
-    InspectionDashboardComponent
+    InspectionDashboardComponent,
+    YearDropdownComponent
   ],
   imports: [
     ButtonModule,

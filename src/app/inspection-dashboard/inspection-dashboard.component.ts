@@ -43,9 +43,10 @@ export class InspectionDashboardComponent implements OnInit {
   currentUser: User;
 
   flag: boolean;
-
+  currentyear : any;
 
   public plantcode: string;
+  year : number;
 
   constructor(public service: DailyproductionService, public plantservice: PlantService, public lservice: LoginService) { 
     this.lservice.currentUser.subscribe(x => (this.currentUser = x));
@@ -53,6 +54,7 @@ export class InspectionDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.flag = false;
+    
     // this.service.plantcode = '1010';
      this.service.plantshortname = 'GDPL Vapi';
     this.plantcode= '1010';
@@ -66,7 +68,21 @@ export class InspectionDashboardComponent implements OnInit {
     this.d = new Date();
     this.monthname = this.monthNames[this.d.getMonth()];
     this.typename = 'PLATING';
+    this.year = this.d.getFullYear();
     this.loadchart1();
+  }
+
+  selectedyear(y)
+  {
+    if(y)
+    {
+      //this.plantservice.plantcode = plantc;
+      this.year = y;
+
+      if (this.myChart) this.myChart.destroy();
+      this.ctx.clearRect(0 , 0, this.canvas.weight, this.canvas.height);
+      this.loadchart1();
+    } 
   }
 
   getPlant(plantc){
@@ -110,17 +126,20 @@ export class InspectionDashboardComponent implements OnInit {
   }
   monthclick() {
     this.Month = 'M';
+    this.year=this.d.getFullYear();
     if (this.myChart) this.myChart.destroy();
     this.loadchart1();
   }
   weekclick() {
     this.Month = 'W';
+    this.year=this.d.getFullYear();
     if (this.myChart) this.myChart.destroy();
     this.ctx.clearRect(0 , 0, this.canvas.weight, this.canvas.height);
     this.loadchart1();
   }
   dayclick() {
     this.Month = 'D';
+    this.year=this.d.getFullYear();
     if (this.myChart) this.myChart.destroy();
     this.ctx.clearRect(0 , 0, this.canvas.weight, this.canvas.height);
     this.loadchart1();
@@ -157,7 +176,7 @@ export class InspectionDashboardComponent implements OnInit {
       // this.monthname = this.monthNames[this.d.getMonth()];
     }
     this.service.getprochartsummary(this.plantcode, this.Month, this.monthname);
-    this.service.getprochart(this.plantcode, this.Month, this.monthname)
+    this.service.getprochart(this.plantcode, this.Month, this.monthname,this.year)
       .toPromise()
       .then(res => {
         this.selectedchart = res as DailyReportDisplay[];
