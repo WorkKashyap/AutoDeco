@@ -59,7 +59,10 @@
                                                         <button class="btn-primary" (click)="ViewDetail(pd.id)">
                                                             <i class="fa fa-eye"></i></button>
                                                     </span>
-                                                    <span *ngIf="col.field!='view'">{{pd[col.field]}}</span>
+                                                    <span *ngIf="col.field=='pstngdate'">
+                                                        {{pd[col.field]   | date :'dd-MM-yyyy'}}
+                                                      </span>
+                                                    <span *ngIf="col.field!='view' && col.field!='pstngdate'">{{pd[col.field]}}</span>
                                                 </td>
                                             </tr>
                                         </ng-template>
