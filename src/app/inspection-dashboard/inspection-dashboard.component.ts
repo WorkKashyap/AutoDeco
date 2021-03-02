@@ -7,6 +7,7 @@ import { DailyproductionService } from '../shared/dailyproduction/dailyproductio
 import { PlantService } from '../shared/plant/plant.service';
 import { LoginService } from '../shared/login/login.service';
 import { DailyReportDisplay } from '../shared/dailyproduction/dailyreportdisplay.model';
+import { NgxSpinnerService } from "ngx-spinner";
  
 @Component({
   selector: 'app-inspection-dashboard',
@@ -48,7 +49,7 @@ export class InspectionDashboardComponent implements OnInit {
   public plantcode: string;
   year : number;
 
-  constructor(public service: DailyproductionService, public plantservice: PlantService, public lservice: LoginService) { 
+  constructor(public service: DailyproductionService, public plantservice: PlantService, public lservice: LoginService, private spinner: NgxSpinnerService) { 
     this.lservice.currentUser.subscribe(x => (this.currentUser = x));
   }
 
@@ -59,7 +60,13 @@ export class InspectionDashboardComponent implements OnInit {
      this.service.plantshortname = 'GDPL Vapi';
     this.plantcode= '1010';
     
-    this.loading = true;
+    //this.loading = true;
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2500);
+
     this.daylist = [];
     this.cv = 0;
     this.monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June',
@@ -158,7 +165,7 @@ export class InspectionDashboardComponent implements OnInit {
     this.Okvalue = [];
     this.rejectvalue = [];
     this.Rejectper = [];
-    this.loading = true;
+    //this.loading = true;
     if (this.Month === 'M') {
       this.Month = 'M';
       this.monthname = this.monthNames[this.d.getMonth()];
@@ -175,7 +182,7 @@ export class InspectionDashboardComponent implements OnInit {
       this.Month = 'a';
       // this.monthname = this.monthNames[this.d.getMonth()];
     }
-    this.service.getprochartsummary(this.plantcode, this.Month, this.monthname);
+    this.service.getprochartsummary(this.plantcode, this.Month, this.monthname, this.year);
     this.service.getprochart(this.plantcode, this.Month, this.monthname,this.year)
       .toPromise()
       .then(res => {
@@ -190,7 +197,7 @@ export class InspectionDashboardComponent implements OnInit {
           }
         }
         this.createchart();
-        this.loading = false;
+       // this.loading = false;
       });
   }
 

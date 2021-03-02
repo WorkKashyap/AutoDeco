@@ -1,4 +1,4 @@
-<div class="content-wrapper" id="production">
+<div class="content-wrapper" id="production" style="position: fixed;">
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -28,7 +28,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="position: relative">
+                                <ngx-spinner  [fullScreen] = "false"></ngx-spinner>
                             <form role="form">
                                 <div class="row">
                                     <p-table #dt class="table table-hover" [columns]="cols" 
@@ -50,9 +51,9 @@
                                             </tr>
                                         </ng-template>
                                         <ng-template pTemplate="body" let-pd let-columns="columns">
-                                        <ngx-loading [show]="loading" 
+                                        <!-- <ngx-loading [show]="loading" 
                                         [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }">
-                                    </ngx-loading>             
+                                    </ngx-loading> -->
                                             <tr [pSelectableRow]="pd">
                                                 <td *ngFor="let col of columns" class="ui-resizable-column">
                                                     <span *ngIf="col.field=='view'">

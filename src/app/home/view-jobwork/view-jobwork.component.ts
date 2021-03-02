@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobworkmaterialService } from 'src/app/shared/jobworkmaterial/jobworkmaterial.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-view-jobwork',
@@ -11,11 +12,19 @@ import { JobworkmaterialService } from 'src/app/shared/jobworkmaterial/jobworkma
 export class ViewJobworkComponent implements OnInit {
   cols: any;
 
-  constructor(private service:JobworkmaterialService, private router:Router,  private toastr: ToastrService) { }
+  constructor(private service:JobworkmaterialService, private router:Router,  private toastr: ToastrService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.service.loading = true;
+    //this.service.loading = true;
+    this.spinner.show();
+
     this.service.refresList();
+
+    setTimeout(()=>{
+      this.spinner.hide()
+    }, 2500);
+    
     this.cols = [
     { field: "view", header: "Action" },
     { field: "materialNumber", header: "number" },

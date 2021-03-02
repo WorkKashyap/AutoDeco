@@ -15,7 +15,8 @@
             </div>
           </div>
           <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-            <div class="card-body">
+            <div class="card-body" style="position: relative;">
+              <ngx-spinner [fullScreen]="false"></ngx-spinner>
               <div class="row">
                 <div class="col-md-8">
                   <input type="hidden" name="id" [value]="service.jobworkData.id">

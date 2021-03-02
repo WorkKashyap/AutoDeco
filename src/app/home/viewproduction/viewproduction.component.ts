@@ -7,6 +7,7 @@ import { Plant } from 'src/app/shared/plant/plant.model';
 import { PlantService } from 'src/app/shared/plant/plant.service';
 import { production } from 'src/app/shared/production/production.model';
 import { ProductionService } from 'src/app/shared/production/production.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-viewproduction',
@@ -27,7 +28,8 @@ export class ViewproductionComponent implements OnInit {
       private router:Router,  
       private toastr: ToastrService,
       public plantservice: PlantService,
-      public lservice:LoginService) {
+      public lservice:LoginService,
+      private spinner: NgxSpinnerService) {
         this.lservice.currentUser.subscribe(x => (this.currentUser = x));
        }
 
@@ -37,8 +39,13 @@ export class ViewproductionComponent implements OnInit {
     // this.currentUser=JSON.parse(localStorage.getItem('currentUser'));
 
     const me = this;
-    this.service.loading = true;
+   // this.service.loading = true;
+   this.spinner.show();
+
     this.service.refresList();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2500);
     this.cols = [
       { field: "view", header: "Action" },
       { field: "pstngdate", header: "Posting Date" },

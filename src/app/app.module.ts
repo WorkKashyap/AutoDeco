@@ -34,6 +34,8 @@ import { InspectionDashboardComponent } from './inspection-dashboard/inspection-
 import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
 import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.component';
 
+import { NgxSpinnerModule } from "ngx-spinner";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +64,7 @@ import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.c
     TabViewModule,
     TableModule,
     ToastrModule.forRoot(),
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
     // RouterModule.forRoot([
     //   {
     //     path: "",
@@ -74,6 +76,7 @@ import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.c
     //   }
       
     // ])
+    NgxSpinnerModule
     ],
   providers: [JobworkmaterialService],
   bootstrap: [AppComponent]

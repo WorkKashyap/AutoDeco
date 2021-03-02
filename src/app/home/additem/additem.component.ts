@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Itemmsts } from 'src/app/shared/Itemmsts/itemmsts.model';
 import { ItemmstsService } from 'src/app/shared/Itemmsts/itemmsts.service';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-additem',
@@ -17,7 +19,8 @@ export class AdditemComponent implements OnInit {
 
   constructor(private service:ItemmstsService,
     private toastr: ToastrService,
-    private router:Router) { }
+    private router:Router,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.resetForm();
@@ -54,32 +57,44 @@ export class AdditemComponent implements OnInit {
   }
 
   insertRecord(form:NgForm){
-    this.loading = true;
+    //this.loading = true;
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 3000);
     this.service.postItemDetail().subscribe(
       res => {
-        this.loading = false;
+        //this.loading = false;
         this.resetForm(form);
         this.toastr.success('Submitted Successfully','Item Master');
         this.service.refreshList();
       },
       err => {
-        this.loading = false;
+        //this.loading = false;
         console.log(err)
       }
     )
   }
 
   updateRecord(form:NgForm){
-    this.loading = true;
+   // this.loading = true;
+   this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 3000);
+
     this.service.putItemDetail().subscribe(
       res => {
-        this.loading = false;
+       // this.loading = false;
         this.resetForm(form);
         this.toastr.info('updated Successfully','Item Master');
         this.service.refreshList();
       },
       err => {
-        this.loading = false;
+        //this.loading = false;
         console.log(err)
       }
     )
