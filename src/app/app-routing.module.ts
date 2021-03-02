@@ -18,6 +18,7 @@ import { ViewproductionComponent } from './home/viewproduction/viewproduction.co
 import { InspectionDashboardComponent } from './inspection-dashboard/inspection-dashboard.component';
 import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
 import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.component';
+import { RolesComponent } from './roles/roles.component';
 
 const routes: Routes = [
   // { path: '', component: HomeComponent},
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'viewproduction', component: ViewproductionComponent,canActivate: [AuthGuard]  },
   { path: 'companydropdown', component: CompanyDropdownComponent,canActivate: [AuthGuard]  },
   { path: 'yeardropdown', component: YearDropdownComponent,canActivate: [AuthGuard]  },
+  { path: 'rolepages', component: RolesComponent,canActivate: [AuthGuard]  },
   { path: "**", redirectTo: "" }
 ];
 
