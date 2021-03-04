@@ -8,6 +8,7 @@ import { PlantService } from '../shared/plant/plant.service';
 import { LoginService } from '../shared/login/login.service';
 import { DailyReportDisplay } from '../shared/dailyproduction/dailyreportdisplay.model';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Plant } from '../shared/plant/plant.model';
  
 @Component({
   selector: 'app-inspection-dashboard',
@@ -47,6 +48,9 @@ export class InspectionDashboardComponent implements OnInit {
   currentyear : any;
 
   public plantcode: string;
+  //for dropdown
+  plantlistc: Plant[]; 
+  pstname: string; //plant short name
   year : number;
 
   constructor(public service: DailyproductionService, public plantservice: PlantService, public lservice: LoginService, private spinner: NgxSpinnerService) { 
@@ -95,9 +99,25 @@ export class InspectionDashboardComponent implements OnInit {
   getPlant(plantc){
     if(plantc)
     {
+      console.log("in func of parent");
       //this.plantservice.plantcode = plantc;
       this.plantcode = plantc;
-
+      this.plantservice
+      .sgetPlantData(this.currentUser.id)
+      .toPromise()
+      .then(res => {
+        this.plantlistc = res as Plant[];
+        console.log("got data from service");
+        this.plantlistc.forEach(splant => {
+          if (splant.plantcode == plantc) {
+            this.pstname = splant.plantShortName;
+            console.log("in loop in if after getting data from service");
+            console.log(this.pstname);
+          }
+        });
+      });
+      console.log("in func of parent after getting data from service out of loop");
+      console.log(this.pstname);
       if (this.myChart) this.myChart.destroy();
       this.ctx.clearRect(0 , 0, this.canvas.weight, this.canvas.height);
       this.loadchart1();

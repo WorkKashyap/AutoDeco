@@ -36,6 +36,7 @@ import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.c
 
 import { NgxSpinnerModule } from "ngx-spinner";
 import { RolesComponent } from './roles/roles.component';
+import { RolepagesComponent } from './rolepages/rolepages.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { RolesComponent } from './roles/roles.component';
     CompanyDropdownComponent,
     InspectionDashboardComponent,
     YearDropdownComponent,
-    RolesComponent
+    RolesComponent,
+    RolepagesComponent
   ],
   imports: [
     ButtonModule,
