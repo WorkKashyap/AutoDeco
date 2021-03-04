@@ -175,7 +175,7 @@ export class InspectionDashboardComponent implements OnInit {
       this.Month = 'a';
       // this.monthname = this.monthNames[this.d.getMonth()];
     }
-    this.service.getprochartsummary(this.plantcode, this.Month, this.monthname);
+    this.service.getprochartsummary(this.plantcode, this.Month, this.monthname,this.year);
     this.service.getprochart(this.plantcode, this.Month, this.monthname,this.year)
       .toPromise()
       .then(res => {

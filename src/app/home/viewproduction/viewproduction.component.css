@@ -1,0 +1,16 @@
+.view {
+  width: 60px;
+}
+th.itemname {
+  width: 150px;
+}
+th.insplot,
+th.orderno {
+  width: 115px;
+}
+@media (max-width: 767px) {
+  th.insplot,
+  td.insplot {
+    display: none;
+  }
+}
