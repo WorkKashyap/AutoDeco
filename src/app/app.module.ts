@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { FullCalendarModule } from "@fullcalendar/angular";
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,7 +31,11 @@ import { AdditemComponent } from './home/additem/additem.component';
 import { ViewitemComponent } from './home/viewitem/viewitem.component';
 import { InspectionDashboardComponent } from './inspection-dashboard/inspection-dashboard.component';
 import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
-
+import { QualityCalenderComponent } from './qualitycalendar/qualitycalendar';
+import dayGridPlugin from '@fullcalendar/daygrid'; 
+import interactionPlugin from '@fullcalendar/interaction'; 
+import * as bootstrap from 'bootstrap';
+import * as $ from 'jquery';
 
 
 @NgModule({
@@ -46,7 +51,8 @@ import { CompanyDropdownComponent } from './utilities/company-dropdown/company-d
     AdditemComponent,
     ViewitemComponent,
     CompanyDropdownComponent,
-    InspectionDashboardComponent
+    InspectionDashboardComponent,
+    QualityCalenderComponent
   ],
   imports: [
     ButtonModule,
@@ -57,6 +63,7 @@ import { CompanyDropdownComponent } from './utilities/company-dropdown/company-d
     BrowserAnimationsModule,
     TabViewModule,
     TableModule,
+    FullCalendarModule,
     ToastrModule.forRoot(),
     NgxLoadingModule.forRoot({})
     // RouterModule.forRoot([

@@ -13,7 +13,6 @@ export class CompanyDropdownComponent implements OnInit {
   currentUser: User;
   @Output() plantEvent = new EventEmitter<string>(); 
 
-
   constructor(public plantservice: PlantService, public lservice: LoginService) { 
     this.lservice.currentUser.subscribe(x => (this.currentUser = x));
   }

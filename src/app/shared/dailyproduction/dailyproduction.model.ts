@@ -4,7 +4,7 @@ export class Dailyproduction {
   title: string;
   value: number;
   plant: number;
-  backgroundColor: string;
+  backgroundcolor: string;
   borderColor: string;
   vType: string;
   ptype: string;

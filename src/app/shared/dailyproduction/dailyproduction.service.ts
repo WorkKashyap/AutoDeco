@@ -33,6 +33,7 @@ export class DailyproductionService {
   public itemtopdefectlist: TopDefect[] = [];
   public loadchart1list: DailyReportDisplay[] = [];
   public dailyreportsummary: DailyReportSummary[] = [];
+  public top5reject : Top5Rejection[] = [] ;
   public salessummary: Salessummary[] = [];
   public title: string[] = [];
   public date: string;
@@ -78,7 +79,7 @@ export class DailyproductionService {
   }
   public getRejectcalendar(id, date): Observable<Dailyproduction[]> {
     return this.http.get<Dailyproduction[]>(
-      this.rootUrl + '/dailyproductions/Getallrejdata/' + id + '/Reject/' + date
+      this.rootUrl + '/dailyproduction/getallrejdata/' + id + '/Reject/' + date 
     );
   }
 
@@ -90,7 +91,7 @@ export class DailyproductionService {
   ): Observable<Itemwiserej[]> {
     return this.http.get<Itemwiserej[]>(
       this.rootUrl +
-      '/itemwiserejs/rejectdetaildata/' +
+      '/ItemwiseRejDetail/rejectdetaildata/' +
       plantcode +
       '/' +
       type +
@@ -175,7 +176,7 @@ export class DailyproductionService {
     );
   }
 
-  public getprochart(plantcode, type, month): Observable<DailyReportDisplay[]> {
+  public getprochart(plantcode, type, month,year): Observable<DailyReportDisplay[]> {
     return this.http.get<DailyReportDisplay[]>(
       this.rootUrl +
       '/DailyReportDisplay/getallchartdetail/' +
@@ -183,7 +184,9 @@ export class DailyproductionService {
       '/' +
       type +
       '/' +
-      month
+      month +
+      '/' +
+      year
     );
   }
 
@@ -235,16 +238,18 @@ export class DailyproductionService {
     );
   }
 
-  public getprochartsummary(plantcode, type, month): any {
+  public getprochartsummary(plantcode, type, month,year): any {
     return this.http
       .get(
         this.rootUrl +
-        '/DailySummaryReport/getallchartsummary/' +
+        '/dailysummaryReport/getallchartsummary/' +
         plantcode +
         '/' +
         type +
         '/' +
-        month
+        month +
+        '/' +
+        year
       )
       .toPromise()
       .then(res => {

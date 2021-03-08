@@ -15,6 +15,7 @@ import { ViewitemComponent } from './home/viewitem/viewitem.component';
 //import { CompanyDropdownComponent } from './company-dropdown/company-dropdown.component';
 import { InspectionDashboardComponent } from './inspection-dashboard/inspection-dashboard.component';
 import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
+import { QualityCalenderComponent } from './qualitycalendar/qualitycalendar';
 
 const routes: Routes = [
   // { path: '', component: HomeComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'addjobwork', component: AddjobworkComponent,canActivate: [AuthGuard]  },
   { path: 'compdropdown', component: CompanyDropdownComponent,canActivate: [AuthGuard]  },
   { path: 'inspectiondashboard', component: InspectionDashboardComponent,canActivate: [AuthGuard]  },
+  { path: 'qualitycalendar', component: QualityCalenderComponent,canActivate: [AuthGuard]  },
   { path: 'additem', component: AdditemComponent,canActivate: [AuthGuard]  },
   { path: 'viewitem', component: ViewitemComponent,canActivate: [AuthGuard]  },
   { path: "**", redirectTo: "" }

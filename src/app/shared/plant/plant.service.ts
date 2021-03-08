@@ -26,7 +26,7 @@ export class PlantService {
 
   public getPlantData(id): any {
     return this.http
-      .get(this.rootUrl + '/galvaplants/Galvaplant/' + id)
+      .get(this.rootUrl + '/Galvaplant/' + id)
       .toPromise()
       .then(res => {
         this.plantlist = res as Plant[];
@@ -35,7 +35,7 @@ export class PlantService {
 
   public sgetPlantData(id): Observable<Plant[]> {
     return this.http.get<Plant[]>(
-      this.rootUrl + '/galvaplants/Galvaplant/' + id
+      this.rootUrl + '/Galvaplant/' + id
     );
   }
 }

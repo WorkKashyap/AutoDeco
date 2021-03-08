@@ -44,7 +44,8 @@ export class InspectionDashboardComponent implements OnInit {
 
 
   public plantcode: string;
-
+  year  : number;
+  
   constructor(public service: DailyproductionService, public plantservice: PlantService, public lservice: LoginService) { 
     this.lservice.currentUser.subscribe(x => (this.currentUser = x));
   }
@@ -64,6 +65,7 @@ export class InspectionDashboardComponent implements OnInit {
     this.d = new Date();
     this.monthname = this.monthNames[this.d.getMonth()];
     this.typename = 'PLATING';
+    this.year = this.d.getFullYear();
     this.loadchart1();
   }
 
@@ -86,7 +88,7 @@ export class InspectionDashboardComponent implements OnInit {
     if (this.plantservice && this.plantservice.plantlist && me.plantcode) {
       this.plantservice.plantlist.forEach(function (element, i) {
         if (element.plantcode == me.plantcode) {
-          me.service.plantshortname = element.plantshortname;
+          me.service.plantshortname = element.plantShortName;
         }
       });
     }
@@ -156,8 +158,9 @@ export class InspectionDashboardComponent implements OnInit {
       this.Month = 'a';
       // this.monthname = this.monthNames[this.d.getMonth()];
     }
-    this.service.getprochartsummary(this.plantcode, this.Month, this.monthname);
-    this.service.getprochart(this.plantcode, this.Month, this.monthname)
+    
+    this.service.getprochartsummary(this.plantcode, this.Month, this.monthname,this.year);
+    this.service.getprochart(this.plantcode, this.Month, this.monthname,this.year)
       .toPromise()
       .then(res => {
         this.selectedchart = res as DailyReportDisplay[];
