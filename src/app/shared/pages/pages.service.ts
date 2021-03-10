@@ -48,4 +48,14 @@ export class PagesService {
   {
     return this.http.get(this.rootURL + '/pages');
   }
+
+  postPageRecordbyRole(rlpages : rolespages)
+  {
+    return this.http.post(this.rootURL + '/rolespages', rlpages);
+  }
+
+  deletePageRecordbyRole(id: number)
+  {
+    return this.http.delete(this.rootURL + '/rolespages/' + id);
+  }
 }

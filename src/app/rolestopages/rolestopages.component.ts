@@ -12,6 +12,7 @@ export class RolestopagesComponent implements OnInit {
   cols: { field: string; header: string; }[];
   pageList: pages[];
   rolePagesList : rolespages[];
+  ex_rolePagesList : rolespages;
   roleID : number;
   is_checked: boolean;
   flag: boolean;
@@ -19,6 +20,12 @@ export class RolestopagesComponent implements OnInit {
   constructor(private spinner: NgxSpinnerService, private pageservice: PagesService) { }
 
   ngOnInit() {
+    this.ex_rolePagesList = {
+      id : 0,
+      roleid : 0,
+      pageid : 0
+    }
+
     this.spinner.show();
 
     setTimeout(() => {
@@ -63,21 +70,37 @@ export class RolestopagesComponent implements OnInit {
     return this.is_checked;
   }
 
-  pageRoleChng(x: number)
+  pageRoleChng(pid: number)
   {
     this.flag = false;
     this.rolePagesList.forEach(element => {
-      if(element.pageid == x)
+      if(element.pageid == pid)
       {
         //delete the data
         this.flag = true;
-        console.log("we will delete this record");
+        this.pageservice.deletePageRecordbyRole(element.id).subscribe(
+          res => {
+            this.getPageListbyRole(this.roleID);
+          },
+          err => {
+            console.log(err);
+          }
+        )
       }
     });
     if(!this.flag)
     {
       //insert new record
-      console.log("we will insert this record");
+      this.ex_rolePagesList.roleid = this.roleID;
+      this.ex_rolePagesList.pageid = pid;
+      this.pageservice.postPageRecordbyRole(this.ex_rolePagesList).subscribe(
+        res => {
+          this.getPageListbyRole(this.roleID);
+        },
+        err => {
+          console.log(err);
+        }
+      )
     }
   }
 
