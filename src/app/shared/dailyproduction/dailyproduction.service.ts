@@ -172,7 +172,7 @@ export class DailyproductionService {
     );
   }
 
-  public getprochartsummary(plantcode, type, month,year): any {
+  public getprochartsummary(plantcode, type, month, year): any {
     return this.http
       .get(
         this.rootUrl +

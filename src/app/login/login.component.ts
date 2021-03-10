@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -14,9 +15,10 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   error = '';
-  public loading = false;
+  //public loading = false;
+  
   returnUrl: string;
-  constructor(public service: LoginService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) {
+  constructor(public service: LoginService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService, private spinner: NgxSpinnerService) {
 
     if (this.service.currentUserValue) {
       this.router.navigate(['/dashboard']);
@@ -45,12 +47,20 @@ export class LoginComponent implements OnInit {
     };
   }
   OnSubmit(form: NgForm) {
-    this.loading = true;
+    //this.loading = true;
+    this.spinner.show();
+
     this.service.login()
       .pipe(first())
       .subscribe(
         data => {
-          this.loading = false;
+          //this.loading = false;
+          this.spinner.show();
+
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 3000);
+
           //this.router.navigate([this.returnUrl]);
           
           window.location.href = '/navbar';
@@ -58,7 +68,8 @@ export class LoginComponent implements OnInit {
         error => {
           this.error = error;
           this.toastr.error('Invalid User or Password');
-          this.loading = false;
+          //this.loading = false;
+          this.spinner.hide();
         });
   }
 }

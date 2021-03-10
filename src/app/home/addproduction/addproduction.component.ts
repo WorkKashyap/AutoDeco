@@ -8,6 +8,7 @@ import { User } from 'src/app/shared/login/User.model';
 import { Plant } from 'src/app/shared/plant/plant.model';
 import { PlantService } from 'src/app/shared/plant/plant.service';
 import { ProductionService } from 'src/app/shared/production/production.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-addproduction',
@@ -28,7 +29,8 @@ export class AddproductionComponent implements OnInit {
   public plantcode: any;
   
   constructor(private service:ProductionService, private router:Router, private toastr: ToastrService,
-    private plantservice: PlantService,private datePipe: DatePipe,public lservice:LoginService) {
+    private plantservice: PlantService,private datePipe: DatePipe,public lservice:LoginService,
+    private spinner: NgxSpinnerService) {
       this.lservice.currentUser.subscribe(x => (this.currentUser = x));
      }
   
@@ -78,7 +80,7 @@ export class AddproductionComponent implements OnInit {
 //  }
 
   resetForm(form?:NgForm){
-    if(form!=null)
+        if(form!=null)
       form.resetForm();
       this.service.productionData = {
       id:0,
@@ -139,16 +141,19 @@ export class AddproductionComponent implements OnInit {
  }
 
  insertRecord(form:NgForm){
-   this.loading = true;
+   //this.loading = true;
+   this.spinner.show();
    this.service.postproduction().subscribe(
      res => {
-       this.loading = false;
+       //this.loading = false;
+       this.spinner.hide();
        this.resetForm(form);
        this.toastr.info('Inserted Successfully','Production');
        this.service.refresList();
      },
      err => {
-       this.loading = false;
+       //this.loading = false;
+       this.spinner.hide();
        console.log(err);
        this.toastr.error('Error while inserting data','Production');
      }
@@ -156,16 +161,19 @@ export class AddproductionComponent implements OnInit {
  }
 
  updateRecord(form:NgForm){
-   this.loading = true;
+   //this.loading = true;
+   this.spinner.show();
    this.service.putproduction().subscribe(
      res => {
-       this.loading = false;
+       //this.loading = false;
+       this.spinner.hide();
        this.resetForm(form);
        this.toastr.info('Updated Successfully','Production');
        this.service.refresList();
      },
      err => {
-       this.loading = false;
+       //this.loading = false;
+       this.spinner.hide();
        console.log(err);
        this.toastr.error('Error while updating data','Production');
      }

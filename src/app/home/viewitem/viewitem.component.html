@@ -31,7 +31,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="position: relative">
+                            <ngx-spinner  [fullScreen] = "false"></ngx-spinner>
                             <form role="form">
                                 <div class="row">
                                     <p-table #dt class="table table-hover" [columns]="cols" 
@@ -42,9 +43,9 @@
                                     [showCurrentPageReport]="true" totalRecords="totalRecords" 
                                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} 
                                     entries" [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-striped">
-                                    <ngx-loading [show]="loading" 
+                                    <!-- <ngx-loading [show]="loading" 
                                     [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }">
-                                    </ngx-loading>
+                                    </ngx-loading> -->
                                     <ng-template pTemplate="header" let-columns>
                                         <tr>
                                             <th *ngFor="let col of columns" [pSortableColumn]="col.field" 

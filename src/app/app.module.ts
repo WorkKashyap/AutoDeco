@@ -34,6 +34,10 @@ import { InspectionDashboardComponent } from './inspection-dashboard/inspection-
 import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
 import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.component';
 
+import { NgxSpinnerModule } from "ngx-spinner";
+import { RolesComponent } from './roles/roles.component';
+import { RolepagesComponent } from './rolepages/rolepages.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +54,9 @@ import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.c
     ViewproductionComponent,
     CompanyDropdownComponent,
     InspectionDashboardComponent,
-    YearDropdownComponent
+    YearDropdownComponent,
+    RolesComponent,
+    RolepagesComponent
   ],
   imports: [
     ButtonModule,
@@ -62,7 +68,7 @@ import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.c
     TabViewModule,
     TableModule,
     ToastrModule.forRoot(),
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
     // RouterModule.forRoot([
     //   {
     //     path: "",
@@ -74,6 +80,7 @@ import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.c
     //   }
       
     // ])
+    NgxSpinnerModule
     ],
   providers: [JobworkmaterialService],
   bootstrap: [AppComponent]

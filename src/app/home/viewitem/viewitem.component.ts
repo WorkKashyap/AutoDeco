@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemmstsService } from 'src/app/shared/Itemmsts/itemmsts.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
 selector: 'app-viewitem',
@@ -10,12 +11,18 @@ styles: []
 })
 export class ViewitemComponent implements OnInit {
 cols: any;
-public loading = false;
+//public loading = false;
 
-constructor(private service:ItemmstsService, private router:Router,private toastr: ToastrService) { }
+constructor(private service:ItemmstsService, private router:Router,private toastr: ToastrService,private spinner: NgxSpinnerService) { }
 
 ngOnInit() {
-this.loading = true;
+//this.loading = true;
+this.spinner.show();
+
+setTimeout(() => {
+  this.spinner.hide();
+}, 2500);
+
 this.service.refreshList();
 this.cols = [
 { field: "view", header: "Action" },
