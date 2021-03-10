@@ -19,6 +19,9 @@ import { InspectionDashboardComponent } from './inspection-dashboard/inspection-
 import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
 import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.component';
 import { RolesComponent } from './roles/roles.component';
+import { RolepagesComponent } from './rolepages/rolepages.component';
+import { RolestouserComponent } from './rolestouser/rolestouser.component';
+import { RolestopagesComponent } from './rolestopages/rolestopages.component';
 
 const routes: Routes = [
   // { path: '', component: HomeComponent},
@@ -38,6 +41,9 @@ const routes: Routes = [
   { path: 'companydropdown', component: CompanyDropdownComponent,canActivate: [AuthGuard]  },
   { path: 'yeardropdown', component: YearDropdownComponent,canActivate: [AuthGuard]  },
   { path: 'roles', component: RolesComponent,canActivate: [AuthGuard]  },
+  { path: 'rolepages', component: RolepagesComponent,canActivate: [AuthGuard]  },
+  { path: 'roletouser', component: RolestouserComponent,canActivate: [AuthGuard]  },
+  { path: 'roletopages', component: RolestopagesComponent,canActivate: [AuthGuard]  },
   { path: "**", redirectTo: "" }
 ];
 

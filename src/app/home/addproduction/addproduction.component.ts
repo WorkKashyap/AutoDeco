@@ -56,7 +56,7 @@ export class AddproductionComponent implements OnInit {
 
   backBtn()
   {
-    this.router.navigate(['/viewproduction']);
+    this.router.navigate(['productions']);
   }
   //generates a random number and assign it to insplot and orderno
   randomData() {
