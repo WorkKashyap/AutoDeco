@@ -5,3 +5,9 @@ export class pages{
   url: string;
   parentid: number;
 }
+
+export class rolespages{
+  id: number;
+  roleid: number;
+  pageid: number;
+}

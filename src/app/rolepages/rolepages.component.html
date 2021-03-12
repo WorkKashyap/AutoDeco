@@ -1,1 +1,163 @@
-<p>rolepages works!</p>
+<div class="content-wrapper py-4 px-2" id="rolespagesDetail">
+     <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- <div class="col-md-1"></div> -->
+                <div class="col-md-12">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <div class="row mb-1">
+                                <div class="col-sm-12">
+                                    <div class="d-flex">
+                                        <h3>Roles Pages</h3>
+                                        <input pInputText class="ml-auto" type="search" 
+                                        (input)="dt.filterGlobal($event.target.value, 'contains')" 
+                                        placeholder="Global Filter"
+                                        style="height: 40px; width: 150px; border-radius: 8px; 
+                                        border-color: lightgrey; text-align: center;"/>
+
+                                        <!--parent pages combo box-->
+                                         <select class="custom-select col-sm-2" name="parentPageCombo" #parentPageCombo="ngModel" [(ngModel)]= "this.prid"
+                                         (change)="onParentPageChange($event.target.value)">
+                                            <option *ngFor="let pg of pageservice.parentpglist" value="{{pg.id}}">
+                                                    {{ pg.name }}
+                                            </option>
+                                        </select>
+
+                                        <!--Add a new page-->
+                                          <button type="button" class="btn btn-success ml-2" 
+                                          data-toggle="modal" data-target="#myModal"> 
+                                          <i class="fa fa-plus"></i></button>
+
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                            data-backdrop="static" data-keyboard="false">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">New Page</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onModalClose()">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form name="modalForm" #modalForm="ngForm">
+                                                    <div class="modal-body">
+                                                        <div>
+                                                            <label>Page Name</label>
+                                                            <input type="text" class="form-control" placeholder="Page Name" name="pagename" #pagename="ngModel" [(ngModel)]="pageservice.pageData.name" required>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <label>Description</label>
+                                                            <textarea class="form-control" placeholder="Description" name="description" #description="ngModel" [(ngModel)]="pageservice.pageData.description" required></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" (click)="onModalSubmit()">Submit</button>
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                                        (click)="onModalClose()">Close</button>
+                                                    </div>
+                                                  </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" style="position: relative">
+                            <ngx-spinner  [fullScreen] = "false"></ngx-spinner>
+                            <form role="form">
+                                <div class="row">
+                                  <div class="col">
+                                    <button class="btn-primary" (click)="onAddPages()"><i class="fa fa-plus"></i></button>
+                                  </div>
+                                    <p-table #dt [columns]="cols" [value]="allPagesbyParent" 
+                                    [style]="{'text-align': 'center', 'font-size': '0.9em'}"
+                                    [paginator]="true" [rows]="8" styleClass="p-datatable-striped">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th *ngFor="let col of cols" class="tbl-th" [width]="col.width">{{col.header}}</th>
+                                            <!-- <th class="tbl-th" width="20px">
+                                                <button class="btn-primary" (click)="onAddPages()"><i class="fa fa-plus"></i></button>
+                                            </th> -->
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-editing="editing" let-ri="rowIndex" let-pd>
+                                        <tr [pEditableRow]="pd">
+                                          <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" name="name" [(ngModel)]="pd.name" class="form-control" required>
+                                                </ng-template>
+                                                <ng-template pTemplate="output">
+                                                    {{pd.name}}
+                                                </ng-template>
+                                            </p-cellEditor>
+                                          </td>
+                                          <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" name="description" [(ngModel)]="pd.description" class="form-control" required>
+                                                </ng-template>
+                                                <ng-template pTemplate="output">
+                                                    {{pd.description}}
+                                                </ng-template>
+                                            </p-cellEditor>
+                                          </td>
+                                          <td>
+                                            <p-cellEditor>
+                                                <ng-template pTemplate="input">
+                                                    <input pInputText type="text" name="url" [(ngModel)]="pd.url" class="form-control" required>
+                                                </ng-template>
+                                                <ng-template pTemplate="output">
+                                                    {{pd.url}}
+                                                </ng-template>
+                                            </p-cellEditor>
+                                          </td>
+                                          <td style="text-align:center">
+                                            <button *ngIf="!editing" pInitEditableRow (click)="onRowEditInit(pd)" class="btn-primary mr-1 rounded">
+                                              <i class="fa fa-pencil"></i></button>
+                                            <button *ngIf="!editing" (click)="deleteRole(pd)" class="btn-danger rounded">
+                                              <i class="fa fa-trash"></i></button>
+                                            <button *ngIf="editing" pSaveEditableRow (click)="onRowEditSave(pd)" type="submit" class="btn-success mr-1 rounded">
+                                              <i class="fa fa-check"></i></button>
+                                            <button *ngIf="editing" pCancelEditableRow (click)="onRowEditCancel(pd, ri)" class="btn-danger rounded">
+                                              <i class="fa fa-times"></i></button>
+                                          </td>
+                                        </tr>
+                                      </ng-template>
+                                      <ng-template pTemplate="footer">
+                                        <tr *ngIf="isAddPages">
+                                          <td>
+                                            <div class="input-group">
+                                              <input type="hidden" name="id" [value]="pageservice.pagelist.id">
+                                              <input type="text" class="form-control" [(ngModel)]="pageservice.pagelist.name" name="nm" #nm="ngModel">
+                                            </div>
+                                          </td>
+                                          <td>
+                                            <input type="text" class="form-control" [(ngModel)]="pageservice.pagelist.description" name="description" #description="ngModel">
+                                          </td>
+                                          <td>
+                                            <input type="text" class="form-control" [(ngModel)]="pageservice.pagelist.url" name="url" #url="ngModel">
+                                            <input type="hidden" name="pid" [value]="pageservice.pagelist.parentid">
+                                          </td>
+                                          <td>
+                                            <span>
+                                            <button (click)="onSave()" type="submit" class="btn-success mr-1 rounded">
+                                              <i class="fa fa-check"></i></button>
+                                            <button (click)="onCancel()" class="btn-danger rounded">
+                                              <i class="fa fa-times"></i></button>
+                                            </span>
+                                          </td>
+                                        </tr>
+                                      </ng-template>
+                                    </p-table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

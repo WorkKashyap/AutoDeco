@@ -11,23 +11,23 @@ export class RolesService {
 
   readonly rootURL = environment.apiUrl;
 
-  // public rolesData:Roles = {'id':0,"role":""};
+  public rolesData:Roles = {'id':0,"role":""};
   roleslist:Roles[];
   rolesId: any;
   getRoles: Roles;
 
   constructor(private http:HttpClient) { }
 
-  refreshRoles(){
+  // refreshRoles(){
     
-    this.http.get(this.rootURL+'/roles')
-    .toPromise()
-    .then(res => this.roleslist = res as Roles[]);
-  }
+  //   this.http.get(this.rootURL+'/roles')
+  //   .toPromise()
+  //   .then(res => this.roleslist = res as Roles[]);
+  // }
 
-  postRolesDetail(rolesData)
+  postRolesDetail()
   {
-    return this.http.post(this.rootURL+'/roles',rolesData);
+    return this.http.post(this.rootURL+'/roles',this.rolesData);
   }
 
   putRolesDetail(rolesData)
@@ -37,7 +37,7 @@ export class RolesService {
 
   deleteRolesDetail(rolesData)
   {
-    return this.http.delete(this.rootURL+'/roles/'+ rolesData.sid);
+    return this.http.delete(this.rootURL+'/roles/'+ rolesData.id);
   }
 
   public getAllRoles(): Observable<Roles[]> {
