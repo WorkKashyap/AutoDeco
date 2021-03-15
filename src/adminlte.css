@@ -10,7 +10,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-:root {
+ :root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -622,7 +622,7 @@ pre code {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-right: -7.5px;
-  margin-left: -7.5px;
+  margin-left: 5px;
 }
 
 .no-gutters {
@@ -3427,13 +3427,15 @@ input[type="button"].btn-block {
   border: 0;
 }
 
-.dropdown-item:hover, .dropdown-item:focus {
+.dropdown-item:hover,
+.dropdown-item:focus {
   color: #16181b;
   text-decoration: none;
-  background-color: #f8f9fa;
+  background-color: #494e53;
 }
 
-.dropdown-item.active, .dropdown-item:active {
+.dropdown-item.active,
+.dropdown-item:active {
   color: #ffffff;
   text-decoration: none;
   background-color: #007bff;
@@ -6767,8 +6769,7 @@ button.bg-secondary:focus {
 }
 
 .bg-success {
-  background-color: #28a745 !important;
-}
+  background: linear-gradient(to right,#0ac282,#0df3a3)!important;}
 
 a.bg-success:hover, a.bg-success:focus,
 button.bg-success:hover,
@@ -6797,7 +6798,7 @@ button.bg-warning:focus {
 }
 
 .bg-danger {
-  background-color: #dc3545 !important;
+  background : linear-gradient(to right,#fe5d70,#fe909d) !important;
 }
 
 a.bg-danger:hover, a.bg-danger:focus,
@@ -11389,7 +11390,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   body:not(.sidebar-mini-md) .main-footer,
   body:not(.sidebar-mini-md) .main-header {
     transition: margin-left 0.3s ease-in-out;
-    margin-left: 250px;
+    margin-left: 270px;
   }
 }
 
@@ -11464,7 +11465,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 
 .main-sidebar, .main-sidebar::before {
   transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
-  width: 250px;
+  width: 285px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -11478,7 +11479,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
-  margin-left: -250px;
+  margin-left: -400px;
 }
 
 .sidebar-collapse .main-sidebar .nav-sidebar.nav-child-indent .nav-treeview {
@@ -11488,7 +11489,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 @media (max-width: 767.98px) {
   .main-sidebar, .main-sidebar::before {
     box-shadow: none !important;
-    margin-left: -250px;
+    margin-left: -270px;
   }
   .sidebar-open .main-sidebar, .sidebar-open .main-sidebar::before {
     margin-left: 0;
@@ -11503,7 +11504,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .layout-fixed .brand-link {
-  width: 250px;
+  width: 270px;
 }
 
 .layout-fixed .main-sidebar {
@@ -11545,7 +11546,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 }
 
 .content-header {
-  padding: 15px 0.5rem;
+  padding: 8px .5rem;
 }
 
 .text-sm .content-header {
@@ -12853,7 +12854,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   .sidebar-mini.sidebar-collapse .content-wrapper,
   .sidebar-mini.sidebar-collapse .main-footer,
   .sidebar-mini.sidebar-collapse .main-header {
-    margin-left: 4.6rem !important;
+    margin-left: 0rem!important;
   }
   .sidebar-mini.sidebar-collapse .nav-sidebar .nav-header {
     display: none;
@@ -12882,7 +12883,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   }
   .sidebar-mini.sidebar-collapse .main-sidebar, .sidebar-mini.sidebar-collapse .main-sidebar::before {
     margin-left: 0;
-    width: 4.6rem;
+    width: 0rem;
   }
   .sidebar-mini.sidebar-collapse .main-sidebar .user-panel .image {
     float: none;
@@ -16501,7 +16502,9 @@ textarea.form-control.is-warning {
 .card-olive.card-outline-tabs > .card-header a.active {
   border-top: 3px solid #3d9970;
 }
-
+.bg-other{
+  background : linear-gradient(to right,#ad315a,#755c65);
+}
 .bg-olive .btn-tool,
 .bg-gradient-olive .btn-tool,
 .card-olive:not(.card-outline) .btn-tool {
@@ -20493,7 +20496,7 @@ html.maximized-card {
 .fc-toolbar,
 .fc-toolbar.fc-header-toolbar {
   margin: 0;
-  padding: 1rem;
+  padding: 5px;
 }
 
 @media (max-width: 575.98px) {
@@ -27887,7 +27890,7 @@ blockquote.quote-gray-dark h6 {
 }
 
 .bg-primary {
-  background-color: #007bff !important;
+  background : linear-gradient(to right,#007bff,#73b4fb);
 }
 
 .bg-primary,
@@ -27925,7 +27928,9 @@ blockquote.quote-gray-dark h6 {
   border-color: #4e555b;
   color: #ffffff;
 }
-
+.bg-summary{
+  background :linear-gradient(to right,#f78554,#e2ad95)!important;
+}
 .bg-success {
   background-color: #28a745 !important;
 }
@@ -27947,7 +27952,7 @@ blockquote.quote-gray-dark h6 {
 }
 
 .bg-info {
-  background-color: #17a2b8 !important;
+  background:linear-gradient(to right,#01a9ac,#01dbdf);
 }
 
 .bg-info,
@@ -27967,7 +27972,7 @@ blockquote.quote-gray-dark h6 {
 }
 
 .bg-warning {
-  background-color: #ffc107 !important;
+  background: linear-gradient(to right,#d6c532,#e8de9a) !important;
 }
 
 .bg-warning,
@@ -28027,7 +28032,7 @@ blockquote.quote-gray-dark h6 {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background: linear-gradient(to right,#343a40,#6b7279) !important;
 }
 
 .bg-dark,
@@ -28124,6 +28129,9 @@ blockquote.quote-gray-dark h6 {
   background-color: #00cd5a !important;
   border-color: #00c054;
   color: #ffffff;
+}
+.bg-mach-fail{
+  background : linear-gradient(to right,#08aeff,#a1c8dc);
 }
 
 .bg-fuchsia {
@@ -28324,6 +28332,10 @@ blockquote.quote-gray-dark h6 {
   background-color: #1e7e34 !important;
   border-color: #1c7430;
   color: #ffffff;
+}
+
+.bg-tool-def{
+  background : linear-gradient(to right,#a914f5,#ce93d8);
 }
 
 .bg-teal {

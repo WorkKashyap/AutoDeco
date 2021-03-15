@@ -20,16 +20,23 @@ export class PlantService {
       .toPromise()
       .then(res => {
         this.plantlist = res as Plant[];
-        console.log(this.plantlist);
       });
   }
 
+  // public getPlantData(id): any {
+  //   return this.http
+  //     .get(this.rootUrl + '/galvaplants/Galvaplant/' + id)
+  //     .toPromise()
+  //     .then(res => {
+  //       this.plantlist = res as Plant[];
+  //     });
+  // }
   public getPlantData(id): any {
     return this.http
       .get(this.rootUrl + '/Galvaplant/' + id)
       .toPromise()
       .then(res => {
-        this.plantlist = res as Plant[];
+        this.splantlist = res as Plant[];
       });
   }
 

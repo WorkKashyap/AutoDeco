@@ -8,7 +8,7 @@ import { FullCalendarModule } from "@fullcalendar/angular";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+// import { NavbarComponent } from './navbar/navbar.component';
 import { JobworkmaterialService } from './shared/jobworkmaterial/jobworkmaterial.service';
 
 
@@ -20,7 +20,7 @@ import {ButtonModule} from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
 import {TabViewModule} from 'primeng/tabview';
 import { AddjobworkComponent } from './home/addjobwork/addjobwork.component';
-import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
+// import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -29,30 +29,42 @@ import { Toast, ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
 import { AdditemComponent } from './home/additem/additem.component';
 import { ViewitemComponent } from './home/viewitem/viewitem.component';
+import { AddproductionComponent } from './home/addproduction/addproduction.component';
+import { ViewproductionComponent } from './home/viewproduction/viewproduction.component';
 import { InspectionDashboardComponent } from './inspection-dashboard/inspection-dashboard.component';
 import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
-import { QualityCalenderComponent } from './qualitycalendar/qualitycalendar';
-import dayGridPlugin from '@fullcalendar/daygrid'; 
-import interactionPlugin from '@fullcalendar/interaction'; 
-import * as bootstrap from 'bootstrap';
-import * as $ from 'jquery';
+import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.component';
 
+import { NgxSpinnerModule } from "ngx-spinner";
+import { RolesComponent } from './roles/roles.component';
+import { RolepagesComponent } from './rolepages/rolepages.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { QualityCalenderComponent } from './qualitycalendar/qualitycalendar';
+// import { HeaderqualitycalendarComponent } from './headerqualitycalendar/headerqualitycalendar.component';
+// import { NavbarComponent } from './navbar/navbar.component';
+// import { LazyloadingModule } from './qualitycalendar/lazyloading.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     AddjobworkComponent,
-    ViewJobworkComponent,
+    // ViewJobworkComponent,
     LoginComponent,
     MainComponent,
     DashboardComponent,
     HomeComponent,
     AdditemComponent,
     ViewitemComponent,
+    AddproductionComponent,
+    ViewproductionComponent,
     CompanyDropdownComponent,
     InspectionDashboardComponent,
+    YearDropdownComponent,
+    RolesComponent,
+    RolepagesComponent,
     QualityCalenderComponent
+    
   ],
   imports: [
     ButtonModule,
@@ -65,7 +77,7 @@ import * as $ from 'jquery';
     TableModule,
     FullCalendarModule,
     ToastrModule.forRoot(),
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
     // RouterModule.forRoot([
     //   {
     //     path: "",
@@ -77,6 +89,7 @@ import * as $ from 'jquery';
     //   }
       
     // ])
+    NgxSpinnerModule
     ],
   providers: [JobworkmaterialService],
   bootstrap: [AppComponent]

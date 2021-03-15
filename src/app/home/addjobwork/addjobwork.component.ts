@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { JobworkmaterialService } from 'src/app/shared/jobworkmaterial/jobworkmaterial.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -11,9 +12,11 @@ import { JobworkmaterialService } from 'src/app/shared/jobworkmaterial/jobworkma
   styleUrls: ['./addjobwork.component.css']
 })
 export class AddjobworkComponent implements OnInit {
+  
   public loading = false;
 
-  constructor(private service:JobworkmaterialService, private router:Router, private toastr: ToastrService) { }
+  constructor(private service:JobworkmaterialService, private router:Router, private toastr: ToastrService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
      this.resetForm();
@@ -23,7 +26,11 @@ export class AddjobworkComponent implements OnInit {
 
   cancelRecord()
   {
+    this.spinner.show();
     this.resetForm();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2500);
   }
 
   backBtn()
@@ -52,18 +59,21 @@ export class AddjobworkComponent implements OnInit {
   }
 
   insertRecord(form:NgForm){
-    this.loading = true;
+   // this.loading = true;
+   this.spinner.show();
     this.service.postjobworkmaterial().subscribe(
       res => {
         //console.log(this.service.jobworkData);
-        this.loading = false;
+        //this.loading = false;
+        this.spinner.hide();
         this.resetForm(form);
         this.toastr.info('Inserted Successfully','Job work material');
         this.service.refresList();
         //this.router.navigate(['/view-jobwork']);
       },
       err => {
-        this.loading = false;
+        //this.loading = false;
+        this.spinner.hide();
         console.log(err);
         this.toastr.error('Error while inserting data','Job work material');
       }
@@ -71,17 +81,20 @@ export class AddjobworkComponent implements OnInit {
   }
 
   updateRecord(form:NgForm){
-    this.loading = true;
+    //this.loading = true;
+    this.spinner.show();
     this.service.putjobworkmaterial().subscribe(
       res => {
-        this.loading = false;
+        //this.loading = false;
+        this.spinner.hide();
         this.resetForm(form);
         this.toastr.info('Updated Successfully','Job work material');
         this.service.refresList();
         //this.router.navigate(['/view-jobwork']);
       },
       err => {
-        this.loading = false;
+        //this.loading = false;
+        this.spinner.hide();
         console.log(err);
         this.toastr.error('Error while updating data','Job work material');
       }

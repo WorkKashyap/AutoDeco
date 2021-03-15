@@ -9,28 +9,29 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { HomeComponent } from './home/home.component';
 import { AddjobworkComponent } from './home/addjobwork/addjobwork.component';
-import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
+// import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
 import { AdditemComponent } from './home/additem/additem.component';
 import { ViewitemComponent } from './home/viewitem/viewitem.component';
-//import { CompanyDropdownComponent } from './company-dropdown/company-dropdown.component';
 import { InspectionDashboardComponent } from './inspection-dashboard/inspection-dashboard.component';
 import { CompanyDropdownComponent } from './utilities/company-dropdown/company-dropdown.component';
 import { QualityCalenderComponent } from './qualitycalendar/qualitycalendar';
+import { ViewjobworkModule } from './home/view-jobwork/viewjobwork.module';
 
 const routes: Routes = [
-  // { path: '', component: HomeComponent},
- 
-  { path: "", component: HomeComponent,canActivate: [AuthGuard] },
+    { path: "", component:HomeComponent,canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent,canActivate: [AuthGuard]  },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard]  },
-  { path: 'view-jobwork', component: ViewJobworkComponent,canActivate: [AuthGuard]  },
+  { path: 'xyz', component: DashboardComponent,canActivate: [AuthGuard]  },
+  // { path: 'jobWorkMaterial', component: ViewJobworkComponent,canActivate: [AuthGuard]  },
   { path: 'addjobwork', component: AddjobworkComponent,canActivate: [AuthGuard]  },
+  { path: 'jobWorkMaterial', loadChildren : './home/view-jobwork/viewjobwork.module#ViewjobworkModule',canActivate: [AuthGuard]  },
+
   { path: 'compdropdown', component: CompanyDropdownComponent,canActivate: [AuthGuard]  },
-  { path: 'inspectiondashboard', component: InspectionDashboardComponent,canActivate: [AuthGuard]  },
-  { path: 'qualitycalendar', component: QualityCalenderComponent,canActivate: [AuthGuard]  },
+  { path: 'dashboard', component: InspectionDashboardComponent,canActivate: [AuthGuard]  },
   { path: 'additem', component: AdditemComponent,canActivate: [AuthGuard]  },
-  { path: 'viewitem', component: ViewitemComponent,canActivate: [AuthGuard]  },
+  { path: 'itemmsts', component: ViewitemComponent,canActivate: [AuthGuard]  },
+  { path: 'companydropdown', component: CompanyDropdownComponent,canActivate: [AuthGuard]  },
+  { path: 'calendar', component :QualityCalenderComponent,canActivate: [AuthGuard]  },
   { path: "**", redirectTo: "" }
 ];
 

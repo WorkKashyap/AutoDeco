@@ -14,10 +14,13 @@ import { DailyReportSummary } from '../shared/dailyproduction/dailyreportsummary
 import { Dailyproduction } from '../shared/dailyproduction/dailyproduction.model';
 import { Itemwiserej } from '../shared/dailyproduction/itemwiserej.model';
 import { Table } from 'primeng/table';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-qualitycalendar',
   templateUrl: './qualitycalendar.component.html',
+  styleUrls: ['./qualitycalendar.component.css'],
   providers: [DatePipe]
 })
 export class QualityCalenderComponent implements OnInit {
@@ -88,7 +91,11 @@ export class QualityCalenderComponent implements OnInit {
 
 
   constructor(public service: DailyproductionService,public dpservice: DailyproductionService,
-    public plantservice: PlantService, public lservice: LoginService,public datePipe: DatePipe ) { 
+    public plantservice: PlantService, public lservice: LoginService,public datePipe: DatePipe,private spinner: NgxSpinnerService
+
+
+
+ ) { 
     
       this.monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June',
       'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
@@ -104,6 +111,14 @@ export class QualityCalenderComponent implements OnInit {
   ngOnInit() {
     const me=this;
     // this.plantservice.getPlantData(this.currentUser.id);
+    
+
+    this.spinner.show();
+
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2500);
     
     // this.service.plantcode = '1010';
      this.service.plantshortname = 'GDPL Vapi';

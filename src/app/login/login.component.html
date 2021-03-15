@@ -9,7 +9,8 @@
 					<input type="text" name="username" #username="ngModel" [(ngModel)]="service.userData.username"  class="form-control" placeholder="username">		
 					<input type="password" name="password" #password="ngModel" [(ngModel)]="service.userData.password" class="form-control" placeholder="password">
                     <input type="submit" value="Login"  class="btn login_btn">  
-                    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>             
+                    <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>              -->
+                    <ngx-spinner></ngx-spinner>
                 </form>
             </div>
         </div>

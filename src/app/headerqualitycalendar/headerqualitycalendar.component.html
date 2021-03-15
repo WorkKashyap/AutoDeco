@@ -1,0 +1,233 @@
+<div class="form-inline" *ngIf="dpservice.dailyreportsummary" style="margin: auto;">
+    <div *ngFor="let total of dpservice.dailyreportsummary" style="text-align: center;">
+       <div *ngIf="total.itemtype==this.typename" class="row"> 
+         <div class="col-md-12 col-sm-6">
+          <button class="btn btn-sm btn-custom bg-summary text-white mx-1 my-1" (click)="extraVal(7)">Summary</button>
+          <button class="btn btn-sm btn-custom bg-info text-white mx-1 my-1" (click)="extraVal(1)">Insp. Value =
+            <b>{{ total.producevalue }}</b>
+            Lacs</button>
+            <button class="btn btn-sm btn-custom bg-success text-white mx-1 my-1" (click)="extraVal(2)">Ok Value =
+              <b>{{ total.okvalue }} Lacs &nbsp;&nbsp; Ok % {{total.okper }}</b>
+            </button>
+            <button class="btn btn-sm btn-custom text-white bg-primary mx-1 my-1" (click)="extraVal(3)">Hold Value =
+              <b>{{ total.holdvalue }}</b>
+              Lacs
+            </button>
+            <button class="btn btn-sm btn-custom text-white bg-dark mx-1 my-1" (click)="extraVal(4)">Buff. Value =
+              <b>{{ total.buffingvalue }}</b>
+              Lacs
+            </button>
+            <button class="btn btn-sm btn-custom text-white bg-danger mx-1 my-1" (click)="extraVal(5)">Rej. Value =
+              <b>{{ total.rejectvalue }}</b>
+              Lacs
+            </button>
+            <button class="btn btn-sm btn-custom text-white bg-warning mx-1 my-1" (click)="extraVal(6)">Reject % =
+              <b>{{ total.rejper }}</b>
+            </button>    
+            <button class="btn btn-sm btn-custom text-white bg-danger mx-1 my-1">
+              Plating Val. = <b>{{ total.platingvalue  |  number:'1.2-2' }}</b> Lacs
+              Plating % = <b>{{ total.platingper  |  number:'1.2-2' }}</b>
+            </button>
+            <button class="btn btn-sm btn-custom text-white bg-danger mx-1 my-1">
+              Moulding Val. = <b>{{ total.mouldingvalue  |  number:'1.2-2' }}</b> Lacs
+              Moulding % = <b>{{ total.mouldingper  |  number:'1.2-2' }}</b>
+            </button>
+            <button class="btn btn-sm btn-custom text-white bg-mach-fail mx-1 my-1">
+              Mach. Fail Val. = <b>{{ total.mechfailvalue  |  number:'1.2-2' }}</b> Lacs
+              Mach. Fail % = <b>{{ total.mechfailper |  number:'1.2-2' }}</b>
+            </button>
+            <button class="btn btn-sm btn-custom text-white bg-tool-def mx-1 my-1">
+              Tool Def Val. = <b>{{ total.tooldefvalue  |  number:'1.2-2' }}</b> Lacs
+              Tool Def % = <b>{{ total.tooldefper |  number:'1.2-2' }}</b>
+            </button>
+            <button class="btn btn-sm btn-custom text-white bg-other mx-1 my-1">
+              Others Val. = <b>{{ total.othersvalue  |  number:'1.2-2' }}</b> Lacs
+              Others % = <b> {{ total.othersper |  number:'1.2-2' }}</b>
+            </button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade bd-example-modal-xl" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="row col-md-11">
+            <div class="col-md-6">
+              <h5>Summary
+                <span *ngIf="!monthName">({{selected_eventdate | date :'dd MMM, y'}})</span>
+                <span *ngIf="monthName">({{monthName | date :'MMM'}})</span>
+              </h5>
+            </div>
+            <div class="col-md-5">
+              <!-- <h4><app-company-dropdown (plantname)="getplantshortname($event)"></app-company-dropdown></h4> -->
+              <h4>{{selected_plantname}}</h4>
+            </div>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div style="overflow-y: scroll; height: 550px;">
+          <p-table #dt [columns]="cols" [style]="{'text-align': 'center', 'font-size': '0.7em'}" [responsive]="true"
+            selectionMode="single" [style]="{'width':'100%'}" [(selection)]="selectedItemrej"
+            [value]="dpservice.itemwiserejlist" [paginator]="false" [rows]="10" [responsive]="true">
+
+            <ng-template pTemplate="header" let-columns>
+              <!-- header button section -->
+              <tr *ngIf="btnLabel">
+                <td style="width:26%;">
+                  <div class="input-group mb-2 mt-2">
+                    <input type="text" pInputText placeholder="Global Filter"
+                    (input)="dt.filterGlobal($event.target.value, 'contains')" class="form-control fix-height">
+                    <div class="input-group-append fix-height">
+                      <i class="fa fa-search input-group-text"></i>
+                    </div>
+                  </div>
+                </td>
+                <!--not for summary -->
+                <td style="width:140px;">
+                  <button type="button" label="EXCEL" (click)="dt.exportCSV()" class="btn btn-success btn-sm mb-2">
+                    <i class="fa fa-file-excel-o"></i> Export</button>
+                </td>
+
+
+                <!--not for reject% and summary click event -->
+                <td *ngIf="btnLabel!='6' && btnLabel!='7'" style=" width:140px;">
+                  <button class="btn btn-sm  text-dark bg-info mb-2" *ngIf="btnLabel=='1'"
+                    style="float: right;">Insp.
+                    Qty: {{ inspectionQtysum | number:'1.2-2'}}
+                  </button>
+
+                  <button class="btn btn-sm  text-dark bg-success mb-2" *ngIf="btnLabel=='2'"
+                    style="float: right;">Ok
+                    Qty: {{ okqtysum | number:'1.2-2'}}
+                  </button>
+
+                  <button class="btn btn-sm  text-dark bg-primary mb-2" *ngIf="btnLabel=='3'"
+                    style="float: right;">Hold Qty: {{ holdqtysum | number:'1.2-2'}}
+                  </button>
+
+                  <button class="btn btn-sm  text-dark bg-dark mb-2" *ngIf="btnLabel=='4'"
+                    style="float: right;">Buff.
+                    Qty: {{ bufferqtysum | number:'1.2-2'}}
+                  </button>
+
+                  <button class="btn btn-sm text-dark bg-danger mb-2" *ngIf="btnLabel=='5'"
+                    style="float: right;">Reject Qty: {{ rejqtysum  | number:'1.2-2'  }}
+                  </button>
+
+                </td>
+                <!--not for reject% and summary click event -->
+
+                <!--not for summary click event -->
+                <td style="width:140px;" *ngIf="btnLabel!='7'">
+                  <button class="btn btn-sm  text-dark bg-info mb-2" *ngIf="btnLabel=='1'"
+                    style="float: right;">Total
+                    Insp.: {{ inspectionvsum | number:'1.2-2'}} Lacs
+                  </button>
+
+                  <button class="btn btn-sm  text-dark bg-success mb-2" *ngIf="btnLabel=='2'"
+                    style="float: right;">Ok
+                    Value: {{ okvsum | number:'1.2-2'}} Lacs
+                  </button>
+
+                  <button class="btn btn-sm  text-dark bg-primary mb-2" *ngIf="btnLabel=='3'"
+                    style="float: right;">Hold Value: {{ holdvsum | number:'1.2-2'}} Lacs
+                  </button>
+
+                  <button class="btn btn-sm  text-dark bg-dark mb-2" *ngIf="btnLabel=='4'"
+                    style="float: right;">Buff.
+                    Value: {{ buffervsum | number:'1.2-2'}} Lacs
+                  </button>
+
+                  <button class="btn btn-sm text-dark bg-danger mb-2" *ngIf="btnLabel=='5'"
+                    style="float: right;">Total Reject: {{ rejvsum | number:'1.2-2'  }} Lacs </button>
+
+                  <button class="btn btn-sm text-dark bg-warning mb-2" *ngIf="btnLabel=='6'"
+                    style="float: right;">Reject %: {{ rejpersum | number:'1.1-2'  }} </button>
+                </td>
+                <!--not for summary click event -->
+
+                <!--only for summary -->
+                <td *ngIf="btnLabel=='7'" style=" width:180px;">
+                  <button class="btn btn-sm  text-dark bg-info mb-1" style="float: right;">Total
+                    Insp.: {{ inspectionvsum | number:'1.2-2'}} Lacs
+                  </button>
+                </td>
+                <td *ngIf="btnLabel=='7'" style=" width:180px;">
+                  <button class="btn btn-sm  text-dark bg-success mb-1" style="float: right;">Ok
+                    Val.: {{ okvsum | number:'1.2-2'}} Lacs
+                  </button>
+                </td>
+                <td *ngIf="btnLabel=='7'" style=" width:180px;">
+                  <button class="btn btn-sm  text-dark bg-success mb-1" style="float: right;">Ok %:
+                    {{ okpersum | number:'1.2-2'}}
+                  </button>
+                </td>
+                <td *ngIf="btnLabel=='7'" style=" width:180px;">
+                  <button class="btn btn-sm text-dark bg-danger mb-1" style="float: right;">Total Reject:
+                    {{ rejvsum | number:'1.2-2'  }} Lacs </button>
+                </td>
+                <td *ngIf="btnLabel=='7'" style=" width:180px;">
+                  <button class="btn btn-sm text-dark bg-warning mb-1" style="float: right;">Reject %:
+                    {{ rejpersum | number:'1.1-2'  }} </button>
+                </td>
+                <!--end for summary -->
+              </tr>
+              <!-- regular date section -->
+              <tr *ngIf="!btnLabel">
+                <td colspan="2" style=" width:275px;">
+                  <div class="input-group mb-2">
+                    <input type="text" pInputText placeholder="Global Filter"
+                      (input)="dt.filterGlobal($event.target.value, 'contains')" class="form-control fix-height">
+                    <div class="input-group-append fix-height">
+                      <i class="fa fa-search input-group-text"></i>
+                    </div>
+                  </div>
+                </td>
+                <td style=" width:140px;"> </td>
+                <td style=" width:140px;"> </td>
+                <td style=" width:140px;">
+                  <button class="btn btn-sm text-dark bg-danger btn-custom-td mx-1 my-2">
+                    Total Reject: {{ rejvsum  | number:'1.2-2'  }} Lacs </button>
+                </td>
+                <td style=" width:140px;">
+                  <button class="btn btn-sm  text-dark bg-info btn-custom-td mx-1 my-2">
+                    Total Insp.: {{ inspectionvsum  | number:'1.2-2'}} Lacs
+                  </button>
+                </td>
+                <td style=" width:140px;">
+                  <button class="btn btn-sm text-dark bg-primary btn-custom-td mx-1 my-2">
+                    Hold Value: {{ holdvsum | number:'1.2-2'}} Lacs
+                  </button>
+                </td>
+                <td style=" width:140px;">
+                  <button class="btn btn-sm text-dark bg-dark btn-custom-td mx-1 my-2">
+                    Buff. Value: {{ buffervsum | number:'1.2-2'}} Lacs
+                  </button>
+                </td>
+              </tr>
+              <tr class="tbl-tr">
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field" style="width:140px" class="tbl-th">
+                  {{col.header}}
+                  <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                    ariaLabelDesc="Activate to sort in descending order"
+                    ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns">
+                  {{rowData[col.field]}}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+  </div>
+</div>

@@ -44,23 +44,6 @@ export class DailyproductionService {
 
   constructor(public http: HttpClient) { }
 
-  // public getDailyPReject(id): any {
-  //   return this.http
-  //     .get(this.rootUrl + '/dailyproductions/rejectdata/' + id + '/Reject')
-  //     .toPromise()
-  //     .then(res => {
-  //       this.dailyprodlist = res as Dailyproduction[];
-  //     });
-  // }
-  // public getRejectcalendar(id, date): any {
-  //   return this.http
-  //     .get(this.rootUrl + '/dailyproductions/Getallrejdata/' + id + '/Reject/' + date)
-  //     .toPromise()
-  //     .then(res => {
-  //       this.dailyprodlist = res as Dailyproduction[];
-  //       console.log(this.rootUrl + '/dailyproductions/Getallrejdata/' + id + '/Reject/' + date);
-  //     });
-  // }
   public getDailyPReject(id, startdate, endate): Observable<Dailyproduction[]> {
     return this.http.get<Dailyproduction[]>(
       this.rootUrl +
@@ -176,10 +159,10 @@ export class DailyproductionService {
     );
   }
 
-  public getprochart(plantcode, type, month,year): Observable<DailyReportDisplay[]> {
+  public getprochart(plantcode, type, month, year): Observable<DailyReportDisplay[]> {
     return this.http.get<DailyReportDisplay[]>(
       this.rootUrl +
-      '/DailyReportDisplay/getallchartdetail/' +
+      '/dailyreportdisplay/getallchartdetail/' +
       plantcode +
       '/' +
       type +
@@ -190,55 +173,7 @@ export class DailyproductionService {
     );
   }
 
-  public getprochartchrome(
-    plantcode,
-    type,
-    month
-  ): Observable<DailyReportDisplayChrome[]> {
-    return this.http.get<DailyReportDisplayChrome[]>(
-      this.rootUrl +
-      '/DailyReportDisplayChrome/getchromedata/' +
-      plantcode +
-      '/' +
-      type +
-      '/' +
-      month
-    );
-  }
-
-  public getprochartsatin(
-    plantcode,
-    type,
-    month
-  ): Observable<DailyReportDisplaySatin[]> {
-    return this.http.get<DailyReportDisplaySatin[]>(
-      this.rootUrl +
-      '/DailyReportDisplaySatin/getsatindata/' +
-      plantcode +
-      '/' +
-      type +
-      '/' +
-      month
-    );
-  }
-
-  public getprochartdefect(
-    plantcode,
-    type,
-    month
-  ): Observable<TopDefectsummary[]> {
-    return this.http.get<TopDefectsummary[]>(
-      this.rootUrl +
-      '/TopDefectssummary/gettopdefectsummary/' +
-      plantcode +
-      '/' +
-      type +
-      '/' +
-      month
-    );
-  }
-
-  public getprochartsummary(plantcode, type, month,year): any {
+  public getprochartsummary(plantcode, type, month, year): any {
     return this.http
       .get(
         this.rootUrl +

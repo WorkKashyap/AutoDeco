@@ -4,15 +4,18 @@
 .my-calender>.fc-header-toolbar{
   display: none !important;
 }
-.fc-toolbar, .fc-header-toolbar {
-  margin: 0;
-  padding: 0rem!important;
+.fc-toolbar, .fc-toolbar.fc-header-toolbar{
+  padding : 0rem!important;
 }
 .fc-toolbar h2 {
   font-size: 0.5em;
   margin: 0;
 }
 
+.fc-scroller {
+  height: auto!important;
+  overflow-y: auto;
+}
 .calendar-parent {
   height: 100vh;
 }
@@ -41,5 +44,8 @@ padding: 0rem;
   color: white;
   top: 0px;
   z-index: 1;
+}
+.fc-event {
+  font-size: 0.50em;
 }
 
