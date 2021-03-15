@@ -35,7 +35,7 @@ export class AddjobworkComponent implements OnInit {
 
   backBtn()
   {
-    this.router.navigate(['/view-jobwork']);
+    this.router.navigate(['jobWorkMaterial']);
   }
 
   resetForm(form?:NgForm){

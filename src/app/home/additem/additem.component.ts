@@ -27,7 +27,7 @@ export class AdditemComponent implements OnInit {
 }
 
   back(){
-    this.router.navigate(['viewitem']);
+    this.router.navigate(['itemmsts']);
   }
 
   cancel()

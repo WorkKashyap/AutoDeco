@@ -43,6 +43,8 @@ import { QualityCalenderComponent } from './qualitycalendar/qualitycalendar';
 // import { HeaderqualitycalendarComponent } from './headerqualitycalendar/headerqualitycalendar.component';
 // import { NavbarComponent } from './navbar/navbar.component';
 // import { LazyloadingModule } from './qualitycalendar/lazyloading.module';
+import { RolestouserComponent } from './rolestouser/rolestouser.component';
+import { RolestopagesComponent } from './rolestopages/rolestopages.component';
 
 @NgModule({
   declarations: [
@@ -63,8 +65,9 @@ import { QualityCalenderComponent } from './qualitycalendar/qualitycalendar';
     YearDropdownComponent,
     RolesComponent,
     RolepagesComponent,
-    QualityCalenderComponent
-    
+    QualityCalenderComponent,
+    RolestouserComponent,
+    RolestopagesComponent
   ],
   imports: [
     ButtonModule,

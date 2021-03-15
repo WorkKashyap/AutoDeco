@@ -432,6 +432,21 @@
               <p>Informational</p>
             </a>
           </li> -->
+          </li>
+          
+          <li class="nav-item" *ngFor="let parent of pageService.pagelist">
+            <a class="nav-link custom-padding" href="#" id="navbarDropdown" role="button"  aria-haspopup="true" aria-expanded="false" *ngIf="parent.parentid == 0">
+              {{parent.name}}
+              <i class="fa fa-angle-left right"></i>
+            </a>
+            <ul class="nav nav-treeview" aria-labelledby="navbarDropdown">
+              <li *ngFor="let child of pageService.pagelist">
+                <a *ngIf="child.parentid == parent.id" routerLink="{{child.url}}" routerLinkActive="active"
+                  class="dropdown-item">
+                  {{child.name}}</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -1,0 +1,63 @@
+<div class="content-wrapper py-4" id="userrolesDetail">
+    <section class="content">
+       <div class="container-fluid">
+           <div class="row">
+               <div class="col-md-5">
+                   <div class="card card-primary card-outline">
+                       <div class="card-header">
+                           <div class="row mb-1">
+                               <div class="col-sm-6">
+                                   <div class="d-flex">
+                                       <h3>Roles To Users</h3>
+                                   </div>
+                               </div>
+                               <div class="col-sm-6">
+                                   <select class="custom-select" name="roleCombobox" id="role" (change)="roleChng($event.target.value)"> 
+                                       <option value="1">Admin</option>
+                                       <option value="2">Quality</option>
+                                       <option value="3">Sales</option>
+                                       <option value="4">Purchase</option>
+                                       <option value="9">ActionPlan</option>
+                                       <option value="10">Master</option>
+                                       <option value="12">HR</option>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="card-body" style="position: relative">
+                           <ngx-spinner  [fullScreen] = "false"></ngx-spinner>
+                           <form role="form">
+                               <div class="row">
+                                   <p-table #dt class="table table-hover" [columns]="cols" 
+                                   [value]="userService.alluserlist" [style]="{'text-align': 'center', 'font-size': '0.9em'}"
+                                   [responsive]="true" selectionMode="single" [(selection)]="selectedItemrej" 
+                                   [paginator]="true" [resizableColumns]="true" [rows]="10" 
+                                   totalRecords="totalRecords" styleClass="p-datatable-striped">
+                                   <ng-template pTemplate="header" let-columns>
+                                       <tr>
+                                           <th *ngFor="let col of columns" [pSortableColumn]="col.field" 
+                                           [class]="col.field" pResizableColumn>
+                                           {{col.header}}
+                                           </th>
+                                       </tr>
+                                   </ng-template>
+                                   <ng-template pTemplate="body" let-pd let-columns="columns">
+                                       <tr [pSelectableRow]="pd">
+                                           <td *ngFor="let col of columns" class="ui-resizable-column">
+                                               <span *ngIf="col.field=='chkbox'">
+                                                    <input type="checkbox" [checked]="this.checkValue(pd['id'])" (change)="userRoleChng(pd['id'])">
+                                               </span>
+                                               <span *ngIf="col.field!='view'">{{pd[col.field]}}</span>
+                                           </td>
+                                       </tr>
+                                       </ng-template>
+                                   </p-table>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+</div>
