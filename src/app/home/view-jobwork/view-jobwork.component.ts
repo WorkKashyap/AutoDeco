@@ -26,10 +26,10 @@ export class ViewJobworkComponent implements OnInit {
     }, 2500);
     
     this.cols = [
-    { field: "view", header: "Action" },
-    { field: "materialNumber", header: "number" },
-    { field: "materialDesc", header: "Desc" },
-    { field: "rateINR", header: "rate" },
+    { field: "view", header: "Action" ,width:"30px"},
+    { field: "materialNumber", header: "number" ,width:"50px"},
+    { field: "materialDesc", header: "Desc" ,width:"100px"},
+    { field: "rateINR", header: "rate" ,width:"30px"},
   ];
 }
 
@@ -50,7 +50,7 @@ export class ViewJobworkComponent implements OnInit {
         this.service.deletejobworkmaterial(id).subscribe(
         res => {
         this.service.refresList();
-        this.toastr.success('Deleted Successfully','Job work material');
+        this.toastr.info('Deleted Successfully','Job work material');
         },
         err => {
           console.log(err)

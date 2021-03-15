@@ -108,7 +108,7 @@ export class RolesComponent implements OnInit {
       console.log(row.id);
       this.service.deleteRolesDetail(row).subscribe(
         res => {
-        this.toastr.success('Deleted Successfully','Roles');
+        this.toastr.info('Deleted Successfully','Roles');
         this.getData();
         },
         err => {

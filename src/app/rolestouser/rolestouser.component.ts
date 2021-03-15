@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
 import { userroles } from '../shared/rolestouser/userroles.model';
 import { UserrolesService } from '../shared/rolestouser/userroles.service';
 import { UserService } from '../shared/user/user.service';
@@ -18,8 +19,10 @@ export class RolestouserComponent implements OnInit {
   is_checked : boolean;
   flag : boolean;
 
-  constructor(private spinner: NgxSpinnerService, private urService:UserrolesService,
-              private userService: UserService) { }
+  constructor(private spinner: NgxSpinnerService, 
+    private urService:UserrolesService,
+    private userService: UserService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.spinner.show();
@@ -49,7 +52,7 @@ export class RolestouserComponent implements OnInit {
     this.urService.getUsersbyRole(rid)
     .toPromise()
     .then(res =>
-         this.userData = res as userroles[]);
+      this.userData = res as userroles[]);
     
   }
 
@@ -80,6 +83,7 @@ export class RolestouserComponent implements OnInit {
         //delete data
         this.urService.deleteUserRole(element.id).subscribe(
           res => {
+            this.toastr.info('Removed Successfully','Roles to User');
             this.getUserdataByRoles(this.roleID);
           },
           err => {
@@ -97,6 +101,7 @@ export class RolestouserComponent implements OnInit {
       this.ex_userData.userid = uid;
       this.urService.postUserRole(this.ex_userData).subscribe(
         res => {
+          this.toastr.success('Saved Successfully','Roles to User');
           this.getUserdataByRoles(this.roleID);
         },
         err => {

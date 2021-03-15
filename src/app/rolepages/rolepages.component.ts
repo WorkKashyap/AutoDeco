@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from 'ngx-toastr';
-import { LoginService } from '../shared/login/login.service';
-import { User } from '../shared/login/User.model';
 import { pages } from '../shared/pages/pages.model';
 import { PagesService } from '../shared/pages/pages.service';
+import { ViewChild, ElementRef} from '@angular/core';
+
 
 @Component({
   selector: 'app-rolepages',
@@ -16,19 +16,15 @@ export class RolepagesComponent implements OnInit {
   cols: any;
   prid : number;
   allPagesbyParent: any;
-  currentUser: User;
-
+  
   isAddPages: boolean;
   clonedPages: { [s: string]: any; } = {};
 
+  @ViewChild('closeAddPageModal',{static: true}) closeAddPageModal: ElementRef;
+
   constructor(private spinner: NgxSpinnerService,
      private pageservice: PagesService,
-     private toastr: ToastrService,
-     private authenticationService: LoginService) {
-      this.authenticationService.currentUser.subscribe(
-        x=> (this.currentUser = x)
-      )
-      }
+     private toastr: ToastrService){}
 
   ngOnInit() {
     this.spinner.show();
@@ -43,10 +39,10 @@ export class RolepagesComponent implements OnInit {
     // this.pageservice.getPagesbyParent(this.prid);
 
     this.cols = [
-    { field: "name", header: "Name", width: "120px"},
-    { field: "description", header: "Description", width: "175px"},
+    { field: "name", header: "Name", width: "100px"},
+    { field: "description", header: "Description", width: "150px"},
     { field: "url", header: "Url", width: "75px"},
-    { field: "view", header: "Action", width:"50px"}
+    { field: "view", header: "Action", width:"40px"}
     ];
     this.getData();
   }
@@ -72,19 +68,17 @@ export class RolepagesComponent implements OnInit {
     this.pageservice.postPagesDetail().subscribe(
       res => {
         this.toastr.success('Submitted Successfully','Pages');
-        this.getData();
         this.isAddPages = false;
+        this.pageservice.getParentPages();
       },
       err => {
         console.log(err)
       }
     );
-    this.pageservice.getParentPages();
-    this.pageservice.getPagesbyId(this.currentUser.id);
+    this.closeAddPageModal.nativeElement.click();
   }
 
   onModalClose(){
-    console.log(this.pageservice.pageData);
     this.resetModal();
   }
 
@@ -102,7 +96,6 @@ export class RolepagesComponent implements OnInit {
 
   onRowEditInit(pd : any){
     this.clonedPages[pd.id] = {...pd};
-    this.clonedPages[pd.parentid] = this.prid;
   }
 
   onRowEditSave(row: any) {
@@ -150,7 +143,7 @@ export class RolepagesComponent implements OnInit {
       console.log("id ",row.id," deleted");
       this.pageservice.deletePagesDetail(row).subscribe(
         res => {
-        this.toastr.success('Deleted Successfully','Pages');
+        this.toastr.info('Deleted Successfully','Pages');
         this.getData();
         },
         err => {

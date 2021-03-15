@@ -71,4 +71,14 @@ export class PagesService {
   {
     return this.http.delete(this.rootURL+'/pages/'+ pageData.id);
   }
+  
+  postPageRecordbyRole(rlpages : rolespages)
+  {
+    return this.http.post(this.rootURL + '/rolespages', rlpages);
+  }
+
+  deletePageRecordbyRole(id: number)
+  {
+    return this.http.delete(this.rootURL + '/rolespages/' + id);
+  }
 }
