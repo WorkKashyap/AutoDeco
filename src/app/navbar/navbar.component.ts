@@ -11,11 +11,17 @@ import { PagesService } from '../shared/pages/pages.service';
 })
 export class NavbarComponent implements OnInit {
 currentUser: User;
+toggle = [];
+public showheading: boolean = false;
+public showsubmenu: boolean = false;
+
   constructor(private authenticationService: LoginService, private route: Router,
           private pageService: PagesService) {
     this.authenticationService.currentUser.subscribe(
       x=> (this.currentUser = x)
     );
+
+  
    }
 
   ngOnInit() {
@@ -25,6 +31,10 @@ currentUser: User;
       this.pageService.getPagesbyId(this.currentUser.id);
       //console.log(this.pageService.pagelist);
 }
+
+    setTimeout(()=>this.showheading=true, 2000);
+    setTimeout(()=>this.showsubmenu=true, 4000);
+
   }
 
   logout() {

@@ -33,6 +33,7 @@ export class DailyproductionService {
   public itemtopdefectlist: TopDefect[] = [];
   public loadchart1list: DailyReportDisplay[] = [];
   public dailyreportsummary: DailyReportSummary[] = [];
+  public top5reject : Top5Rejection[] = [] ;
   public salessummary: Salessummary[] = [];
   public title: string[] = [];
   public date: string;
@@ -61,7 +62,7 @@ export class DailyproductionService {
   }
   public getRejectcalendar(id, date): Observable<Dailyproduction[]> {
     return this.http.get<Dailyproduction[]>(
-      this.rootUrl + '/dailyproductions/Getallrejdata/' + id + '/Reject/' + date
+      this.rootUrl + '/dailyproduction/getallrejdata/' + id + '/Reject/' + date 
     );
   }
 
@@ -73,7 +74,7 @@ export class DailyproductionService {
   ): Observable<Itemwiserej[]> {
     return this.http.get<Itemwiserej[]>(
       this.rootUrl +
-      '/itemwiserejs/rejectdetaildata/' +
+      '/ItemwiseRejDetail/rejectdetaildata/' +
       plantcode +
       '/' +
       type +

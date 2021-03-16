@@ -17,7 +17,6 @@ export class CompanyDropdownComponent implements OnInit {
   plantlistc: Plant[];  //plant list for child component
   plantcodec: string; //plant code for child component
 
-
   constructor(public plantservice: PlantService, public lservice: LoginService) { 
     this.lservice.currentUser.subscribe(x => (this.currentUser = x));
   }
