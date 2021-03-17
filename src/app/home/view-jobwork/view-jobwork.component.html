@@ -3,7 +3,6 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-1"></div>
                     <div class="col-md-3">
                         <button type="" class="btn btn-primary" (click)="displayJobworkdata()">Add New Material
                         </button>
@@ -15,8 +14,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <div class="row mb-1">
@@ -37,20 +35,14 @@
                                 <form role="form">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <p-table #dt class="table table-hover" [columns]="cols" 
-                                            [value]="service.list" [style]="{'text-align': 'center',
-                                            'font-size': '0.7em'}" [responsive]="true" selectionMode="single" 
-                                            [(selection)]="selectedItemrej" [paginator]="true" 
-                                            [resizableColumns]="true" [rows]="5" [showCurrentPageReport]="true" 
-                                            totalRecords="totalRecords" 
-                                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} 
-                                            entries" [rowsPerPageOptions]="[10,25,50]" 
-                                            styleClass="p-datatable-striped">
+                                            <p-table #dt class="table" [columns]="cols" [value]="service.list" 
+                                            [style]="{'text-align': 'center','font-size': '0.8em'}" [paginator]="true" 
+                                            [rows]="10" [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-striped">
                                                 <ng-template pTemplate="header" let-columns>
                                                     <tr>
-                                                        <th *ngFor="let col of columns" 
-                                                        [pSortableColumn]="col.field" [class]="col.field" 
-                                                        pResizableColumn>{{col.header}}
+                                                        <th *ngFor="let col of columns" [width]="col.width"
+                                                        [pSortableColumn]="col.field" [class]="col.field" >
+                                                        {{col.header}}
                                                             <p-sortIcon [field]="col.field" 
                                                             ariaLabel="Activate to sort" 
                                                             ariaLabelDesc="Activate to sort in descending order" 
@@ -60,16 +52,16 @@
                                                     </tr>
                                                 </ng-template>
                                                 <ng-template pTemplate="body" let-pd let-columns="columns">
-                                                <ngx-loading [show]="loading" 
+                                                <!-- <ngx-loading [show]="loading" 
                                                 [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }">
-                                                </ngx-loading>             
+                                                </ngx-loading>              -->
                                                     <tr [pSelectableRow]="pd">
                                                         <td *ngFor="let col of columns" class="ui-resizable-column">
                                                             <span *ngIf="col.field=='view'">
-                                                                <button class="btn-primary" 
+                                                                <button class="btn-primary rounded mr-1" 
                                                                 (click)="ViewDetail(pd.id)">
-                                                                <i class="fa fa-eye"></i></button>
-                                                                <button class="btn-default" 
+                                                                <i class="fa fa-pencil"></i></button>
+                                                                <button class="btn-danger rounded" 
                                                                 (click)="onDelete(pd.id)">
                                                                 <i class="fa fa-trash"></i></button>
                                                             </span>

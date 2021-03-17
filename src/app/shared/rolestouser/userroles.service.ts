@@ -9,6 +9,8 @@ import { userroles } from './userroles.model';
 export class UserrolesService {
 
   rootURL = environment.apiUrl;
+
+  userData:userroles[];
  
   constructor(private http: HttpClient) { }
 

@@ -1,21 +1,20 @@
-<section class="content-wrapper">
+<section class="content-wrapper py-2">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
+      <div class="col-md-12">
         <div class="card col-md-12 card-primary card-outline">
           <div class="card-header">
             <div class="row">
-              <div class="col-md-11">
-                <h3 class="card-title-md">Job Work Material Detail</h3>
+              <div class="col-md-10">
+                <h1 class="card-title-md">Job Work Material Detail</h1>
               </div>
-              <div class="col-md-1">
-                <button class="btn btn-primary ml-auto" (click)="backBtn()"> Back </button>
+              <div class="col-md-2 d-flex justify-content-end" style="height: 40px;">
+                <button class="btn btn-primary" (click)="backBtn()"> Back </button>
               </div>
             </div>
           </div>
           <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-            <div class="card-body" style="position: relative;">
+            <div class="card-body" style="position: relative;font-size: 1.2rem;">
               <ngx-spinner [fullScreen]="false"></ngx-spinner>
               <div class="row">
                 <div class="col-md-8">
@@ -23,18 +22,18 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-3 text-center">
-                        <label>Material No.:</label>
+                        <label>Material No. :</label>
                       </div>
                       <div class="col-md-9">
                         <input type="number" class="form-control" name="MaterialNumber" #MaterialNumber="ngModel" [(ngModel)]="service.jobworkData.materialNumber" required>
                       </div>
                     </div>
                   </div>
-                  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }"></ngx-loading>             
-                  <div class="form-group">
+                  <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }"></ngx-loading>              -->
+                  <div class="form-group py-2">
                     <div class="row">
                       <div class="col-md-3 text-center">
-                        <label>Description:</label>
+                        <label>Description :</label>
                       </div>
                       <div class="col-md-9">
                         <input type="text" class="form-control" name="MaterialDesc"  #MaterialDesc="ngModel" [(ngModel)]="service.jobworkData.materialDesc" required>
@@ -44,7 +43,7 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-3 text-center">
-                        <label>Rate(INR):</label>
+                        <label>Rate(INR) :</label>
                       </div>
                       <div class="col-md-9">
                         <input type="number" class="form-control" name="RateINR"  #RateINR="ngModel" [(ngModel)]="service.jobworkData.rateINR" required>
@@ -56,12 +55,12 @@
             </div>
             <div class="card-footer">
               <div class="row">
-                <div class="col-md-5"></div>
-                <div class="col-md-2">
-                  <button type="submit" name="insertBtn" class="btn btn-danger float-left px-2" [disabled]="form.invalid">Save</button>
-                  <button type="button" name="cancelBtn" class="btn btn-success float-right" (click)="cancelRecord()">Cancel</button>
+                <!-- <div class="col-md-5"></div> -->
+                <div class="col-md-12 d-flex justify-content-center">
+                  <button type="submit" name="insertBtn" class="btn btn-danger mr-1" [disabled]="form.invalid">Save</button>
+                  <button type="button" name="cancelBtn" class="btn btn-success" (click)="cancelRecord()">Cancel</button>
                 </div>
-                <div class="col-md-5"></div>
+                <!-- <div class="col-md-5"></div> -->
               </div>
             </div>
           </form>

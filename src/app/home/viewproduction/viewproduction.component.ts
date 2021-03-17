@@ -47,20 +47,20 @@ export class ViewproductionComponent implements OnInit {
       this.spinner.hide();
     }, 2500);
     this.cols = [
-      { field: "view", header: "Action" },
-      { field: "pstngdate", header: "Posting Date" },
-      { field: "insplot", header: "Insplot" },
-      { field: "orderno", header: "Orderno" },
-      { field: "qty", header: "Qty" },
-      { field: "plantcode", header: "Plantcode" },
-      { field: "itemcode", header: "Itemcode" },
-      { field: "itemname", header: "Itemname" },
-      { field: "size", header: "Size" },
-      { field: "type", header: "Type" },
-      { field: "okqty", header: "Okqty" },
-      { field: "holdqty", header: "Holdqty" },
-      { field: "buffingqty", header: "Buffingqty" },
-      { field: "rejectionqty", header: "Rejectionqty" },
+      { field: "view", header: "Action" ,width:"5px"},
+      { field: "pstngdate", header: "Posting Date" ,width:"30px"},
+      { field: "insplot", header: "Insplot" ,width:"42px"},
+      { field: "orderno", header: "Orderno" ,width:"42px"},
+      { field: "qty", header: "Qty" ,width:"5px"},
+      { field: "plantcode", header: "Plant code" ,width:"5px"},
+      { field: "itemcode", header: "Itemcode" ,width:"30px"},
+      { field: "itemname", header: "Itemname" ,width:"70px"},
+      { field: "size", header: "Size" ,width:"30px"},
+      { field: "type", header: "Type" ,width:"20px"},
+      { field: "okqty", header: "Okqty" ,width:"5px"},
+      { field: "holdqty", header: "Holdqty" ,width:"5px"},
+      { field: "buffingqty", header: "Buffingqty" ,width:"5px"},
+      { field: "rejectionqty", header: "Rejectionqty" ,width:"5px"},
     ];
     this.plantcode="1040";
     this.getDetail();

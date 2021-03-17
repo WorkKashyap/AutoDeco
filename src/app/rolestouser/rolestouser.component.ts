@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
+import { element } from 'protractor';
 import { userroles } from '../shared/rolestouser/userroles.model';
 import { UserrolesService } from '../shared/rolestouser/userroles.service';
 import { UserService } from '../shared/user/user.service';
@@ -16,10 +18,14 @@ export class RolestouserComponent implements OnInit {
   userData : userroles[];
   ex_userData: userroles;
   is_checked : boolean;
+  is_Disabled : boolean;
   flag : boolean;
+  adminList : userroles[];
 
-  constructor(private spinner: NgxSpinnerService, private urService:UserrolesService,
-              private userService: UserService) { }
+  constructor(private spinner: NgxSpinnerService, 
+    private urService:UserrolesService,
+    private userService: UserService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.spinner.show();
@@ -40,8 +46,10 @@ export class RolestouserComponent implements OnInit {
       { field: "username", header: "User" }
       ];
 
-      this.getUserdataByRoles(this.roleID);
-      this.userService.getusers();
+    this.getUserdataByRoles(this.roleID);
+    this.userService.getusers();
+    // console.log(this.urService.userData);
+    // if(this.userData.roleid==1)
   }
 
   getUserdataByRoles(rid)
@@ -49,7 +57,7 @@ export class RolestouserComponent implements OnInit {
     this.urService.getUsersbyRole(rid)
     .toPromise()
     .then(res =>
-         this.userData = res as userroles[]);
+      this.userData = res as userroles[]);
     
   }
 
@@ -60,9 +68,22 @@ export class RolestouserComponent implements OnInit {
       if(element.userid == x)
       {
         this.is_checked = true;
+        this.adminList = this.userData;
       }
     });
+    // console.log(this.adminList);
     return this.is_checked;
+  }
+
+  checkUser(x:any)
+  {
+    this.is_Disabled = false;
+    // this.userData.forEach(element => {
+    //   if(element.id == this.adminList.id){
+    //     this.is_Disabled = true;
+    //   }
+    // });
+    return this.is_Disabled;
   }
 
   roleChng(x:any)
@@ -80,6 +101,7 @@ export class RolestouserComponent implements OnInit {
         //delete data
         this.urService.deleteUserRole(element.id).subscribe(
           res => {
+            this.toastr.info('Removed Successfully','Roles to User');
             this.getUserdataByRoles(this.roleID);
           },
           err => {
@@ -97,6 +119,7 @@ export class RolestouserComponent implements OnInit {
       this.ex_userData.userid = uid;
       this.urService.postUserRole(this.ex_userData).subscribe(
         res => {
+          this.toastr.success('Saved Successfully','Roles to User');
           this.getUserdataByRoles(this.roleID);
         },
         err => {

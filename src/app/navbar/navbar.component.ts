@@ -11,11 +11,17 @@ import { PagesService } from '../shared/pages/pages.service';
 })
 export class NavbarComponent implements OnInit {
 currentUser: User;
+toggle = [];
+public showheading: boolean = false;
+public showsubmenu: boolean = false;
+
   constructor(private authenticationService: LoginService, private route: Router,
           private pageService: PagesService) {
     this.authenticationService.currentUser.subscribe(
       x=> (this.currentUser = x)
     );
+
+  
    }
 
   ngOnInit() {

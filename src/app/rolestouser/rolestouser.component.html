@@ -12,7 +12,8 @@
                                    </div>
                                </div>
                                <div class="col-sm-6">
-                                   <select class="custom-select" name="roleCombobox" id="role" (change)="roleChng($event.target.value)"> 
+                                   <select class="custom-select" name="roleCombobox" id="role" 
+                                   (change)="roleChng($event.target.value)"> 
                                        <option value="1">Admin</option>
                                        <option value="2">Quality</option>
                                        <option value="3">Sales</option>
@@ -29,14 +30,13 @@
                            <form role="form">
                                <div class="row">
                                    <p-table #dt class="table table-hover" [columns]="cols" 
-                                   [value]="userService.alluserlist" [style]="{'text-align': 'center', 'font-size': '0.9em'}"
-                                   [responsive]="false" selectionMode="single" [(selection)]="selectedItemrej" 
-                                   [paginator]="true" [resizableColumns]="true" [rows]="10" 
-                                   totalRecords="totalRecords" styleClass="p-datatable-striped">
+                                   [value]="userService.alluserlist" [style]="{'text-align': 'center', 
+                                   'font-size': '0.9em'}"
+                                   [paginator]="true" [rows]="10" styleClass="p-datatable-striped">
                                    <ng-template pTemplate="header" let-columns>
                                        <tr>
-                                           <th *ngFor="let col of columns" [pSortableColumn]="col.field" 
-                                           [class]="col.field" pResizableColumn>
+                                           <th *ngFor="let col of columns" 
+                                           [class]="col.field">
                                            {{col.header}}
                                            </th>
                                        </tr>
@@ -45,7 +45,8 @@
                                        <tr [pSelectableRow]="pd">
                                            <td *ngFor="let col of columns" class="ui-resizable-column">
                                                <span *ngIf="col.field=='chkbox'">
-                                                    <input type="checkbox" [checked]="this.checkValue(pd['id'])" (change)="userRoleChng(pd['id'])">
+                                                    <input type="checkbox" [checked]="this.checkValue(pd['id'])" 
+                                                    (change)="userRoleChng(pd['id'])" [disabled]="this.checkUser(pd['id'])">
                                                </span>
                                                <span *ngIf="col.field!='view'">{{pd[col.field]}}</span>
                                            </td>

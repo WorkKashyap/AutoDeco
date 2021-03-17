@@ -3,16 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
-import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin
-
+import { FullCalendarModule } from "@fullcalendar/angular";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+// import { NavbarComponent } from './navbar/navbar.component';
 import { JobworkmaterialService } from './shared/jobworkmaterial/jobworkmaterial.service';
-
 
 import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
 import {MenuItem} from 'primeng/api'; 
@@ -22,7 +18,7 @@ import {ButtonModule} from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
 import {TabViewModule} from 'primeng/tabview';
 import { AddjobworkComponent } from './home/addjobwork/addjobwork.component';
-import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
+// import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -40,8 +36,14 @@ import { YearDropdownComponent } from './utilities/year-dropdown/year-dropdown.c
 import { NgxSpinnerModule } from "ngx-spinner";
 import { RolesComponent } from './roles/roles.component';
 import { RolepagesComponent } from './rolepages/rolepages.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { QualityCalenderComponent } from './qualitycalendar/qualitycalendar';
+// import { HeaderqualitycalendarComponent } from './headerqualitycalendar/headerqualitycalendar.component';
+// import { NavbarComponent } from './navbar/navbar.component';
+// import { LazyloadingModule } from './qualitycalendar/lazyloading.module';
 import { RolestouserComponent } from './rolestouser/rolestouser.component';
 import { RolestopagesComponent } from './rolestopages/rolestopages.component';
+import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { RolestopagesComponent } from './rolestopages/rolestopages.component';
     YearDropdownComponent,
     RolesComponent,
     RolepagesComponent,
+    QualityCalenderComponent,
     RolestouserComponent,
     RolestopagesComponent
   ],

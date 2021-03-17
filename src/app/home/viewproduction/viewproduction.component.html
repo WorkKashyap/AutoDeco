@@ -1,4 +1,4 @@
-<div class="content-wrapper" id="production" style="position: fixed;">
+<div class="content-wrapper" id="production">
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -20,30 +20,29 @@
                                 </app-company-dropdown>
                     
                                 <div class="col-md-9">
-                                    <input pInputText class="ml-auto" type="search" 
-                                    (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                    placeholder="Global Search" 
-                                    style="height: 40px; width: 150px; border-radius: 8px; 
-                                    border-color: lightgrey; text-align: center;"/>
+                                    <span class="p-input-icon-left p-ml-auto">
+                                        <!-- <i class="pi pi-search"></i> -->
+                                        <input pInputText class="ml-auto" type="search" 
+                                        (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                        placeholder="Global Search" 
+                                        style="height: 40px; width: 150px; border-radius: 8px; 
+                                        border-color: lightgrey; text-align: center;"/>
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body" style="position: relative">
+                        <div class="card-body">
                                 <ngx-spinner  [fullScreen] = "false"></ngx-spinner>
                             <form role="form">
                                 <div class="row">
-                                    <p-table #dt class="table table-hover" [columns]="cols" 
-                                    [value]="service.productionlist" 
-                                    [style]="{'text-align': 'center', 'font-size': '0.7em'}" 
-                                    [responsive]="true" selectionMode="single" [(selection)]="selectedItemrej" 
-                                    [paginator]="true" [resizableColumns]="true" [rows]="5" 
-                                    [showCurrentPageReport]="true" totalRecords="totalRecords" 
-                                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
-                                    [rowsPerPageOptions]="[10,20,50]" styleClass="p-datatable-striped">
+                                    <p-table #dt class="table" [columns]="cols" [value]="service.productionlist" 
+                                    [style]="{'text-align': 'center', 'font-size': '0.7em'}"
+                                    [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,20,50]" 
+                                    styleClass="p-datatable-striped">
                                         <ng-template pTemplate="header" let-columns>
                                             <tr>
                                                 <th *ngFor="let col of columns" [pSortableColumn]="col.field" 
-                                                [class]="col.field" pResizableColumn>{{col.header}}
+                                                [class]="col.field" [width]="col.width">{{col.header}}
                                                 <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
                                                 ariaLabelDesc="Activate to sort in descending order" 
                                                 ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
@@ -55,14 +54,22 @@
                                         [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }">
                                     </ngx-loading> -->
                                             <tr [pSelectableRow]="pd">
-                                                <td *ngFor="let col of columns" class="ui-resizable-column">
+                                                <td *ngFor="let col of columns">
                                                     <span *ngIf="col.field=='view'">
-                                                        <button class="btn-primary" (click)="ViewDetail(pd.id)">
-                                                            <i class="fa fa-eye"></i></button>
+                                                        <button class="btn-primary rounded" (click)="ViewDetail(pd.id)">
+                                                            <i class="fa fa-pencil"></i></button>
                                                     </span>
                                                     <span *ngIf="col.field=='pstngdate'">
                                                         {{pd[col.field]   | date :'dd-MM-yyyy'}}
-                                                      </span>
+                                                    </span>
+                                                    <!-- <span *ngIf="col.field=='insplot'" class="d-sm-none d-md-block d-print-table-cell">
+                                                        {{pd[col.field]}}
+                                                    </span> -->
+                                                    <!-- <span *ngIf="col.field=='itemname'">
+                                                        {{pd[col.field]}}
+                                                    </span> -->
+                                                    <!-- <span *ngIf="col.field!='view' && col.field!='pstngdate'
+                                                    && col.field!='itemname' && col.field!='insplot'">{{pd[col.field]}}</span> -->
                                                     <span *ngIf="col.field!='view' && col.field!='pstngdate'">{{pd[col.field]}}</span>
                                                 </td>
                                             </tr>

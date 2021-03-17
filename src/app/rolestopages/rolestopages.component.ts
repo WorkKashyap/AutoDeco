@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
+import { LoginService } from '../shared/login/login.service';
+import { User } from '../shared/login/User.model';
 import { pages, rolespages } from '../shared/pages/pages.model';
 import { PagesService } from '../shared/pages/pages.service';
 
@@ -16,8 +19,15 @@ export class RolestopagesComponent implements OnInit {
   roleID : number;
   is_checked: boolean;
   flag: boolean;
+  currentUser: User;
 
-  constructor(private spinner: NgxSpinnerService, private pageservice: PagesService) { }
+  constructor(private spinner: NgxSpinnerService, 
+    private pageservice: PagesService,
+    private authenticationService: LoginService,
+    private toastr: ToastrService) {
+    this.authenticationService.currentUser.subscribe(
+      x=> (this.currentUser = x)
+    )}
 
   ngOnInit() {
     this.ex_rolePagesList = {
@@ -80,7 +90,9 @@ export class RolestopagesComponent implements OnInit {
         this.flag = true;
         this.pageservice.deletePageRecordbyRole(element.id).subscribe(
           res => {
+            this.toastr.info('Removed Successfully','Roles to Pages');
             this.getPageListbyRole(this.roleID);
+            this.pageservice.getPagesbyId(this.currentUser.id);
           },
           err => {
             console.log(err);
@@ -95,7 +107,9 @@ export class RolestopagesComponent implements OnInit {
       this.ex_rolePagesList.pageid = pid;
       this.pageservice.postPageRecordbyRole(this.ex_rolePagesList).subscribe(
         res => {
+          this.toastr.success('Saved Successfully','Roles to Pages');
           this.getPageListbyRole(this.roleID);
+          this.pageservice.getPagesbyId(this.currentUser.id);
         },
         err => {
           console.log(err);
