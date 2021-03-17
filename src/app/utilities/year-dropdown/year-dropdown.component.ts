@@ -11,21 +11,27 @@ import { YearService } from 'src/app/shared/yearService/year.service';
 export class YearDropdownComponent implements OnInit {
 
   @Input() currentyear: any;
-  @Output() yearEvent = new EventEmitter<string>(); 
+  //@Output() yearEvent = new EventEmitter<string>(); 
+  year: number;
+  d:any;
 
   currentUser: User;
   
-  constructor(public yservice: YearService, public lservice: LoginService) { 
+    constructor(public yservice: YearService, public lservice: LoginService) { 
     this.lservice.currentUser.subscribe(x => (this.currentUser = x));
   }
 
   ngOnInit() {
+    this.d = new Date();
+    this.year = this.d.getFullYear();
+    localStorage.setItem('selectedYear', JSON.stringify(this.year));
     this.yservice.refreshList();
   }
 
   onYearChange(year)
   {
-    this.yearEvent.emit(year);
+    //this.yearEvent.emit(year);
+    localStorage.setItem('selectedYear', JSON.stringify(this.year));
   }
 
 }

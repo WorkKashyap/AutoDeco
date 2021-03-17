@@ -9,7 +9,7 @@ import { LoginService } from '../shared/login/login.service';
 import { DailyReportDisplay } from '../shared/dailyproduction/dailyreportdisplay.model';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Plant } from '../shared/plant/plant.model';
- 
+
 @Component({
   selector: 'app-inspection-dashboard',
   templateUrl: './inspection-dashboard.component.html',
@@ -53,7 +53,8 @@ export class InspectionDashboardComponent implements OnInit {
   pstname: string; //plant short name
   year : number;
 
-  constructor(public service: DailyproductionService, public plantservice: PlantService, public lservice: LoginService, private spinner: NgxSpinnerService) { 
+  constructor(public service: DailyproductionService, public plantservice: PlantService, 
+    public lservice: LoginService, private spinner: NgxSpinnerService) { 
     this.lservice.currentUser.subscribe(x => (this.currentUser = x));
   }
 
@@ -79,22 +80,31 @@ export class InspectionDashboardComponent implements OnInit {
     this.d = new Date();
     this.monthname = this.monthNames[this.d.getMonth()];
     this.typename = 'PLATING';
-    this.year = this.d.getFullYear();
+   // this.year = this.d.getFullYear();
+    this.year = JSON.parse(localStorage.getItem('selectedYear'));
     this.loadchart1();
   }
 
-  selectedyear(y)
-  {
-    if(y)
-    {
-      //this.plantservice.plantcode = plantc;
-      this.year = y;
-
+  refreshChart(){
+    this.year = JSON.parse(localStorage.getItem('selectedYear'));
       if (this.myChart) this.myChart.destroy();
       this.ctx.clearRect(0 , 0, this.canvas.weight, this.canvas.height);
       this.loadchart1();
-    } 
   }
+
+  // selectedyear(y)
+  // {
+  //   if(y)
+  //   {
+  //     //this.plantservice.plantcode = plantc;
+  //     // this.year = y;
+
+  //     this.year = JSON.parse(localStorage.getItem('selectedYear'));
+  //     if (this.myChart) this.myChart.destroy();
+  //     this.ctx.clearRect(0 , 0, this.canvas.weight, this.canvas.height);
+  //     this.loadchart1();
+  //   } 
+  // }
 
   getPlant(plantc){
     if(plantc)

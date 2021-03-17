@@ -24,7 +24,8 @@ currentUser: User;
       //console.log(this.currentUser);
       this.pageService.getPagesbyId(this.currentUser.id);
       //console.log(this.pageService.pagelist);
-}
+    }
+
   }
 
   logout() {

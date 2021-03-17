@@ -30,7 +30,7 @@
                                <div class="row">
                                    <p-table #dt class="table table-hover" [columns]="cols" 
                                    [value]="pageList" [style]="{'text-align': 'center', 'font-size': '0.9em'}"
-                                   [responsive]="true" selectionMode="single" [(selection)]="selectedItemrej" 
+                                   [responsive]="false" selectionMode="single" [(selection)]="selectedItemrej" 
                                    [paginator]="true" [resizableColumns]="true" [rows]="10" 
                                    totalRecords="totalRecords" styleClass="p-datatable-striped">
                                    <ng-template pTemplate="header" let-columns>

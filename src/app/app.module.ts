@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -82,9 +85,9 @@ import { RolestopagesComponent } from './rolestopages/rolestopages.component';
     //     path: "login",
     //     component: LoginComponent
     //   }
-      
     // ])
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FullCalendarModule
     ],
   providers: [JobworkmaterialService],
   bootstrap: [AppComponent]
