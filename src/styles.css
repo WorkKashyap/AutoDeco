@@ -28,4 +28,34 @@ table tr:hover {
   color: white;
 }
 
+.bg-moulded {
+  border: unset;
+  color: #fff!important;
+  background: -webkit-gradient(linear,left top,right top,from(#afb42b),to(#dce775));
+  background: linear-gradient(to right,#afb42b,#dce775);
+}
 
+.bg-compliance {
+  border: unset;
+  color: #fff!important;
+  background: -webkit-gradient(linear,left top,right top,from(#039be5),to(#81d4fa));
+  background: linear-gradient(to right,#039be5,#81d4fa);
+}
+
+.ui-table-resizable .ui-resizable-column {
+  background-clip: padding-box;
+  position: relative;
+}
+
+.dropdown-menu > a:hover {
+  background-color: #24a0ed ;
+  color: white;
+}
+
+.dropdown-toggle::after {
+  text-align: right;
+  /*float: right;*/   /*step down bug with this css property; replaced by position property*/
+  position: absolute;
+  right: 5px; /*only effective when position is used*/
+  margin-top: 8px;
+}
