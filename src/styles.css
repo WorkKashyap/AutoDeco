@@ -8,6 +8,9 @@ input.ng-touched.ng-invalid {
 input.ng-valid {
   border-color: green;
 }
+/* input.ng-valid {
+  border-color: black;
+} */
 
 .green-icon {
   color: #28a745;
@@ -59,3 +62,4 @@ table tr:hover {
   right: 5px; /*only effective when position is used*/
   margin-top: 8px;
 }
+

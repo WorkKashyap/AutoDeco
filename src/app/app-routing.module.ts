@@ -27,13 +27,22 @@ import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component
 import { DefectDashboardComponent } from './defect-dashboard/defect-dashboard.component';
 import { ProductionValSummaryComponent } from './production-val-summary/production-val-summary.component';
 import { ConsumptionCalendarComponent } from './consumption-calendar/consumption-calendar.component';
+import { RejectionDetailComponent } from './rejection/rejection-detail/rejection-detail.component';
+import { RejectionSummaryComponent } from './rejection/rejection-summary/rejection-summary.component';
+import { RejectionComponent } from './rejection/rejection.component';
+import { AddroundhoursComponent } from './roundhours/addroundhours/addroundhours.component';
+import { RoundhoursComponent } from './roundhours/roundhours.component';
+import { SalesinfoComponent } from './salesinfo/salesinfo.component';
+import { SalesItemComponent } from './sales-item/sales-item.component';
+import { SalesDetailComponent } from './sales-detail/sales-detail.component';
 
 const routes: Routes = [
-  { path: "", component:DefectDashboardComponent,canActivate: [AuthGuard] },
+    { path: "", component:HomeComponent,canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent,canActivate: [AuthGuard]  },
   { path: 'login', component: LoginComponent },
   { path: 'xyz', component: DashboardComponent,canActivate: [AuthGuard]  },
   { path: 'dashboard', component: InspectionDashboardComponent,canActivate: [AuthGuard]  },
+  { path: 'dashboard1', component: DefectDashboardComponent,canActivate: [AuthGuard]  },
   { path: 'additem', component: AdditemComponent,canActivate: [AuthGuard]  },
   { path: 'itemmsts', component: ViewitemComponent,canActivate: [AuthGuard]  },
   { path: 'addproduction', component: AddproductionComponent,canActivate: [AuthGuard]  },
@@ -47,12 +56,19 @@ const routes: Routes = [
   { path: 'calendar', component: QualityCalenderComponent,canActivate: [AuthGuard]  },
   { path: 'jobWorkMaterial', component: ViewJobworkComponent,canActivate: [AuthGuard]  },
   { path: 'addjobwork', component: AddjobworkComponent,canActivate: [AuthGuard]  },
-  { path: 'dashboard1', component: DefectDashboardComponent,canActivate: [AuthGuard]  },
   { path: 'rejvalue', component: ProductionValSummaryComponent,canActivate: [AuthGuard]  },
   { path: 'mouldconscalendar', component: ConsumptionCalendarComponent,canActivate: [AuthGuard]  },
+  { path: 'rejection-main', component: RejectionDetailComponent,canActivate: [AuthGuard]  },
+  { path: 'rejection-detail', component: RejectionSummaryComponent,canActivate: [AuthGuard]  },
+  { path: 'rejection', component: RejectionComponent,canActivate: [AuthGuard]  },
+  { path: 'addroundhour', component: AddroundhoursComponent,canActivate: [AuthGuard]  },
+  { path: 'roundhours', component: RoundhoursComponent,canActivate: [AuthGuard]  },
+  { path: 'salesinfo', component: SalesinfoComponent,canActivate: [AuthGuard]  },
+  { path: 'salesitem', component: SalesItemComponent,canActivate: [AuthGuard]  },
+  { path: 'salesdetail', component: SalesDetailComponent,canActivate: [AuthGuard]  },
+
   { path: "**", redirectTo: "" }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -208,6 +208,10 @@ export class QualityCalenderComponent implements OnInit {
   loaddata() {
     if(this.plantcode)
     {
+      this.spinner.show();
+      setTimeout(() => {
+        this.spinner.hide();
+      }, 1500);
       const me=this;
       me.dpservice
       .getRejectcalendar(me.plantcode,me.startdate)
@@ -228,7 +232,7 @@ export class QualityCalenderComponent implements OnInit {
     const monthName = this.monthNames[month];
     this.dpservice.dailyreportsummary = [];
     const yearName = new Date(this.startdate).getFullYear();
-    this.dpservice.getprochartsummary(this.plantcode, "M", monthName, yearName).then((res: any) => {
+    this.dpservice.getprochartsummary(this.plantcode, "M", monthName,yearName).then((res: any) => {
       this.dpservice.dailyreportsummary.forEach(drsummary => {
         if (drsummary.itemtype == this.typename) {
           this.rejper = drsummary.rejper;
@@ -237,32 +241,32 @@ export class QualityCalenderComponent implements OnInit {
     });
   }
 
-  loadper(plantc, dt) {
+  // loadper(plantc, dt) {
 
-    if(this.plantcode)
-    {
-      plantc = this.plantcode;
-      console.log("here",plantc);
-    }
-    this.filterenables = true;
-    this.selectedItemrejarray = dt.value;
-    this.iv = 0;
-    this.filterItemrejarray = [];
-    // console.log(this.selectedItemrejarray[0].id);
-    for (const c of this.selectedItemrejarray) {
-      if (c.item_type.toString().includes(plantc.toString()) || c.itemcode.toString().includes(plantc.toString())
-        || c.itemname.toString().includes(plantc.toString()) || c.inspection_qty.toString().includes(plantc.toString()
-          || c.plant.toString().includes(plantc.toString()) || c.id.toString().includes(plantc.toString()))) {
-        this.filterItemrejarray.push(this.selectedItemrejarray[this.iv]);
-        this.iv += 1;
-      }
-      else {
-        this.iv += 1;
-      }
-    }
-    this.sumAllData();
-    console.log(this.sumAllData);
-  }
+  //   if(this.plantcode)
+  //   {
+  //     plantc = this.plantcode;
+  //     console.log("here",plantc);
+  //   }
+  //   this.filterenables = true;
+  //   this.selectedItemrejarray = dt.value;
+  //   this.iv = 0;
+  //   this.filterItemrejarray = [];
+  //   // console.log(this.selectedItemrejarray[0].id);
+  //   for (const c of this.selectedItemrejarray) {
+  //     if (c.item_type.toString().includes(plantc.toString()) || c.itemcode.toString().includes(plantc.toString())
+  //       || c.itemname.toString().includes(plantc.toString()) || c.inspection_qty.toString().includes(plantc.toString()
+  //         || c.plant.toString().includes(plantc.toString()) || c.id.toString().includes(plantc.toString()))) {
+  //       this.filterItemrejarray.push(this.selectedItemrejarray[this.iv]);
+  //       this.iv += 1;
+  //     }
+  //     else {
+  //       this.iv += 1;
+  //     }
+  //   }
+  //   this.sumAllData();
+  //   console.log(this.sumAllData);
+  // }
   
   getPlant(plantc){
     if(plantc)
@@ -368,12 +372,16 @@ export class QualityCalenderComponent implements OnInit {
     (<any>$('#basicExampleModal')).modal('show');
     const fdate = this.datePipe.transform(this.sdate, 'yyyy-MM-dd');
     const edate = this.datePipe.transform(this.ldate, 'yyyy-MM-dd');
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 500);
     this.dpservice.getRejectdetail(this.plantcode, 'NULL', fdate, edate)
     .toPromise()
     .then(res => {
         this.dpservice.itemwiserejlist = res as Itemwiserej[];
         this.sumAllData();
-        // this.loading = false;
+        this.spinner.hide();
       });
 
     // const fdate = this.datePipe.transform(this.sdate, 'yyyy-MM-dd');
@@ -437,30 +445,7 @@ export class QualityCalenderComponent implements OnInit {
     this.rejpersum = 0;
 
 
-    if(this.filterenables == true)
-    {
-      for (const rq of this.filterItemrejarray) {
-        this.inspectionQtysum += rq.inspection_qty;
-        this.inspectionvsum += rq.inspection_value;
-
-        this.okqtysum += rq.okqty;
-        this.okvsum += rq.okvalue;
-
-        this.holdqtysum += rq.holdqty;
-        this.holdvsum += rq.holdvalue;
-
-        this.bufferqtysum += rq.buffingqty;
-        this.buffervsum += rq.buffingvalue;
-
-        this.rejqtysum += rq.reject_qty;
-        this.rejvsum += rq.reject_value;
-        
-        this.rejpersum += rq.rejper;
-        this.okpersum += rq.okper;
-
-      }
-      return;
-    }
+    this.filterenables = false;
       for (const rq of this.dpservice.itemwiserejlist) {
         this.inspectionQtysum += rq.inspection_qty;
         this.inspectionvsum += rq.inspection_value;
@@ -482,13 +467,4 @@ export class QualityCalenderComponent implements OnInit {
 
       }
   }
-
-
-  // refreshList(){
-  //   let me = this;
-  //   this.monthname = this.datePipe.transform(this.sdate,'yyyy-MM-d');
-  //   this.noRecord = ' ';
-  //   const monthname = this.datePipe.transform(this.monthname,'MMMM');
-
-  // }
 }

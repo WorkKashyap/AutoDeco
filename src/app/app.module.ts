@@ -48,6 +48,16 @@ import { DefectDashboardComponent } from './defect-dashboard/defect-dashboard.co
 import { ProductionValSummaryComponent } from './production-val-summary/production-val-summary.component';
 import { CalendarModule } from 'primeng/calendar';
 import { ConsumptionCalendarComponent } from './consumption-calendar/consumption-calendar.component';
+import { RejectionComponent } from './rejection/rejection.component';
+import { RejectionDetailComponent } from './rejection/rejection-detail/rejection-detail.component';
+import { RejectionSummaryComponent } from './rejection/rejection-summary/rejection-summary.component';
+import { AddroundhoursComponent } from './roundhours/addroundhours/addroundhours.component';
+import { RoundhoursComponent } from './roundhours/roundhours.component';
+import { SalesinfoComponent } from './salesinfo/salesinfo.component';
+import { SalesItemComponent } from './sales-item/sales-item.component';
+import { SalesDetailComponent } from './sales-detail/sales-detail.component';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+
 
 @NgModule({
   declarations: [
@@ -73,7 +83,15 @@ import { ConsumptionCalendarComponent } from './consumption-calendar/consumption
     RolestopagesComponent,
     DefectDashboardComponent,
     ProductionValSummaryComponent,
-    ConsumptionCalendarComponent
+    ConsumptionCalendarComponent,
+    RejectionComponent,
+    RejectionDetailComponent,
+    RejectionSummaryComponent,
+    AddroundhoursComponent,
+    RoundhoursComponent,
+    SalesinfoComponent,
+    SalesItemComponent,
+    SalesDetailComponent
   ],
   imports: [
     CalendarModule,
@@ -85,6 +103,9 @@ import { ConsumptionCalendarComponent } from './consumption-calendar/consumption
     BrowserAnimationsModule,
     TabViewModule,
     TableModule,
+    CalendarModule,
+    NgxPaginationModule,
+    
     ToastrModule.forRoot(),
     NgxLoadingModule.forRoot({}),
     // RouterModule.forRoot([

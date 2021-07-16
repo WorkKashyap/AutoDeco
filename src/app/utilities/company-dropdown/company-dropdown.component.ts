@@ -43,10 +43,11 @@ export class CompanyDropdownComponent implements OnInit {
       this.plantservice.getPlantData(this.currentUser.id);
     // this.plantservice.plantcode = '1010';
     }
-    this.plantcodec = '1040';
+    this.plantcodec = '1010';
   }
 
   onPlantChange(plantcode){
+    console.log(plantcode);
     this.plantEvent.emit(plantcode);
   }
 

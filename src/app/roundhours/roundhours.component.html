@@ -1,0 +1,161 @@
+<div class="content-wrapper">
+  <div class="content-header">
+    <section class="content" style="margin-bottom: 2rem">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary card-outline">
+            <!-- Card Header Start -->
+            <div class="card-header">
+              <div class="row">
+                <div class="col-md-3">
+                  <h6>Round Loading Hourly Report</h6>
+                </div>
+                <div class="col-md-3">
+                  <p-calendar
+                    aria-placeholder="Date"
+                    name="fromdate"
+                    #fromdate="ngModel"
+                    [(ngModel)]="this.date"
+                    class="input-append date"
+                    dateFormat="yy-mm-dd"
+                    dataType="string"
+                    [showIcon]="true"
+                  >
+                  </p-calendar>
+                </div>
+                <div class="col-md-2">
+                  <button
+                    (click)="OndateChange(fromdate.value)"
+                    class="btn btn-info"
+                  >
+                    View
+                  </button>
+                </div>
+                <div class="col-sm-2" style="text-align: right">
+                  <div class="input-group mb-2">
+                    <input
+                      type="text"
+                      class="form-control"
+                      pInputText
+                      placeholder="Global Filter"
+                      (input)="dt.filterGlobal($event.target.value, 'contains')"
+                    />
+                    <div class="input-group-append">
+                      <i class="fa fa-search input-group-text"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-2" style="text-align: center">
+                  <button class="btn btn-info" (click)="addRoundHour()">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                  &nbsp; &nbsp;
+                  <button
+                    type="button"
+                    label="EXCEL"
+                    (click)="dt.exportCSV()"
+                    class="btn btn-success"
+                  >
+                    <i class="fa fa-file-excel-o"></i> Export
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Card-header Completed -->
+            <!-- Card body -->
+            <div class="card-body p-0">
+              <section class="content">
+                <ngx-spinner [fullScreen]="false"></ngx-spinner>
+
+                <p-table
+                  #dt
+                  [columns]="cols"
+                  [style]="{ 'text-align': 'center', 'font-size': '0.7em' }"
+                  [responsive]="true"
+                  selectionMode="single"
+                  [(selection)]="selectedItemrej"
+                  [value]="roundHours"
+                  [paginator]="false"
+                  [rows]="20"
+                  [resizableColumns]="true"
+                >
+                  <ng-template pTemplate="header" let-columns>
+                    <tr>
+                      <td style="width: 79px"></td>
+                      <td style="width: 73px"></td>
+                      <td style="width: 55px"></td>
+                      <td style="width: 45px"></td>
+                      <td style="width: 75px"></td>
+                    </tr>
+                    <tr>
+                      <th
+                        *ngFor="let col of columns"
+                        [pSortableColumn]="col.field"
+                        pResizableColumn
+                      >
+                        {{ col.header }}
+                        <p-sortIcon
+                          [field]="col.field"
+                          *ngIf="col.header == 'Date'"
+                          ariaLabel="Activate to sort"
+                          ariaLabelDesc="Activate to sort in descending order"
+                          ariaLabelAsc="Activate to sort in ascending order"
+                        >
+                        </p-sortIcon>
+                      </th>
+                    </tr>
+                  </ng-template>
+                  <ng-template
+                    pTemplate="body"
+                    let-rowData
+                    let-columns="columns"
+                  >
+                    <tr [pSelectableRow]="rowData">
+                      <td
+                        *ngFor="let col of columns"
+                        class="ui-resizable-column"
+                      >
+                        <button
+                          *ngIf="col.field == 'edit'"
+                          class="btn btn-success btn-sm"
+                          style="font-size: 10px"
+                          (click)="editData(rowData)"
+                        >
+                          <i class="fa fa-pencil"></i>
+                        </button>
+                        <button
+                          *ngIf="col.field == 'edit'"
+                          class="btn btn-danger btn-sm"
+                          style="font-size: 10px; margin-left: 5px"
+                          (click)="removeData(rowData)"
+                        >
+                          <i class="fa fa-trash"></i>
+                        </button>
+                        <span
+                          *ngIf="
+                            col.field == 'pstng_date' && col.field != 'edit'
+                          "
+                          style="font-size: 10px"
+                        >
+                          {{ rowData[col.field] | date: "dd-MM-y" }}
+                        </span>
+                        <span
+                          *ngIf="
+                            col.field != 'pstng_date' && col.field != 'edit'
+                          "
+                          style="font-size: 10px"
+                        >
+                          {{ rowData[col.field] }}
+                        </span>
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

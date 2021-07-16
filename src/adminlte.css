@@ -145,7 +145,7 @@ ul ol {
 }
 
 dt {
-  font-weight: 400;
+  font-weight: 700;
 }
 
 dd {
@@ -677,7 +677,7 @@ pre code {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-right: -7.5px;
-  margin-left: 5px;
+  margin-left: -7.5px;
 }
 
 .no-gutters {
@@ -3413,6 +3413,7 @@ fieldset:disabled a.btn {
   font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.2rem;
+  border: none!important;
 }
 
 .btn-block {
@@ -3666,7 +3667,7 @@ input[type="button"].btn-block {
 .dropdown-item {
   display: block;
   width: 100%;
-  padding: 0rem 1rem ;
+  padding: 0.25rem 1rem;
   clear: both;
   font-weight: 400;
   color: #212529;
@@ -5173,7 +5174,7 @@ input[type="button"].btn-block {
 }
 
 .card-header {
-  padding: 0.75rem 1.25rem;
+  padding: 0.25rem!important;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 0 solid rgba(0, 0, 0, 0.125);
@@ -7173,6 +7174,11 @@ a.disabled.mailbox-attachment-close {
 
 .bg-primary {
   background-color: #007bff !important;
+}
+.bg-hr {
+  border: unset;
+  color: white !important;
+  background:linear-gradient(to right,#E91E63,#FFAB91);
 }
 
 a.bg-primary:hover,
@@ -10508,7 +10514,7 @@ button.bg-dark:focus {
 }
 
 .font-weight-bold {
-  font-weight: 400 !important;
+  font-weight: 700 !important;
 }
 
 .font-weight-bolder {
@@ -12319,9 +12325,6 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini)
 .sidebar-collapse .main-sidebar,
 .sidebar-collapse .main-sidebar::before {
   margin-left: -270px;
-/* .sidebar-collapse .main-sidebar,
-.sidebar-collapse .main-sidebar::before {
-  margin-left: -400px; */
 }
 
 .sidebar-collapse .main-sidebar .nav-sidebar.nav-child-indent .nav-treeview {
@@ -32522,6 +32525,7 @@ blockquote.quote-gray-dark h6 {
 
 .bg-info {
   background: linear-gradient(to right, #01a9ac, #01dbdf);
+  border: none!important;
 }
 
 .bg-info,
@@ -32987,6 +32991,46 @@ blockquote.quote-gray-dark h6 {
   color: #ffffff;
 }
 
+.bg-compliance {
+	border: unset!important;
+    color: white !important;
+    background: linear-gradient(to right,#039BE5,#81D4FA)!important;
+}
+.bg-jig {
+  border: unset!important;
+  color: white !important;
+  background:linear-gradient(to right,#FF5722,#FFAB91)!important;
+}
+.bg-moulded {
+  border: unset!important;
+  color: white !important;
+  background: linear-gradient(to right,#AFB42B,#DCE775)!important;
+}
+.bg-action-plan{
+  color: white !important;
+  background: linear-gradient(to right,#ef0598,#e070b6)!important;
+  border: unset!important; 
+}
+.bg-capital {
+  border: unset!important;
+  color: white !important;
+  background: linear-gradient(to right,#673AB7,#B39DDB)!important;
+}
+.bg-planting-per {
+	border: unset!important;
+    color: white !important;
+    background: linear-gradient(to right,#5D4037,#fe909d)!important;
+}
+.bg-othersqty {
+	border: unset!important;
+    color: white !important;
+    background: linear-gradient(to right,#FFC107,#fe909d)!important;
+}
+.bg-others_value {
+	border: unset!important;
+    color: white !important;
+    background: linear-gradient(to right,#062af1,#707dc3)!important;
+}
 .bg-cyan {
   background-color: #17a2b8 !important;
 }

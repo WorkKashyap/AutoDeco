@@ -1,0 +1,44 @@
+.card-header {
+    padding: 0.2rem 1.25rem;
+}
+.card-body {
+    padding: 0px 1.25rem 0px 1.25rem;
+}
+.custome-gs > .form-control{
+    height: calc(2.25rem - 2px);
+}
+.custome-gs > .input-group-append > .input-group-text{
+    line-height: 0.5;
+}
+.no-margin {
+    margin: unset;
+}
+.no-padding {
+    padding: unset;
+}
+.set-padding{
+    padding: 10px 5px;
+}
+
+.tbl-th{
+position: sticky;
+background: blue;
+color: white;
+top: 0px;
+z-index: 1;
+}
+.custom-fs {
+font-size: 10px;
+padding: 2.50px;
+}
+.ui-table table{
+    table-layout: auto!important;
+}
+
+@media (min-width: 1200px){
+.modal-xl {
+    max-width: 1300px !important;
+    margin: 1.25rem auto;
+}
+
+}

@@ -1,0 +1,193 @@
+<div class="content-wrapper">
+    <div class="content-header">
+      <section class="content" style="margin-bottom: 2rem">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h5 class="card-title-md">Sales Customer wise Summary</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row mt-2">
+                  <div class="col-md-3">
+                    <div class="row mb-1">
+                      <div class="col-md-2">
+                        <label>From</label>
+                      </div>
+                      <div class="col-md-10">
+                        <p-calendar
+                          aria-placeholder="From Date"
+                          name="fromdate"
+                          #fromdate="ngModel"
+                          [(ngModel)]="this.Fromdate"
+                          class="input-append date"
+                          dateFormat="yy-mm-dd"
+                          dataType="string"
+                          [showIcon]="true"
+                        >
+                        </p-calendar>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="row mb-1">
+                      <div class="col-md-1 mr-1">
+                        <label>To</label>
+                      </div>
+                      <div class="col-md-10">
+                        <p-calendar
+                          aria-placeholder="To Date"
+                          name="todate"
+                          #todate="ngModel"
+                          [(ngModel)]="this.Todate"
+                          class="input-append date"
+                          dateFormat="yy-mm-dd"
+                          dataType="string"
+                          [showIcon]="true"
+                        >
+                        </p-calendar>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="row mb-1">
+                      <div class="col-md-8">
+                        <app-company-dropdown
+                          (plantEvent)="getPlant($event)"
+                        ></app-company-dropdown>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <button class="btn btn-primary mb-1" (click)="loadData()">
+                      View
+                    </button>
+                    &nbsp;
+                    <button
+                      type="button"
+                      label="EXCEL"
+                      (click)="dt.exportCSV()"
+                      class="btn btn-success mb-1"
+                    >
+                      <i class="fa fa-file-excel-o"></i> Export
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- </form> -->
+            </div>
+          </div>
+        </div>
+        <p-table
+          #dt
+          [columns]="cols"
+          [value]="salesDetailInfo"
+          dataKey="id"
+          [rows]="20"
+          [paginator]="true"
+        >
+          <ng-template pTemplate="header">
+            <ngx-spinner [fullScreen]="false"></ngx-spinner>
+            <tr>
+              <th style="width: 3rem"></th>
+              <th></th>
+              <th>
+                <input
+                  pInputText
+                  type="text"
+                  (input)="
+                    dt.filter($event.target.value, 'soldToPartyName', 'contains')
+                  "
+                  placeholder="Search by Customer Name"
+                  class="p-column-filter"
+                />
+              </th>
+              <th>
+              </th>
+            </tr>
+            <tr>
+              <th></th>
+              <th pSortaleColumn="soldToParty" pResizableColumn>
+                Sold to Customer <p-sortIcon field="soldToParty"></p-sortIcon>
+              </th>
+              <th pSortableColumn="soldToPartyName" pResizableColumn>
+                Sold To Customer Name <p-sortIcon field="soldToPartyName"></p-sortIcon>
+              </th>
+              <th pSortableColumn="netSale" pResizableColumn>
+                Net Sale (In Lacs) <p-sortIcon field="netSale"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product let-expanded="expanded">
+            <tr>
+              <td>
+                <button
+                  type="button"
+                  pButton
+                  pRipple
+                  (click)="getSubData(product)"
+                  [pRowToggler]="product"
+                  class="btn-sm p-button-text p-button-rounded p-button-plain"
+                  [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+                ></button>
+              </td>
+              <td>{{ product.soldToParty }}</td>
+              <td>{{ product.soldToPartyName }}</td>
+              <td>{{ product.netSale }}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="rowexpansion" let-product>
+            <tr>
+              <td colspan="4">
+                <div class="p-p-3">
+                  <p-table [value]="product.list" dataKey="id">
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th class="sub-heading" pSortableColumn="materialNumber">
+                          Material Number<p-sortIcon
+                            field="materialNumber"
+                          ></p-sortIcon>
+                        </th>
+                        <th class="sub-heading" pSortableColumn="materialDesc">
+                          Material Desc<p-sortIcon
+                            field="materialDesc"
+                          ></p-sortIcon>
+                        </th>
+                        <th class="sub-heading" pSortableColumn="netSale">
+                          >Net Sale (In Lacs)<p-sortIcon
+                            field="netSale"
+                          ></p-sortIcon>
+                        </th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-order>
+                      <tr>
+                        <td>{{ order.materialNumber }}</td>
+                        <td>{{ order.materialDesc }}</td>
+                        <td>{{ order.netSale }}</td>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                      <tr>
+                        <td colspan="4">Data not found.</td>
+                      </tr>
+                    </ng-template>
+                  </p-table>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4">Data not found.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </section>
+    </div>
+  </div>
+  

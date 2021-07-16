@@ -47,7 +47,7 @@ export class DailyproductionService {
   public getDailyPReject(id, startdate, endate): Observable<Dailyproduction[]> {
     return this.http.get<Dailyproduction[]>(
       this.rootUrl +
-      '/dailyproductions/rejectdata/' +
+      '/dailyproduction/rejectdata/' +
       id +
       '/Reject/' +
       startdate +
@@ -57,7 +57,7 @@ export class DailyproductionService {
   }
   public getDailyPRejectmode(id, mode): Observable<Dailyproduction[]> {
     return this.http.get<Dailyproduction[]>(
-      this.rootUrl + '/dailyproductions/rejectdata/' + id + '/Reject/' + mode
+      this.rootUrl + '/dailyproduction/rejectdata/' + id + '/Reject/' + mode
     );
   }
   public getRejectcalendar(id, date): Observable<Dailyproduction[]> {
@@ -74,7 +74,7 @@ export class DailyproductionService {
   ): Observable<Itemwiserej[]> {
     return this.http.get<Itemwiserej[]>(
       this.rootUrl +
-      '/ItemwiseRejDetail/rejectdetaildata/' +
+      '/itemwiserejs/rejectdetaildata/' +
       plantcode +
       '/' +
       type +

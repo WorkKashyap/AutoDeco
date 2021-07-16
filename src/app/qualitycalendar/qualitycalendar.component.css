@@ -24,7 +24,7 @@ padding: 0rem;
 }
 .btn-custom {
   padding: 3px;
-  margin: 3.3px;
+  margin: 3.3px!important;
   font-size: 11px;
 }
 .btn-custom-td {
@@ -48,4 +48,3 @@ padding: 0rem;
 .fc-event {
   font-size: 0.50em;
 }
-

@@ -1,0 +1,289 @@
+<div class="content-wrapper">
+    <div class="content-header">
+    <section class="content" style="margin-bottom: 2rem;">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary card-outline">
+                <!-- Card Header Start -->
+              <div class="card-header">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h6 class="card-title-md"><b>Production Round Loading Follow -Up Chart </b></h6>
+                        <p class="card-title-md">Target for the month {{ this.roundTotal }} round per day </p>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control" name="ptype" id="ptype" #ptype2="ngModel" [(ngModel)]="ptype" (change)='onTypeChange($event.target.value)'>
+                           <option value="Chrome">Chrome</option>
+                          <option value="Satin">Satin</option>
+                        </select>
+                     </div>
+                    <div class="col-md-2">
+                        <select class="form-control" name="rtype" id="rtype" #rtype2="ngModel" [(ngModel)]="rtype" (change)='onTypePChange($event.target.value)'>
+                            <option value="Production">Production</option>
+                            <option value="Inspection">Inspection</option>
+                            <option value="Jigging">Jigging</option>
+                         </select>
+                    </div>
+                    <div class="col-md-2">
+                        <app-company-dropdown (change)='onTypePlantChange($event.target.value)' (plantEvent)="getPlant($event)"></app-company-dropdown>
+                        <h6 class="mt-2"><b>Actual Round : {{ getTotal() | number : '1.2-2'}} </b></h6>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="date" class="form-control" id="date" name="pstng_date" #pstng="ngModel" [(ngModel)]="this.rhService.date">
+                        <h6 class="mt-2">
+                            <b>Compliance :{{ compliance() }}%</b>
+                          </h6>
+                    </div>
+                    <div class="col-md-1">
+                        <Button (click)="backtoProduction()" class="btn btn-primary btn-block mb-3">Back</Button>
+                    </div>
+                </div>
+              </div>
+                <!-- Card-header Completed -->
+                <!-- Card body -->
+                <form #form="ngForm" autocomplete="off" (submit)="onComplete(form)">
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th colspan="2">
+                                SHIFT-A
+                            </th>
+                            <th colspan="2">
+                                SHIFT-B
+                            </th>
+                            <th colspan="2">
+                                SHIFT-C
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                              07-08
+                            </td>
+                            <td>
+                                <input type="number" min="0" name="r7to8" placeholder="07-08" id="r7to8" #r7to8="ngModel"
+                                [(ngModel)]="rhService.roundhourInfo.r7to8">
+                            </td>
+                            <td>
+                              15-16
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r15to16" placeholder="15-16" id="r15to16"
+                                  #r15to16="ngModel" [(ngModel)]="rhService.roundhourInfo.r15to16">
+                            </td>
+                            <td>
+                              23-24
+                            </td>
+                            <td>
+                                <input type="number" min="0" name="r23to24" placeholder="23-24" id="r23to24"
+                                #r23to24="ngModel" [(ngModel)]="rhService.roundhourInfo.r23to24">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                              08-09
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r8to9" placeholder="08-09" id="r8to9" #r8to9="ngModel"
+                                [(ngModel)]="rhService.roundhourInfo.r8to9">
+                            </td>
+                            <td>
+                              16-17
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r16to17" placeholder="16-17" id="r16to17"
+                                #r16to17="ngModel" [(ngModel)]="rhService.roundhourInfo.r16to17">
+                            </td>
+                            <td>
+                              24-01
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r24to1" placeholder="24-01" id="r24to1" #r24to1="ngModel"
+                                [(ngModel)]="rhService.roundhourInfo.r24to1">
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              09-10
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r9to10" placeholder="09-10" id="r9to10" #r9to10="ngModel"
+                                [(ngModel)]="rhService.roundhourInfo.r9to10">
+                            </td>
+                            <td>
+                              17-18
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r17to18" placeholder="17-18" id="r17to18"
+                                #r17to18="ngModel" [(ngModel)]="rhService.roundhourInfo.r17to18">
+                            </td>
+                            <td>
+                              01-02
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r1to2" placeholder="1-2" id="r1to2" #r1to2="ngModel"
+                                [(ngModel)]="rhService.roundhourInfo.r1to2">
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              10-11
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r10to11" placeholder="10-11" id="r10to11"
+                                #r10to11="ngModel" [(ngModel)]="rhService.roundhourInfo.r10to11">
+                            </td>
+                            <td>
+                              18-19
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r18to19" placeholder="18-19" id="r18to19"
+                                #r18to19="ngModel" [(ngModel)]="rhService.roundhourInfo.r18to19">
+                            </td>
+                            <td>
+                              02-03
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r2to3" placeholder="02-03" id="r2to3" #r2to3="ngModel"
+                                [(ngModel)]="rhService.roundhourInfo.r2to3">
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              11-12
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r11to12" placeholder="11-12" id="r11to12"
+                                #r11to12="ngModel" [(ngModel)]="rhService.roundhourInfo.r11to12">
+                            </td>
+                            <td>
+                              19-20
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r19to20" placeholder="19-20" id="r19to20"
+                                #r19to20="ngModel" [(ngModel)]="rhService.roundhourInfo.r19to20">
+                            </td>
+                            <td>
+                              03-04
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r3to4" placeholder="03-04" id="r3to4" #r3to4="ngModel"
+                                [(ngModel)]="rhService.roundhourInfo.r3to4">
+                            </td>
+                          </tr>
+  
+                          <tr>
+                            <td>
+                              12-13
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r12to13" placeholder="12-13" id="r12to13"
+                                #r12to13="ngModel" [(ngModel)]="rhService.roundhourInfo.r12to13">
+                            </td>
+                            <td>
+                              20-21
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r20to21" placeholder="20-21" id="r20to21"
+                                #r20to21="ngModel" [(ngModel)]="rhService.roundhourInfo.r20to21">
+                            </td>
+                            <td>
+                              04-05
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r4to5" placeholder="04-05" id="r4to5" #r4to5="ngModel"
+                                [(ngModel)]="rhService.roundhourInfo.r4to5">
+                            </td>
+                          </tr>
+  
+                          <tr>
+                            <td>
+                              13-14
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r13to14" placeholder="13-14" id="r13to14"
+                                #r13to14="ngModel" [(ngModel)]="rhService.roundhourInfo.r13to14">
+                            </td>
+                            <td>
+                              21-22
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r21to22" placeholder="21-22" id="r21to22"
+                                #r21to22="ngModel" [(ngModel)]="rhService.roundhourInfo.r21to22">
+                            </td>
+                            <td>
+                              05-06
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r5to6" placeholder="05-06" id="r5to6" #r5to6="ngModel"
+                                [(ngModel)]="rhService.roundhourInfo.r5to6">
+                            </td>
+                          </tr>
+  
+                          <tr>
+                            <td>
+                              14-15
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r14to15" placeholder="14-15" id="r14to15"
+                                #r14to15="ngModel" [(ngModel)]="rhService.roundhourInfo.r14to15">
+                            </td>
+                            <td>
+                              22-23
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r22to23" placeholder="22-23" id="r22to23"
+                                #r22to23="ngModel" [(ngModel)]="rhService.roundhourInfo.r22to23">
+                            </td>
+                            <td>
+                              06-07
+                            </td>
+                            <td>
+                              <input type="number" min="0" name="r6to7" placeholder="06-07" id="r6to7" #r6to7="ngModel"
+                                [(ngModel)]="rhService.roundhourInfo.r6to7">
+                            </td>
+                          </tr>
+                          <tr>
+                              <th>Supervisor</th>
+                              <td>
+                                  <input type="text" name="shiftaname" placeholder="Supervisor Name" id="shiftaname" #shiftaname="ngModel" [(ngModel)]="rhService.roundhourInfo.shiftaname"> 
+                              </td>
+                              <th>Supervisor</th>
+                              <td>
+                                  <input type="text" name="shiftbname" placeholder="Supervisor Name" id="shiftbname" #shiftbname="ngModel" [(ngModel)]="rhService.roundhourInfo.shiftbname"> 
+                              </td><th>Supervisor</th>
+                              <td>
+                                  <input type="text" name="shiftcname" placeholder="Supervisor Name" id="shiftcname" #shiftcname="ngModel" [(ngModel)]="rhService.roundhourInfo.shiftcname"> 
+                              </td>
+                          </tr>
+                          <tr>
+                            <th colspan="2">
+                              Total : {{ getTotalA() | number : '1.2-2'}}
+                            </th>
+                            <th colspan="2">
+                              Total : {{ getTotalb() | number : '1.2-2'}}
+                            </th>
+                            <th colspan="2">
+                              Total: {{ getTotalC() | number : '1.2-2'}}
+                            </th>
+                          </tr>
+                    </table>
+                    <!-- Card Body Completed -->
+
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <button type="submit" (click)="onCancelClick()" class="btn btn-danger  float-right px-3">
+                                    Cancel
+                                </button>
+                                <button type="submit" (click)="onSaveClick()" class="btn btn-success float-right  px-4 mr-3">
+                                    Save
+                                </button>   
+                             </div>
+                        </div>
+                    </div>
+                </form>
+            </div>            
+        </div>
+      </div>
+    </section>
+</div>
+</div>`

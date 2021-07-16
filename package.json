@@ -31,6 +31,7 @@
     "jquery": "^3.5.1",
     "jquery-ui-dist": "^1.12.1",
     "ngx-loading": "^2.0.1",
+    "ngx-pagination": "^5.1.1",
     "ngx-spinner": "^8.1.0",
     "ngx-toastr": "^10.0.4",
     "overlayscrollbars": "^1.13.1",

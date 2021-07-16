@@ -1,0 +1,179 @@
+<!--here pagination not working and in back button according to details not showing item like fromdate and todate and plantcode dropdown-->
+<div class="wrapper">
+  <div class="content-wrapper" style="overflow-y: hidden; overflow-x: hidden">
+    <div class="content-header">
+      <div class="container-fluid"></div>
+    </div>
+    <div class="row ml-1">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <section class="content" style="margin-bottom: 0rem">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card card-primary card-outline">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="custom-control funkyradio">
+                        <div class="funkyradio-primary">
+                          <input
+                            type="checkbox"
+                            name="CHECKBOX"
+                            (change)="checkchange($event)"
+                          />
+                          <label for="CHECKBOX" class="ml-1">
+                            Date option
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="this.marked == false">
+                      <button
+                        (click)="monthClick()"
+                        class="btn btn-primary m-1"
+                      >
+                        This Month
+                      </button>
+                      <button (click)="weekClick()" class="btn btn-info m-1">
+                        This Week
+                      </button>
+                      <button (click)="dayClick()" class="btn btn-warning m1">
+                        Today
+                      </button>
+                    </div>
+                    <div class="col-md-6" *ngIf="this.marked == true">
+                      <p-calendar
+                        aria-placeholder="From Date"
+                        name="fromdate"
+                        #fromdate="ngModel"
+                        [(ngModel)]="this.Fromdate"
+                        class="input-append date m-1"
+                        dateFormat="yy-mm-dd"
+                        dataType="string"
+                        [showIcon]="true"
+                      >
+                      </p-calendar>
+                      <p-calendar
+                        aria-placeholder="To Date"
+                        name="todate"
+                        #todate="ngModel"
+                        [(ngModel)]="this.Todate"
+                        class="input-append date"
+                        dateFormat="yy-mm-dd"
+                        dataType="string"
+                        [showIcon]="true"
+                      >
+                      </p-calendar>
+                    </div>
+                    <div class="col-md-2">
+                      <!-- <app-company-dropdown
+                    (plantEvent)="getPlant($event)"
+                  ></app-company-dropdown> -->
+                      <select
+                        class="custom-select"
+                        name="myselect"
+                        #mySelect="ngModel"
+                        [(ngModel)]="this.DPservice.plantcode"
+                        (change)="plantchange($event.target.value)"
+                      >
+                        <option value="0">--Select Plant--</option>
+                        <option
+                          *ngFor="let pl of plantservice.splantlist"
+                          value="{{ pl.plantcode }}"
+                        >
+                          {{ pl.plantShortName }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <button class="btn btn-info" (click)="Loadrecord()">
+                        View
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div
+                    class="display-4 card-header text-success ml-3"
+                    data-widget="todo-list"
+                    *ngIf="
+                      DPservice.dailyprodlist.length != 0 || this.modename != ''
+                    "
+                  >
+                    {{ modename }}
+                  </div>
+                  <div class="table-responsive mailbox-messages">
+                    <ngx-spinner [fullScreen]="false"></ngx-spinner>
+                    <table class="table table-hover table-striped">
+                      <thead *ngIf="DPservice.dailyprodlist.length > 0">
+                        <tr class="text-center">
+                          <th></th>
+                          <th>Date</th>
+                          <th>Reject%</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container
+                          *ngFor="
+                            let dp of DPservice.dailyprodlist
+                              | paginate
+                                : { itemsPerPage: 5, currentPage: p }
+                          "
+                        >
+                          <tr class="text-center">
+                            <td class="mailbox-star">
+                              <button
+                                class="btn btn-primary"
+                                (click)="openRejectionDetail(dp.id, dp.date)"
+                              >
+                                Detail
+                              </button>
+                            </td>
+                            <td class="font-weight-bold">
+                              {{ dp.date | date: "mediumDate" }}
+                            </td>
+                            <td>
+                              <span
+                                class="
+                                  badge
+                                  px-3
+                                  text-lg text-right
+                                  align-selft-center
+                                "
+                                id="result"
+                                [ngClass]="{
+                                  'badge-danger': dp.title >= 20,
+                                  'badge-warning':
+                                    dp.title >= 15 && dp.title < 20,
+                                  'badge-success': dp.title < 15
+                                }"
+                                >{{ dp.title }}</span
+                              >
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer p-0">
+                  <div
+                    class="mailbox-controls"
+                    *ngIf="DPservice.dailyprodlist.length > 0"
+                  >
+                    <div style="float: right">
+                      <pagination-controls
+                        (pageChange)="p = $event"
+                      ></pagination-controls>
+                      <div class="btn-group"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

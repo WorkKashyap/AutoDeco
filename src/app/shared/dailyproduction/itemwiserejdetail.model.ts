@@ -5,8 +5,8 @@ export class ItemwiseRejDetail {
   insplot: number;
   // tslint:disable-next-line: variable-name
   item_type: string;
-  itemcode: string;
-  itemname: string;
+  itemCode: string;
+  itemName: string;
   // tslint:disable-next-line: variable-name
   inspection_qty: number;
   // tslint:disable-next-line: variable-name
