@@ -16,3 +16,6 @@
     height: calc(2.25rem - 2px);
     padding: .1rem .3rem;
 }
+input.ng-valid {
+  border-color: grey;
+}
