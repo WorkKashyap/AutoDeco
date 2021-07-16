@@ -1,0 +1,726 @@
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card col-md-12 card-primary card-outline">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-11">
+                <h3 class="card-title-md">Add New Production</h3>
+              </div>
+              <div class="col-md-1 d-flex justify-content-end">
+                <button type="submit" name="insertBtn" class="btn btn-success mr-1" 
+                [disabled]="form.invalid">Save</button>
+                <button class="btn btn-primary ml-auto" (click)="backBtn()"> Back </button>
+              </div>
+            </div>
+          </div>
+          <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="hidden" name="id" [value]="service.productionData.id">
+                  <div class="row">
+                    <div class="col-md-12">
+
+                      <div class="row">
+                        <!-- insplot -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label>Insplot:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="insplot" #insplot="ngModel" 
+                                [(ngModel)]="service.productionData.insplot" readonly>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius:'3px',primaryColour:'blue' }">                        
+                        </ngx-loading>             
+  
+                        <!-- orderno -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label>Order Number:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="orderno" #orderno="ngModel" 
+                                [(ngModel)]="service.productionData.orderno" readonly>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- itemname -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label>Itemname:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="text" class="form-control" name="itemname" #itemname="ngModel" 
+                                [(ngModel)]="service.productionData.itemname" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- itemcode -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label>Itemcode:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="text" class="form-control" name="itemcode" #itemcode="ngModel" 
+                                [(ngModel)]="service.productionData.itemcode" readonly>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- qty -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group">Quantity:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="qty" #qty="ngModel" 
+                                [(ngModel)]="service.productionData.qty" readonly>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <!-- plantcode -->
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label>Plantcode:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <app-company-dropdown [flag]="flag" (plantEvent)="getPlant($event)">
+                                </app-company-dropdown>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- shift -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label>Shift:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="text" class="form-control" name="shift" #shift="ngModel" 
+                                [(ngModel)]="service.productionData.shift" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- size -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label>Size:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="text" class="form-control" name="size" #size="ngModel" 
+                                [(ngModel)]="service.productionData.size" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- type -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label>Type:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="text" class="form-control" name="type" #type="ngModel" 
+                                [(ngModel)]="service.productionData.type" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- okqty -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group1">Ok Quantity:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="okqty" #okqty="ngModel" 
+                                [(ngModel)]="service.productionData.okqty" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <!-- holdqty -->
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group1">Hold Quantity:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="holdqty" #holdqty="ngModel" 
+                                [(ngModel)]="service.productionData.holdqty" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- buffingqty -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group1">Buffing Quantity:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="buffingqty" 
+                                #buffingqty="ngModel" [(ngModel)]="service.productionData.buffingqty" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- rejectionqty -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group1">Rejetion Quantity:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="rejectionqty" 
+                                #rejectionqty="ngModel" [(ngModel)]="service.productionData.rejectionqty" readonly>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- pitting -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Pitting:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="pitting" #pitting="ngModel" 
+                                [(ngModel)]="service.productionData.pitting" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- pinhole -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Pinhole:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="pinhole" #pinhole="ngModel" 
+                                [(ngModel)]="service.productionData.pinhole" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <!-- patchmark -->
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Patchmark:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="patchmark" 
+                                #patchmark="ngModel" [(ngModel)]="service.productionData.patchmark" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- nickle -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Nickle:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="nickle" #nickle="ngModel" 
+                                [(ngModel)]="service.productionData.nickle" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- crburning -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Crburning:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="crburning" 
+                                #crburning="ngModel" [(ngModel)]="service.productionData.crburning" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- skipplating -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Skipplating:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="skipplating" 
+                                #skipplating="ngModel" [(ngModel)]="service.productionData.skipplating" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- dent -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Dent:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="dent" #dent="ngModel" 
+                                [(ngModel)]="service.productionData.dent" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <!-- handmouldingrej -->
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Handmoulding Reg.:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="handmouldingrej" 
+                                #handmouldingrej="ngModel" [(ngModel)]="service.productionData.handmouldingrej" 
+                                required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- scratchmark -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Scratchmark:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="scratchmark" 
+                                #scratchmark="ngModel" [(ngModel)]="service.productionData.scratchmark" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- roughness -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Roughness:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="roughness" 
+                                #roughness="ngModel" [(ngModel)]="service.productionData.roughness" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- silver -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Silver:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="silver" #silver="ngModel" 
+                                [(ngModel)]="service.productionData.silver" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- mouldingrej -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Mouldingrej:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="mouldingrej" 
+                                #mouldingrej="ngModel" [(ngModel)]="service.productionData.mouldingrej" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <!-- warpage -->
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Warpage:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="warpage" #warpage="ngModel" 
+                                [(ngModel)]="service.productionData.warpage" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- copper burning -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Copper Burning:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="copperburning" 
+                                #copperburning="ngModel" [(ngModel)]="service.productionData.copperburning" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- whitemark -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Whitemark:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="whitemark" 
+                                #whitemark="ngModel" [(ngModel)]="service.productionData.whitemark" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- dotplastic -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Dotplastic:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="dotplastic" 
+                                #dotplastic="ngModel" [(ngModel)]="service.productionData.dotplastic" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- watermark -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Watermark:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="watermark" 
+                                #watermark="ngModel" [(ngModel)]="service.productionData.watermark" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <!-- blister -->
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Blister:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="blister" #blister="ngModel" 
+                                [(ngModel)]="service.productionData.blister" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- jig damage -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Jig Damage:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="jigdamage" 
+                                #jigdamage="ngModel" [(ngModel)]="service.productionData.jigdamage" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- other1 -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">OtheR1:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="otheR1" #otheR1="ngModel" 
+                                [(ngModel)]="service.productionData.otheR1" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- other2 -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">OtheR2:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="otheR2" #otheR2="ngModel" 
+                                [(ngModel)]="service.productionData.otheR2" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- other3 -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">OtheR3:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="otheR3" #otheR3="ngModel" 
+                                [(ngModel)]="service.productionData.otheR3" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <!-- other4 -->
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">OtheR4:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="otheR4" #otheR4="ngModel" 
+                                [(ngModel)]="service.productionData.otheR4" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- mechfail -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Mechfail:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="mechfail" #mechfail="ngModel" 
+                                [(ngModel)]="service.productionData.mechfail" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- tooldef -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Tooldef:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="tooldef" #tooldef="ngModel" 
+                                [(ngModel)]="service.productionData.tooldef" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- others -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Others:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="others" #others="ngModel" 
+                                [(ngModel)]="service.productionData.others" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- shadevar -->
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Shadevar:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="shadevar" #shadevar="ngModel" 
+                                [(ngModel)]="service.productionData.shadevar" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <!-- plating peel -->
+                      <div class="row">
+                        <div class="col-md-2 custom-col-2">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Plating Peel:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="platingpeel" 
+                                #platingpeel="ngModel" [(ngModel)]="service.productionData.platingpeel" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- flowmark -->
+                        <div class="col-md-2 custom-col-2">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Flowmark:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="flowmark" #flowmark="ngModel" 
+                                [(ngModel)]="service.productionData.flowmark" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- chemicalmark -->
+                        <div class="col-md-2 custom-col-2">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label class="group2">Chemicalmark:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="number" class="form-control" min="0" name="chemicalmark" 
+                                #chemicalmark="ngModel" [(ngModel)]="service.productionData.chemicalmark" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <!-- posting date -->
+                        <div class="col-md-2 custom-col-2">
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-md-4">
+                                <label>Pstng Date:</label>
+                              </div>
+                              <div class="col-md-8">
+                                <input type="date" class="form-control" id="pstngdate" name="pstngdate" 
+                                #pstngdate="ngModel" ngModel [(ngModel)]="service.productionData.pstngdate" required>
+                                <!-- [readonly]="productionsService.productionData.id > 0" -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  
+                        <div class="col">
+                          <div class="form-group">
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+       
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

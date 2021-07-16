@@ -1,0 +1,86 @@
+<div class="content-wrapper" id="production">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary  card-outline">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col">
+                                    <h3>Productions</h3>    
+                                </div>
+                                <div class="col d-flex justify-content-end">
+                                    <button type="" class="btn btn-primary" (click)="displayProductiondata()">
+                                        Add New Production
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <app-company-dropdown [flag]="flag" (plantEvent)="getPlant($event)">
+                                </app-company-dropdown>
+                    
+                                <div class="col-md-9">
+                                    <span class="p-input-icon-left p-ml-auto">
+                                        <!-- <i class="pi pi-search"></i> -->
+                                        <input pInputText class="ml-auto" type="search" 
+                                        (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                        placeholder="Global Search" 
+                                        style="height: 40px; width: 150px; border-radius: 8px; 
+                                        border-color: lightgrey; text-align: center;"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                                <ngx-spinner  [fullScreen] = "false"></ngx-spinner>
+                            <form role="form">
+                                <div class="row">
+                                    <p-table #dt class="table" [columns]="cols" [value]="service.productionlist" 
+                                    [style]="{'text-align': 'center', 'font-size': '0.7em'}"
+                                    [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,20,50]" 
+                                    styleClass="p-datatable-striped">
+                                        <ng-template pTemplate="header" let-columns>
+                                            <tr>
+                                                <th *ngFor="let col of columns" [pSortableColumn]="col.field" 
+                                                [class]="col.field" [width]="col.width">{{col.header}}
+                                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                                ariaLabelDesc="Activate to sort in descending order" 
+                                                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                                                </th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-pd let-columns="columns">
+                                        <!-- <ngx-loading [show]="loading" 
+                                        [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }">
+                                    </ngx-loading> -->
+                                            <tr [pSelectableRow]="pd">
+                                                <td *ngFor="let col of columns">
+                                                    <span *ngIf="col.field=='view'">
+                                                        <button class="btn-primary rounded" (click)="ViewDetail(pd.id)">
+                                                            <i class="fa fa-pencil"></i></button>
+                                                    </span>
+                                                    <span *ngIf="col.field=='pstngdate'">
+                                                        {{pd[col.field]   | date :'dd-MM-yyyy'}}
+                                                    </span>
+                                                    <!-- <span *ngIf="col.field=='insplot'" class="d-sm-none d-md-block d-print-table-cell">
+                                                        {{pd[col.field]}}
+                                                    </span> -->
+                                                    <!-- <span *ngIf="col.field=='itemname'">
+                                                        {{pd[col.field]}}
+                                                    </span> -->
+                                                    <!-- <span *ngIf="col.field!='view' && col.field!='pstngdate'
+                                                    && col.field!='itemname' && col.field!='insplot'">{{pd[col.field]}}</span> -->
+                                                    <span *ngIf="col.field!='view' && col.field!='pstngdate'">{{pd[col.field]}}</span>
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

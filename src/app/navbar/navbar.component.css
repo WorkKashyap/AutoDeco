@@ -1,0 +1,18 @@
+/* #sidebar {
+  min-height: 100vh;
+  overflow-y: scroll;
+} */
+
+#mysidebar{
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+#sidebar {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#color-change:hover {
+  background-color: #0074d9;
+  color: white;
+}

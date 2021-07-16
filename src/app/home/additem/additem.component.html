@@ -1,0 +1,99 @@
+<section class="content-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card col-md-12 card-primary card-outline">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-10">
+                <h1 class="card-title-md">Item Detail</h1>
+              </div>
+              <div class="col-md-2 d-flex justify-content-end" style="height: 40px;">
+                <button class="btn btn-primary" (click)="back()"> Back </button>
+              </div>
+            </div>
+          </div>
+          <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+            <div class="card-body" style="font-size: 1.2rem;">
+              <div class="row">
+                <div class="col-md-8">
+                  <input type="hidden" name="id" [value]="service.itemData.id">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Itemcode</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="number" class="form-control" name="itemcode" #itemcode="ngModel" [(ngModel)]="service.itemData.itemcode" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group py-2">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Plant:</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="number" class="form-control" name="plant" #plant="ngModel" [(ngModel)]="service.itemData.plant" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Ctype:</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" name="ctype" #ctype="ngModel" [(ngModel)]="service.itemData.ctype" required>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }"></ngx-loading> -->
+                  <ngx-spinner></ngx-spinner>
+                  <div class="form-group py-2">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Itemname:</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" name="itemname" #itemname="ngModel" [(ngModel)]="service.itemData.itemname" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Itemtype:</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" name="itemtype" #itemtype="ngModel" [(ngModel)]="service.itemData.itemtype" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group py-2">
+                    <div class="row">
+                      <div class="col-md-2 text-center">
+                        <label>Price</label>
+                      </div>
+                      <div class="col-md-9">
+                        <input type="number" class="form-control" name="price" #price="ngModel" [(ngModel)]="service.itemData.price" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col d-flex justify-content-center">
+                  <button type="submit" class="btn btn-danger mr-1" [disabled]="form.invalid">Save</button>
+                  <button type="button" class="btn btn-success" (click)="cancel()">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

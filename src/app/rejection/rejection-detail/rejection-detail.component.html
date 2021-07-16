@@ -1,0 +1,436 @@
+<div class="content-wrapper">
+  <div class="content-header">
+    <section class="content" style="margin-bottom: 0rem">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary card-outline">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-md-9">
+                  <h5 class="card-title-md">Detail Report</h5>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                  <div style="text-align: right">
+                    <button
+                      type="button"
+                      label="EXCEL"
+                      (click)="dt.exportCSV()"
+                      class="btn btn-success btn-sm"
+                    >
+                      <i class="fa fa-file-excel-o"></i> Export
+                    </button>
+                    &nbsp;
+                    <button
+                      (click)="backtoRejection()"
+                      class="btn btn-primary btn-sm"
+                    >
+                      <i class="fa fa-chevron-left"></i> Back
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-md-2">
+                      <label>From</label>
+                    </div>
+                    <div class="col-md-10">
+                      <p-calendar
+                        aria-placeholder="From Date"
+                        name="fromdate"
+                        #fromdate="ngModel"
+                        [(ngModel)]="this.Fromdate"
+                        class="input-append date"
+                        dateFormat="yy-mm-dd"
+                        dataType="string"
+                        [showIcon]="true"
+                      ></p-calendar>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-md-1 mr-1">
+                      <label>To</label>
+                    </div>
+                    <div class="col-md-10">
+                      <p-calendar
+                        aria-placeholder="To Date"
+                        name="todate"
+                        #todate="ngModel"
+                        [(ngModel)]="this.Todate"
+                        class="input-append date"
+                        dateFormat="yy-mm-dd"
+                        dataType="string"
+                        [showIcon]="true"
+                      ></p-calendar>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-md-8">
+                      <app-company-dropdown
+                        (plantEvent)="getPlant($event)"
+                      ></app-company-dropdown>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-md-8">
+                      <select
+                        name="mySelect"
+                        class="custom-select"
+                        #mySelect="ngModel"
+                        [(ngModel)]="this.selectedType"
+                        (change)="onselecttype($event.target.value)"
+                      >
+                        <option value="">--Select Type--</option>
+                        <option value="CHROME">CHROME</option>
+                        <option value="SATIN">SATIN</option>
+                        <option value="MOULDING">MOULDING</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-1 col-sm-4 col-md-2 col-xs-2 view">
+                      <button class="btn btn-primary" (click)="onviewDetail()">
+                        View
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--form-->
+          </div>
+        </div>
+      </div>
+      
+      <p-table
+        #dt
+        [columns]="cols"
+        [style]="{
+          'text-align': 'center',
+          'font-size': '0.7em',
+          width: '100%'
+        }"
+        selectionMode="single"
+        [(selection)]="selectedItemrej"
+        [value]="DPservice.itemwiserejdetaillist"
+        [paginator]="true"
+        [rows]="20"
+        (onRowSelect)="onRowSelect($event)"
+        [resizableColumns]="true"
+        [responsive]="true"
+        [autoLayout]="true"
+      >
+        <ng-template pTemplate="header" let-columns>
+          <ngx-spinner [fullScreen]="false"></ngx-spinner>
+          <tr>
+            <td colspan="3" style="width: 280px">
+              <div class="input-group custome-gs mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  pInputText
+                  placeholder="Global Filter"
+                  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                />
+                <div class="input-group-append">
+                  <i
+                    class="fa fa-search input-group-text"
+                    style="padding-top: 40%"
+                  ></i>
+                </div>
+              </div>
+            </td>
+            <td colspan="1"></td>
+            <td style="width: 125px"></td>
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-dark bg-info"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalinsQty | number: "1.2-2" }}
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-dark bg-success"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalinsValue | number: "1.2-2" }}
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-dark bg-primary"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalokValue | number: "1.2-2" }}
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-dark bg-dark"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalokqtyValue | number: "1.2-2" }}
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-dark bg-warning"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalRejQty | number: "1.2-2" }}
+              </button>
+            </td>
+            <td>
+              <!-- <button
+                class="btn btn-sm text-dark bg-danger mb-2"
+                style="float: right"
+              >
+                Total% : {{ totalRejPer | number: "1.2-2" }}
+              </button> -->
+            </td>
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-dark bg-danger"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalRejVal | number: "1.2-2" }}
+              </button>
+            </td>
+
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-light bg-compliance"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalHoldQty | number: "1.2-2" }}
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-light bg-jig"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalBuffQty | number: "1.2-2" }}
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-dark bg-moulded"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalMouldedQty | number: "1.2-2" }}
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-dark bg-action-plan"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalMouldedVal | number: "1.2-2" }}
+              </button>
+            </td>
+
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-light bg-capital"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalPlantingQty | number: "1.2-2" }}
+              </button>
+            </td>
+
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-light bg-planting-per"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalPlantingVal | number: "1.2-2" }}
+              </button>
+            </td>
+
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-dark bg-othersqty"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalOthersqty | number: "1.2-2" }}
+              </button>
+            </td>
+
+            <td>
+              <button
+                class="btn btn-sm custom-fs text-dark bg-others_value"
+                style="float: right; width: 100%; padding: 5px 2px"
+              >
+                {{ totalOthers_value | number: "1.2-2" }}
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td style="width: 200px"></td>
+            <td style="width: 200px"></td>
+          </tr>
+          <tr>
+            <th
+              *ngFor="let col of columns"
+              [pSortableColumn]="col.field"
+              pResizableColumn
+            >
+              {{ col.header }}
+              <p-sortIcon
+                [field]="col.field"
+                ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"
+              >
+              </p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns" class="ui-resizable-column">
+              <!-- <span *ngIf="col.field == 'pstngdate'">
+                {{ rowData[col.field] | date: "dd-MM-y" }}
+              </span>
+              <span *ngIf="col.field != 'pstngdate'">
+                {{ rowData[col.field] }}
+              </span> -->
+              {{ rowData[col.field] }}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </section>
+  </div>
+</div>
+
+
+<div
+  class="modal fade bd-example-modal-xl"
+  id="basicExampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row col-md-11">
+          <div class="col-md-6">
+            <h3>Defects</h3>
+          </div>
+          <div class="col-md-5">
+            <h4>{{ selected_plantname }}</h4>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ngx-spinner [fullScreen]="false" name="spinner1"></ngx-spinner>
+
+        <div style="overflow: scroll">
+          <p-table
+            #dtdefect
+            [columns]="subcols"
+            [style]="{
+              'text-align': 'center',
+              'font-size': '0.7em',
+              width: '100%'
+            }"
+            [responsive]="true"
+            selectionMode="single"
+            [value]="DPservice.itemtopdefectlist"
+            [paginator]="true"
+            [rows]="15"
+            [autoLayout]="true"
+          >
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <td style="width: 160px">
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      pInputText
+                      placeholder="Global Filter"
+                      (input)="
+                        dtdefect.filterGlobal($event.target.value, 'contains')
+                      "
+                      class="form-control fix-height"
+                    />
+                    <div class="input-group-append fix-height">
+                      <i class="fa fa-search input-group-text"></i>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    label="EXCEL"
+                    (click)="dt.exportCSV()"
+                    class="btn btn-success btn-sm"
+                  >
+                    <i class="fa fa-file-excel-o"></i> Export
+                  </button>
+                </td>
+                <td></td>
+                <td>
+                  <button class="btn bg-warning" style="float: right">
+                    Total : {{ totalQty() }}
+                  </button>
+                </td>
+                <td>
+                  <button class="btn bg-danger" style="float: right">
+                    Total : {{ totalRejValue() | number: "1.2-2" }}
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th
+                  *ngFor="let col of columns"
+                  [pSortableColumn]="col.field"
+                  style="width: 140px"
+                >
+                  {{ col.header }}
+                  <p-sortIcon
+                    [field]="col.field"
+                    ariaLabel="Activate to sort"
+                    ariaLabelDesc="Activate to sort in descending order"
+                    ariaLabelAsc="Activate to sort in ascending order"
+                  ></p-sortIcon>
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns">
+                  {{ rowData[col.field] }}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="content-wrapper py-4">
+  <div class="content">
+    <div class="container-fluid">
+      <div class="col-md-5">
+        <div class="card card-primary card-outline">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">
+                <h4>Roles</h4>
+              </div>
+              <div class="col d-flex justify-content-end">
+                <button class="btn btn-primary" (click)="onAddRoles()"><i class="fa fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <ngx-spinner [fullScreen] = "false"></ngx-spinner>
+            <!-- <form role="form"> -->
+            <form #form="ngForm" autocomplete="off">
+              <div class="row">
+                <div class="col-md-12">
+                <p-table #dt [columns]="cols" [value]="allRoles" dataKey="id" editMode="row"
+                [style]="{'text-align': 'center', 'font-size': '0.9em'}" 
+                [paginator]="true" [rows]="10" styleClass="p-datatable-striped">
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th *ngFor="let col of cols" [class]="col.field">
+                          {{col.header}}
+                          </th> 
+                      </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-editing="editing" let-ri="rowIndex" let-pd>
+                    <tr [pEditableRow]="pd">
+                      <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" name="role" [(ngModel)]="pd.role" class="form-control" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{pd.role}}
+                            </ng-template>
+                        </p-cellEditor>
+                      </td>
+                      <td style="text-align:center">
+                        <button *ngIf="!editing" pInitEditableRow (click)="onRowEditInit(pd)" class="btn-primary mr-1 rounded">
+                          <i class="fa fa-pencil"></i></button>
+                        <button *ngIf="!editing" (click)="deleteRole(pd)" class="btn-danger rounded">
+                          <i class="fa fa-trash"></i></button>
+                        <button *ngIf="editing" pSaveEditableRow (click)="onRowEditSave(pd)" type="submit" class="btn-success mr-1 rounded">
+                          <i class="fa fa-check"></i></button>
+                        <button *ngIf="editing" pCancelEditableRow (click)="onRowEditCancel(pd, ri)" class="btn-danger rounded">
+                          <i class="fa fa-times"></i></button>
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="footer">
+                    <tr *ngIf="isAddRoles">
+                      <!-- <td *ngFor="let field of fieldArray;let col of columns"> -->
+                      <td>
+                        <div class="input-group">
+                          <input type="hidden" name="id" [value]="service.rolesData.id">
+                          <input type="text" class="form-control" [(ngModel)]="service.rolesData.role" name="role" #role="ngModel">
+                        </div>
+                      </td>
+                      <td>
+                        <span>
+                        <button (click)="onSave()" type="submit" class="btn-success mr-1 rounded">
+                          <i class="fa fa-check"></i></button>
+                        <button (click)="onCancel()" class="btn-danger rounded">
+                          <i class="fa fa-times"></i></button>
+                        </span>
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
