@@ -228,7 +228,7 @@ export class QualityCalenderComponent implements OnInit {
     const monthName = this.monthNames[month];
     this.dpservice.dailyreportsummary = [];
     const yearName = new Date(this.startdate).getFullYear();
-    this.dpservice.getprochartsummary(this.plantcode, "M", monthName,yearName).then((res: any) => {
+    this.dpservice.getprochartsummary(this.plantcode, "M", monthName, yearName).then((res: any) => {
       this.dpservice.dailyreportsummary.forEach(drsummary => {
         if (drsummary.itemtype == this.typename) {
           this.rejper = drsummary.rejper;

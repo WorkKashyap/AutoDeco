@@ -10,7 +10,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-:root {
+ :root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -42,6 +42,11 @@
     "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
+}
+
+.card-body,
+.card-header{
+    margin-right: 0.8rem;
 }
 
 *,
@@ -140,7 +145,7 @@ ul ol {
 }
 
 dt {
-  font-weight: 700;
+  font-weight: 400;
 }
 
 dd {
@@ -10503,7 +10508,7 @@ button.bg-dark:focus {
 }
 
 .font-weight-bold {
-  font-weight: 700 !important;
+  font-weight: 400 !important;
 }
 
 .font-weight-bolder {
@@ -12311,12 +12316,12 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini)
   box-shadow: none !important;
 }
 
-/* .sidebar-collapse .main-sidebar,
-.sidebar-collapse .main-sidebar::before {
-  margin-left: -270px; */
 .sidebar-collapse .main-sidebar,
 .sidebar-collapse .main-sidebar::before {
-  margin-left: -400px;
+  margin-left: -270px;
+/* .sidebar-collapse .main-sidebar,
+.sidebar-collapse .main-sidebar::before {
+  margin-left: -400px; */
 }
 
 .sidebar-collapse .main-sidebar .nav-sidebar.nav-child-indent .nav-treeview {
@@ -36477,5 +36482,29 @@ a.text-muted:hover {
 
 [class*="accent-"] a.btn-dark {
   color: #ffffff;
+}
+
+.bg-chemical {
+  background: linear-gradient(to right,#2196f3,#00bcd4) !important;
+}
+
+.bg-consumables {
+  background: linear-gradient(to right,#ff9800,#ffc107) !important;
+}
+
+.bg-etpchemical {
+  background: linear-gradient(to right,#062af1,#707dc3) !important;
+}
+
+.bg-jig {
+  background: linear-gradient(to right,#ff5722,#ffab91) !important;
+}
+
+.bg-packing {
+  background: linear-gradient(to right,#ffc107,#fe909d) !important;
+}
+
+.bg-storesspares {
+  background: linear-gradient(to right,#ef0598,#e070b6) !important;
 }
 /*# sourceMappingURL=adminlte.css.map */

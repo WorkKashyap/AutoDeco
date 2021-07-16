@@ -3,30 +3,30 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-primary  card-outline">
+                    <div class="card card-primary card-outline">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-xs-6 col-sm-8 col-md-9 col-lg-8 col-6">
                                     <h3>Productions</h3>    
                                 </div>
-                                <div class="col d-flex justify-content-end">
-                                    <button type="" class="btn btn-primary" (click)="displayProductiondata()">
+                                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-4 col-6 d-flex justify-content-end">
+                                    <button type="button" class="btn btn-primary" (click)="displayProductiondata()">
                                         Add New Production
                                     </button>
                                 </div>
                             </div>
-                            <div class="row">
-                                <app-company-dropdown [flag]="flag" (plantEvent)="getPlant($event)">
-                                </app-company-dropdown>
-                    
-                                <div class="col-md-9">
+                            <div class="row d-flex py-md-1">
+                                <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-4">
+                                    <app-company-dropdown [flag]="flag" 
+                                        (plantEvent)="getPlant($event)"></app-company-dropdown>
+                                </div>
+                                <div class="col-lg-4 col-md-3 col-4 d-flex justify-content-start py-xs-1">
                                     <span class="p-input-icon-left p-ml-auto">
                                         <!-- <i class="pi pi-search"></i> -->
                                         <input pInputText class="ml-auto" type="search" 
                                         (input)="dt.filterGlobal($event.target.value, 'contains')"
                                         placeholder="Global Search" 
-                                        style="height: 40px; width: 150px; border-radius: 8px; 
-                                        border-color: lightgrey; text-align: center;"/>
+                                        style="border-radius: 8px; border-color: lightgrey; text-align: center;"/>
                                     </span>
                                 </div>
                             </div>
@@ -38,7 +38,26 @@
                                     <p-table #dt class="table" [columns]="cols" [value]="service.productionlist" 
                                     [style]="{'text-align': 'center', 'font-size': '0.7em'}"
                                     [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,20,50]" 
-                                    styleClass="p-datatable-striped">
+                                    styleClass="p-datatable-striped"
+                                    [scrollable]="true" [style]="{width:'600px'}">
+                                        <ng-template pTemplate="colgroup" let-columns>
+                                            <colgroup>
+                                                <col style="width:80px"><!--action-->
+                                                <col style="width:120px"><!--postingdate-->
+                                                <col style="width:120px"><!--insplot-->
+                                                <col style="width:120px"><!--orderno-->
+                                                <col style="width:70px"><!--qty-->
+                                                <col style="width:100px"><!--plantcode-->
+                                                <col style="width:100px"><!--itemcode-->
+                                                <col style="width:260px"><!--itemname-->
+                                                <col style="width:80px"><!--size-->
+                                                <col style="width:80px"><!--type-->
+                                                <col style="width:90px"><!--okqty-->
+                                                <col style="width:100px"><!--holdqty-->
+                                                <col style="width:110px"><!--buffingqty-->
+                                                <col style="width:120px"><!--rejectionqty-->
+                                            </colgroup>
+                                        </ng-template>
                                         <ng-template pTemplate="header" let-columns>
                                             <tr>
                                                 <th *ngFor="let col of columns" [pSortableColumn]="col.field" 
@@ -50,9 +69,9 @@
                                             </tr>
                                         </ng-template>
                                         <ng-template pTemplate="body" let-pd let-columns="columns">
-                                        <!-- <ngx-loading [show]="loading" 
-                                        [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }">
-                                    </ngx-loading> -->
+                                            <!-- <ngx-loading [show]="loading" 
+                                            [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }">
+                                            </ngx-loading> -->
                                             <tr [pSelectableRow]="pd">
                                                 <td *ngFor="let col of columns">
                                                     <span *ngIf="col.field=='view'">

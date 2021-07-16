@@ -77,7 +77,10 @@
             </div>
             <div class="card-body p-0 " style="overflow-y: scroll; height:auto;position: relative;">
               <ngx-spinner [fullScreen] = "false"></ngx-spinner>
-              <full-calendar #calendar defaultView="dayGridMonth" [header]="options.header" [plugins]="calendarPlugins" [events]="dpservice.dailyprodlist" [displayEventTime]="false" [weekends]="true" class="my-calender" (eventClick)="eventClick($event)" [aspectRatio]="3.5" height="auto"></full-calendar>
+              <full-calendar #calendar defaultView="dayGridMonth" [header]="options.header" 
+              [plugins]="calendarPlugins" [events]="dpservice.dailyprodlist" [displayEventTime]="false" 
+              [weekends]="true" class="my-calender" (eventClick)="eventClick($event)" [aspectRatio]="3.5" 
+              height="auto"></full-calendar>
             </div>
 
 
@@ -87,7 +90,8 @@
     </div>
   </section>
 
-   <div class="modal fade bd-example-modal-xl" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal fade bd-example-modal-xl" id="basicExampleModal" tabindex="-1" role="dialog" 
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
@@ -109,7 +113,8 @@
         </div>
 
         <div style="overflow-y: scroll; height: 550px;">
-          <p-table #dt [columns]="cols" [style]="{'text-align': 'center', 'font-size': '0.7em'}" [responsive]="true"
+          <p-table #dt [columns]="cols" [style]="{'text-align': 'center', 'font-size': '0.7em'}" 
+          [responsive]="true"
             selectionMode="single" [style]="{'width':'100%'}" [(selection)]="selectedItemrej"
             [value]="dpservice.itemwiserejlist" [paginator]="false" [rows]="10" [responsive]="true">
 

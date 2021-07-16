@@ -1,0 +1,85 @@
+.card{
+    font-size: 0.75rem;
+}
+@media (max-width: 400px){
+    .button{
+        font-size: 10px;
+    }
+}
+/* .card-body{
+    height: 30px;
+} */
+.p-calendar{
+    height: 5px;
+}
+
+.no-margin {
+    margin: unset !important;
+} 
+.input-group {
+    margin-bottom: 6px;
+    padding-left: 0px;
+}
+/*.custom-col-2 {
+    flex: 0 0 16.666667%;
+    max-width: 13.6667%;
+}*/
+.set-padding{
+    padding: 10px 5px;
+} 
+.card-header {
+    padding: 0.2rem 1.25rem;
+}
+.card-body {
+    padding: 0px 1.25rem 0.2rem 1.25rem;
+}
+.custome-gs > .form-control{
+    height: calc(2.25rem - 2px);
+}
+.custome-gs > .input-group-append > .input-group-text{
+    line-height: 0.5;
+}
+.custom-fs {
+    font-size: 0.07rem;
+    padding: 2.50px;
+  }
+@media (min-width: 1200px){
+    .modal-xl {
+        max-width: 1300px !important;
+        margin: 1.25rem auto;
+    }
+  
+  }
+.moulding_value {
+    background: #d6c532  !important;
+    color:white  !important;
+}
+.plating_value {
+    background: #fe5d70 !important;
+    color:white  !important;
+}
+.tooldeF_value {
+    background: #ef0598 !important;
+    color:white  !important;
+}
+.mechfail_value {
+    background: #062af1 !important;
+    color:white  !important;
+}
+.othersvalue {
+    background: #f78554 !important;
+    color:white  !important;
+}
+.bg-info{
+    background: linear-gradient(to right,#08ca55,#28af64) !important;
+}
+
+
+/* .ptable{
+    transform:rotateX(180deg);
+    -ms-transform:rotateX(180deg); 
+    -webkit-transform:rotateX(180deg);
+}
+.ui-table table {
+    transform: rotateX(180deg);
+} */

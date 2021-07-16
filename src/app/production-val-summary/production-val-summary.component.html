@@ -1,0 +1,366 @@
+<div class="wrapper">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col card-title">
+                            <b>Production Summary Value Report</b>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <button class="btn btn-success btn-xs" (click)="dt.exportCSV()">
+                                <i class="fa fa-file-excel-o"></i>&nbsp;Export</button>
+                            <!-- <button class="btn btn-primary btn-xs" (click)="backtoRejection()">
+                                <i class="fa fa-chevron-left"></i>&nbsp;Back</button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                            <div class="row">
+                                <div class="col-md-2">From</div>
+                                <div class="col-md-10">
+                                    <p-calendar aria-placeholder="From Date" name="fromdate" #fromdate="ngModel"
+                                        [(ngModel)]="this.Fromdate" class="input-append date" 
+                                        dateFormat="yy-mm-dd" dataType="string" [showIcon]="true">
+                                    </p-calendar>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                            <div class="row">
+                                <div class="col-md-2">To</div>
+                                <div class="col-md-10">
+                                    <p-calendar aria-placeholder="From Date" name="todate" #fromdate="ngModel"
+                                        [(ngModel)]="this.Todate" class="input-append date" 
+                                        dateFormat="yy-mm-dd" dataType="string" [showIcon]="true">
+                                    </p-calendar>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-4 col-sm-4 col-4">
+                            <app-company-dropdown [flag]="flag" (plantEvent)="getPlant($event)">
+                            </app-company-dropdown>
+                        </div>
+
+                        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-3 col-3">
+                            <div class="dropdown">
+                                <button class="btn bg-white border rounded shadow-sm dropdown-toggle btn-block
+                                    overflow-hidden" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">{{this.type}}
+                                </button>
+                                <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                                    <a class="btn dropdown-item" style="cursor:pointer"
+                                        (click)="onselectReporttype('All')">All</a>
+                                    <a class="btn dropdown-item" style="cursor:pointer" 
+                                        (click)="onselectReporttype('Plating')">Plating</a>
+                                    <a class="btn dropdown-item" style="cursor:pointer" 
+                                        (click)="onselectReporttype('Moulding')">Moulding</a>
+                                    <a class="btn dropdown-item" style="cursor:pointer" 
+                                        (click)="onselectReporttype('ToolDefect')">ToolDefect</a>
+                                    <a class="btn dropdown-item" style="cursor:pointer" 
+                                        (click)="onselectReporttype('Others')">Others</a>
+                                    <a class="btn dropdown-item" style="cursor:pointer" 
+                                        (click)="onselectReporttype('Summary')">Summary</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 col-5">
+                            <div class="row">
+                                <div class="dropdown">
+                                    <button class="btn bg-white border rounded shadow-sm dropdown-toggle 
+                                        btn-block overflow-hidden" type="button" id="dropdownMenuButton" 
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{this.typename}}
+                                    </button>
+                                    <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                                        <a class="btn dropdown-item" style="cursor:pointer;pointer-events: none">
+                                            --Select Type--</a>
+                                        <a class="btn dropdown-item" style="cursor:pointer" 
+                                            (click)="getselectedtype('CHROME')">CHROME</a>
+                                        <a class="btn dropdown-item" style="cursor:pointer" 
+                                            (click)="getselectedtype('SATIN')">SATIN</a>
+                                        <a class="btn dropdown-item" style="cursor:pointer" 
+                                            (click)="getselectedtype('MOULDING')">MOULDING</a>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary ml-2" (click)="onviewDetail()">View</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Card Over -->
+            <form role="form">
+                <div class="row" style="position: relative;overflow-x: auto;transform: rotateX(180deg);">
+                    <p-table #dt [columns]="cols" [paginator]="true" [ngClass]="{'all': this.reporttype=='All'}"
+                        [style]="{'text-align': 'center','font-size': '0.7em','width':'auto',
+                        'transform':'rotateX(180deg)'}" [rowsPerPageOptions]="[10,25,50]"
+                        [rows]="10" styleClass="p-datatable-striped" paginatorPosition="top"
+                        [value]="DPservice.itemwiserejlist2" class="ptable" [scrollable]="true">
+
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <td colspan="2" style="width: 230px;">
+                                    <div class="input-group custome-gs mb-2 mt-1">
+                                        <input type="text" class="form-control" pInputText 
+                                            placeholder="Global Filter"
+                                            (input)="loadper($event.target.value , dt)"
+                                            (input)="dt.filterGlobal($event.target.value, 'contains')">
+                                        <div class="input-group-append">
+                                            <i class="fa fa-search input-group-text"></i>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm  text-dark bg-info  custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ this.totalinsValue | number:'1.2-2'}}
+                                    </button>
+                                </td>                 
+                                <td>
+                                    <button class="btn btn-sm  text-dark bg-info  custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ totalokValue | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm  text-dark bg-info custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ totalRejVal | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm  text-dark bg-info custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ totalRejPer2 | number:'1.2-2'}}
+                                    </button>
+                                </td>                   
+                                <td>
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" 
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ totalHoldVal | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" 
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ totalBuffVal | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <!--value-->                    
+                                <td *ngIf="(this.reporttype == 'Plating' || this.reporttype == 'Summary') 
+                                    || this.reporttype == 'All'" style="width: 54px;">
+                                    <button class="btn btn-sm  text-dark bg-danger  custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ plating_value | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="(this.reporttype == 'Plating' || this.reporttype == 'Summary') 
+                                    || this.reporttype == 'All'" style="width: 63px;">
+                                    <button class="btn btn-sm  text-dark bg-warning   custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ moulding_value | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="(this.reporttype == 'Plating' || this.reporttype == 'Summary') 
+                                    || this.reporttype == 'All'" style="width: 54px;">
+                                    <button class="btn btn-sm  text-dark bg-storesspares  custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ tooldeF_value | number:'1.2-2'}}
+                                    </button>
+                                </td>                    
+                                <td *ngIf="(this.reporttype == 'Plating' || this.reporttype == 'Summary') 
+                                    || this.reporttype == 'All'" style="width: 54px;">
+                                    <button class="btn btn-sm  text-dark bg-summary  custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ othersvalue | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'All' || this.reporttype == 'Summary'">
+                                    <button class="btn btn-sm custom-fs bg-others_value" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ mechfail_value | number:'1.2-2'}} 
+                                    </button>
+                                </td>                    
+                                <td *ngIf="this.reporttype == 'Plating' || this.reporttype == 'All' ">
+                                    <button class="btn btn-sm  text-dark bg-info  custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ pinholEvalue | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm  text-dark bg-info  custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ skipplatinGval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm  text-dark bg-info custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ whitemarKval | number:'1.2-2'}}
+                                    </button>
+                                </td>                    
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ dotplastiCval | number:'1.2-2'}}
+                                    </button>
+                                </td>                   
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ crburninGval | number:'1.2-2'}}
+                                    </button>
+                                </td>                  
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ copperburninGval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ nicklEval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ roughnesSval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ blisteRval | number:'1.2-2'}}
+                                    </button>
+                                </td>                   
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ watermarKval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ shadevaRval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ platingpeeLval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Plating'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ chemicalmarKval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <!-- Moulding -->
+                                <td *ngIf="this.reporttype == 'Moulding'">
+                                    <button class="btn btn-sm  text-dark bg-info  custom-fs"
+                                        style="float: right;width: 100%;padding: 5px 2px;">
+                                        {{ moulding_value | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Moulding'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs text-dark bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ silveRval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Moulding'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs  bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ denTval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Moulding'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ handmouldingreJval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Moulding'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ patchmarKval | number:'1.2-2'}}
+                                    </button>
+                                </td>                   
+                                <td *ngIf="this.reporttype == 'Moulding'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;
+                                        width: 100%;padding: 5px 2px;">{{ mouldingreJval | number:'1.2-2'}}
+                                    </button>
+                                </td>                    
+                                <td *ngIf="this.reporttype == 'Moulding'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;width: 100%;
+                                        padding: 5px 2px;">{{ pittinGval | number:'1.2-2'}}
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Moulding'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;width: 100%;
+                                        padding: 5px 2px;">{{ flowmarKval | number:'1.2-2'}}
+                                    </button>
+                                </td>                  
+                                <td *ngIf="this.reporttype == 'ToolDefect'">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;width: 100%;
+                                        padding: 5px 2px;">{{ othersvalue | number:'1.2-2'}}
+                                    </button>
+                                </td>                    
+                                <td *ngIf="this.reporttype == 'ToolDefect'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;width: 100%;
+                                        padding: 5px 2px;">{{ jigdamagEval | number:'1.2-2'}}
+                                    </button>
+                                </td>                    
+                                <!--Others-->
+                                <td *ngIf="this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;width: 100%;
+                                        padding: 5px 2px;">{{ warpagEval | number:'1.2-2'}} 
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Others' ">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;width: 100%;
+                                        padding: 5px 2px;">{{ othersvalue | number:'1.2-2'}}  othersqty
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Others' ">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;width: 100%;
+                                        padding: 5px 2px;">{{ warpagEval | number:'1.2-2'}} 
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Others'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;width: 100%;
+                                        padding: 5px 2px;">{{ scratchmarKval | number:'1.2-2'}} 
+                                    </button>
+                                </td>                   
+                                <td *ngIf="this.reporttype == 'Others'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;width: 100%;
+                                        padding: 5px 2px;">{{ otheR1val | number:'1.2-2'}} 
+                                    </button>
+                                </td>
+                                <td *ngIf="this.reporttype == 'Others'  || this.reporttype == 'All'">
+                                    <button class="btn btn-sm custom-fs bg-info" style="float: right;width: 100%;
+                                        padding: 5px 2px;">{{ otheR2val | number:'1.2-2'}} 
+                                    </button>
+                                </td>                    
+                            </tr>
+                            <tr>
+                                <th *ngFor="let col of columns" [class]="col.field" 
+                                    [width]="col.width">{{col.header}}
+                                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                        ariaLabelDesc="Activate to sort in descending order" 
+                                        ariaLabelAsc="Activate to sort in ascending order">
+                                    </p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-columns="columns">
+                            <tr [pSelectableRow]="rowData">
+                                <td *ngFor="let col of columns" class="ui-resizable-column" [width]="col.width">
+                                    {{rowData[col.field]}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </form>
+            <!-- Table end -->
+            
+        </div>
+    </div>
+</div>

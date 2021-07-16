@@ -1,0 +1,13 @@
+.set-padding {
+    padding: 7px 0px 7px 0px;
+    text-align: center;
+}
+#myChart,#myChartcrm,#myChartdefect{
+    height: 400px !important;
+    width: 100% !important;
+}
+@media (max-width: 800px){
+    #myChart,#myChartcrm,#myChartdefect{
+        height: 230px !important;
+    }
+}

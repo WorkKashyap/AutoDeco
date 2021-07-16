@@ -44,6 +44,10 @@ import { QualityCalenderComponent } from './qualitycalendar/qualitycalendar';
 import { RolestouserComponent } from './rolestouser/rolestouser.component';
 import { RolestopagesComponent } from './rolestopages/rolestopages.component';
 import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component';
+import { DefectDashboardComponent } from './defect-dashboard/defect-dashboard.component';
+import { ProductionValSummaryComponent } from './production-val-summary/production-val-summary.component';
+import { CalendarModule } from 'primeng/calendar';
+import { ConsumptionCalendarComponent } from './consumption-calendar/consumption-calendar.component';
 
 @NgModule({
   declarations: [
@@ -66,9 +70,13 @@ import { ViewJobworkComponent } from './home/view-jobwork/view-jobwork.component
     RolepagesComponent,
     QualityCalenderComponent,
     RolestouserComponent,
-    RolestopagesComponent
+    RolestopagesComponent,
+    DefectDashboardComponent,
+    ProductionValSummaryComponent,
+    ConsumptionCalendarComponent
   ],
   imports: [
+    CalendarModule,
     ButtonModule,
     BrowserModule,
     AppRoutingModule,

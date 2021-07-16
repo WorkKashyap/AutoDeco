@@ -15,14 +15,13 @@ toggle = [];
 public showheading: boolean = false;
 public showsubmenu: boolean = false;
 
-  constructor(private authenticationService: LoginService, private route: Router,
-          private pageService: PagesService) {
+  constructor(private authenticationService: LoginService, 
+    private route: Router,
+    private pageService: PagesService) {
     this.authenticationService.currentUser.subscribe(
       x=> (this.currentUser = x)
     );
-
-  
-   }
+  }
 
   ngOnInit() {
     if (this.authenticationService.currentUser) {
@@ -31,18 +30,14 @@ public showsubmenu: boolean = false;
       this.pageService.getPagesbyId(this.currentUser.id);
       //console.log(this.pageService.pagelist);
     }
-
   }
 
   logout() {
-
     var logout = confirm("Are you sure to logout?");
     if(logout)
     {
       this.route.navigate(["/login"]);
       this.authenticationService.logout();
-
     }
   }
-
 }

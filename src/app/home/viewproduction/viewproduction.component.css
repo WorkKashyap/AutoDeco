@@ -4,3 +4,20 @@
     display: none;
   }
 } */
+input{
+  height: 40px; width: 100%; 
+}
+@media(max-width:1000px)
+{
+  h3{
+    font-size:large;
+  }
+  button{
+    font-size: small;
+  }
+  /* input{
+    height: 30px; 
+    width: 130px; 
+    font-size: small;
+  } */
+}

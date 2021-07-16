@@ -93,7 +93,7 @@ export class DailyproductionService {
   ): Observable<Itemvalueqty[]> {
     return this.http.get<Itemvalueqty[]>(
       this.rootUrl +
-      '/itemwiserejs/rejectdetaildata_qtyval/' +
+      '/TopRejSummaryQTYs/rejectdetaildata_qtyval/' +
       plantcode +
       '/' +
       fromdate +
@@ -159,10 +159,67 @@ export class DailyproductionService {
     );
   }
 
-  public getprochart(plantcode, type, month, year): Observable<DailyReportDisplay[]> {
+  public getprochart(plantcode, type, month ,year): Observable<DailyReportDisplay[]> {
     return this.http.get<DailyReportDisplay[]>(
       this.rootUrl +
       '/dailyreportdisplay/getallchartdetail/' +
+      plantcode +
+      '/' +
+      type +
+      '/' +
+      month +
+      '/' +
+      year
+    );
+  }
+
+  public getprochartchrome(
+    plantcode,
+    type,
+    month,
+    year
+  ): Observable<DailyReportDisplayChrome[]> {
+    return this.http.get<DailyReportDisplayChrome[]>(
+      this.rootUrl +
+      '/DailyReportDisplayChrome/getchromedata/' +
+      plantcode +
+      '/' +
+      type +
+      '/' +
+      month +
+      '/' +
+      year
+    );
+  }
+
+  public getprochartsatin(
+    plantcode,
+    type,
+    month,
+    year
+  ): Observable<DailyReportDisplaySatin[]> {
+    return this.http.get<DailyReportDisplaySatin[]>(
+      this.rootUrl +
+      '/DailyReportDisplaySatin/getsatindata/' +
+      plantcode +
+      '/' +
+      type +
+      '/' +
+      month +
+      '/' +
+      year
+    );
+  }
+
+  public getprochartdefect(
+    plantcode,
+    type,
+    month,
+    year
+  ): Observable<TopDefectsummary[]> {
+    return this.http.get<TopDefectsummary[]>(
+      this.rootUrl +
+      '/TopDefectssummary/gettopdefectsummary/' +
       plantcode +
       '/' +
       type +
@@ -192,7 +249,7 @@ export class DailyproductionService {
       });
   }
 
-  public gettop5rejection(plantcode, type, month): Observable<Top5Rejection[]> {
+  public gettop5rejection(plantcode, type, month, year): Observable<Top5Rejection[]> {
     return this.http.get<Top5Rejection[]>(
       this.rootUrl +
       '/Top5Rejection/gettop5rejection/' +
@@ -200,7 +257,9 @@ export class DailyproductionService {
       '/' +
       type +
       '/' +
-      month
+      month +
+      '/' +
+      year
     );
   }
   //sales calendar

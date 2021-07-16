@@ -35,7 +35,19 @@
                                 <div class="row">
                                     <p-table #dt class="table" [columns]="cols" [value]="service.itemlist" 
                                     [style]="{'text-align': 'center', 'font-size': '0.8em'}" [paginator]="true" 
-                                    [rows]="10" [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-striped">
+                                    [rows]="10" [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-striped"
+                                    [scrollable]="true" [style]="{width:'600px'}">
+                                    <ng-template pTemplate="colgroup" let-columns>
+                                        <colgroup>
+                                            <col style="width:100px"><!--action-->
+                                            <col style="width:110px"><!--itemcode-->
+                                            <col style="width:90px"><!--plant-->
+                                            <col style="width:90px"><!--ctype-->
+                                            <col style="width:200px"><!--itemname-->
+                                            <col style="width:110px"><!--itemtype-->
+                                            <col style="width:90px"><!--price-->
+                                        </colgroup>
+                                    </ng-template>
                                     <!-- <ngx-loading [show]="loading" 
                                     [config]="{ backdropBorderRadius: '3px',primaryColour: 'blue' }">
                                     </ngx-loading> -->

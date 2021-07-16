@@ -2,3 +2,12 @@
   padding: 7px 0px 7px 0px;
   text-align: center;
 }
+#myChart{
+  height: 400px !important;
+  width: 100% !important;
+}
+@media (max-width: 800px){
+  #myChart{
+    height: 230px !important;
+  }
+}
